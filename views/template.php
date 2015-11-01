@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>好车无忧管理后台</title>
+<title>Kohana-CMS</title>
 <?= HTML::style('media/bootstrap-3.3.5/css/bootstrap.min.css')?>
 <?= HTML::style('media/font-awesome-4.3.0/css/font-awesome.min.css')?>
 <?= HTML::style('media/css/screen.css')?>
