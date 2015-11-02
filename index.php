@@ -59,6 +59,8 @@ Kohana::modules(array(
 //Kohana::$log->attach(new Log_File(APPPATH.'logs'), array(4));
 Kohana::$log->attach(new Log_File(APPPATH.'logs'));
 
+Route::set('customurl', '<customurl>', array('customurl' => '[a-z0-9_-]+'))
+        ->defaults(array('controller' => 'article', 'action' => 'customurl'));
 Route::set('default', '(<controller>(/<action>))')->defaults(array('controller' => 'home'));
 Route::set('catch_all', '<path>', array('path' => '.+'))->defaults(array('controller' => 'Error','action' => '404'));
 

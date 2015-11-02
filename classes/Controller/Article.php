@@ -29,6 +29,15 @@ class Controller_Article extends Controller_Website {
         $this->content->prev_article = $prev_article;
         $this->content->next_article = $next_article;
     }
+    
+    public function action_customurl() {
+        $customurl = $this->request->param('customurl');
+        $m_article = Model::factory('article');
+        $article = $m_article->getRow(array('custom_url'=>$customurl));
+        
+        $this->template = View::factory('article2');
+        $this->template->article = $article;
+    }
 
     public function add_history($id) {
         $history = Cookie::get('history');
