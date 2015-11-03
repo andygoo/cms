@@ -77,6 +77,19 @@ $(function(){
             $("#history").html(currentState.history);
         }
     });
+    
+	var nav = $('#main-nav');
+	var nt = nav.offset().top;
+	$(window).scroll(function() {
+		var st = $(document).scrollTop();
+		if (nt < st) {
+			nav.css({"position":"fixed","top":0, 'width':'100%','z-index':9});
+			$('.content-wrap').css({'margin-top': '95px'});
+		} else {
+			nav.css({"position":"static"});
+			$('.content-wrap').css({'margin-top': '0'});
+		}
+	});
 });
 </script>
 

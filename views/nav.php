@@ -1,4 +1,4 @@
-<nav class="main-navigation">
+<nav class="main-navigation" id="main-nav">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
@@ -22,3 +22,4 @@
         </div>
     </div>
 </nav>
+

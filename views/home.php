@@ -27,6 +27,7 @@
 }
 </style>
 
+<!-- 
 <div class="swiper-container">
     <div class="swiper-wrapper">
         <?php foreach($list as $item): ?>
@@ -34,10 +35,10 @@
         <?php endforeach;?>
     </div>
     <div class="swiper-pagination"></div>
-    <!-- <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div> -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
 </div>
-
+ -->
 
 <ul class="media-list">
 <?php foreach($list as $item): ?>
