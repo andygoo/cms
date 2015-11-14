@@ -28,6 +28,8 @@
 
 <?php include Kohana::find_file('views', 'footer');?>
 
+<?= View::factory('profiler/stats');?>
+
 <script>
 var _maq = _maq || [];
 _maq.push(['_setAccount', '222222']);
