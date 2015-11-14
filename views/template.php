@@ -28,18 +28,6 @@
 
 <?php include Kohana::find_file('views', 'footer');?>
 
-<?= View::factory('profiler/stats');?>
-
-<script>
-var _maq = _maq || [];
-_maq.push(['_setAccount', '222222']);
-(function() {
-    var ma = document.createElement('script'); ma.type = 'text/javascript'; ma.async = true;
-    ma.src = document.location.protocol + '//analytics.jiesc.net/ma.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ma, s);
-})();
-</script>
-
 <script>
 $(function(){
 	var currentState = {
@@ -94,6 +82,19 @@ $(function(){
 	});
 });
 </script>
+
+<script>
+var _maq = _maq || [];
+_maq.push(['_setAccount', '222222']);
+_maq.push(['_trackPageview']);
+(function() {
+    var ma = document.createElement('script'); ma.type = 'text/javascript'; ma.async = true;
+    ma.src = document.location.protocol + '//analytics.jiesc.net/ma.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ma, s);
+})();
+</script>
+
+<?= View::factory('profiler/stats');?>
 
 </body>
 </html>
