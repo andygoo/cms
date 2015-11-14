@@ -1,7 +1,8 @@
 <?php
 
 abstract class Controller_Website extends Controller {
-    
+
+    protected $title = '';
     protected $content;
     protected $history;
 
@@ -31,6 +32,7 @@ abstract class Controller_Website extends Controller {
             View::bind_global('uri', $this->request->uri);
             View::bind_global('controller', $this->request->controller);
             View::bind_global('action', $this->request->action);
+            View::bind_global('title', $this->title);
             View::bind_global('content', $this->content);
             View::bind_global('catlist', $catlist);
             View::bind_global('history', $this->history);

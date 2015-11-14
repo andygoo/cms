@@ -7,6 +7,8 @@ class Controller_Article extends Controller_Website {
         $m_article = Model::factory('article');
         $article = $m_article->getRow($id);
         if (empty($article)) return;
+        
+        $this->title = $article['title'];
 
         $cid = $article['cid'];
         $m_category = Model::factory('category');

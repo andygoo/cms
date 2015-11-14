@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>好车故事</title>
+<title><?= $title?></title>
 <?= HTML::style('media/bootstrap-3.3.5/css/bootstrap.min.css')?>
 <?= HTML::style('media/font-awesome-4.3.0/css/font-awesome.min.css')?>
 <?= HTML::style('media/swiper/css/swiper.min.css')?>
@@ -16,7 +16,7 @@
 
 <div class="container-fluid">
     <div class="row">
-    <?php echo $content?>
+    <?= $content?>
     </div>
 </div>
 
@@ -25,6 +25,7 @@
 <script>
 var _maq = _maq || [];
 _maq.push(['_setAccount', '222222']);
+_maq.push(['_trackPageview']);
 (function() {
     var ma = document.createElement('script'); ma.type = 'text/javascript'; ma.async = true;
     ma.src = document.location.protocol + '//analytics.jiesc.net/ma.js';

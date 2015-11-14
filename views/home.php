@@ -49,7 +49,11 @@
     </div>
     <?php endif;?>
         <div class="media-left">
+            <?php if (strpos($item['pic'], '://') !== false):?>
             <?= HTML::image($item['pic'].'?imageView2/2/w/160/h/120', array('width'=>160)) ?>
+            <?php else:?>
+            <?= HTML::image('/imagefly/w200-h150-c/' . $item['pic'], array('width'=>160)) ?>
+            <?php endif;?>
         </div>
         <div class="media-body">
             <h4 class="media-heading"><a href="<?= URL::site('article?id='.$item['id'])?>"><?= $item['title'] ?></a></h4>
