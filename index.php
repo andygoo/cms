@@ -25,7 +25,7 @@ error_reporting(E_ALL | E_STRICT);
 Kohana::init(array(
     'base_url' => '/',
     'index_file' => false,
-    'profile'    => true,
+    'profile'    => false,
 ));
 
 Kohana::modules(array(

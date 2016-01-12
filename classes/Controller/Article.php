@@ -5,14 +5,14 @@ class Controller_Article extends Controller_Website {
     public function action_index() {
         $id = Arr::get($_GET, 'id');
         $m_article = Model::factory('article');
-        $article = $m_article->getRow($id);
+        $article = $m_article->getRowById($id);
         if (empty($article)) return;
         
         $this->title = $article['title'];
 
         $cid = $article['cid'];
         $m_category = Model::factory('category');
-        $cat_info = $m_category->getRow($cid);
+        $cat_info = $m_category->getRowById($cid);
         $article['cat_name'] = $cat_info['name'];
         
         $where = array('ORDER'=>'id ASC', 'id|>'=>$id);
