@@ -2,6 +2,14 @@
 
 class Controller_Home extends Controller_Website {
 
+    public function before() {
+        parent::before();
+    
+        if ($this->auto_render === TRUE) {
+            
+        }
+    }
+    
     public function action_index() {
         $cid = Arr::get($_GET, 'cid');
 

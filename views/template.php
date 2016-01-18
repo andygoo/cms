@@ -34,7 +34,6 @@ $(function(){
         url: document.location.href,
         title: document.title,
         content: $("#content").html(),
-        history: $("#history").html()
     };
 	$(document).on('click', 'a', function(){
 		var t = $(this);
@@ -47,7 +46,6 @@ $(function(){
                     url: url,
                     title: document.title,
                     content: $("#content").html(),
-                    history: $("#history").html()
                 };
                 history.pushState(state,null,url);
                 $(document).scrollTop(0);
@@ -60,11 +58,9 @@ $(function(){
         if(event && event.state) {
             document.title = event.state.title;
             $("#content").html(event.state.content);
-            $("#history").html(event.state.history);
         } else{
             document.title = currentState.title;
             $("#content").html(currentState.content);
-            $("#history").html(currentState.history);
         }
     });
     
@@ -93,8 +89,6 @@ _maq.push(['_trackPageview']);
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ma, s);
 })();
 </script>
-
-<?= View::factory('profiler/stats');?>
 
 </body>
 </html>
