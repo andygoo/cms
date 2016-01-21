@@ -3,27 +3,27 @@
 /* move from / to  */
 
 .pt-page-moveToLeft {
-	-webkit-animation: moveToLeft .5s ease both;
-	-moz-animation: moveToLeft .5s ease both;
-	animation: moveToLeft .5s ease both;
+	-webkit-animation: moveToLeft .6s ease both;
+	-moz-animation: moveToLeft .6s ease both;
+	animation: moveToLeft .6s ease both;
 }
 
 .pt-page-moveFromLeft {
-	-webkit-animation: moveFromLeft .5s ease both;
-	-moz-animation: moveFromLeft .5s ease both;
-	animation: moveFromLeft .5s ease both;
+	-webkit-animation: moveFromLeft .6s ease both;
+	-moz-animation: moveFromLeft .6s ease both;
+	animation: moveFromLeft .6s ease both;
 }
 
 .pt-page-moveToRight {
-	-webkit-animation: moveToRight .5s ease both;
-	-moz-animation: moveToRight .5s ease both;
-	animation: moveToRight .5s ease both;
+	-webkit-animation: moveToRight .6s ease both;
+	-moz-animation: moveToRight .6s ease both;
+	animation: moveToRight .6s ease both;
 }
 
 .pt-page-moveFromRight {
-	-webkit-animation: moveFromRight .5s ease both;
-	-moz-animation: moveFromRight .5s ease both;
-	animation: moveFromRight .5s ease both;
+	-webkit-animation: moveFromRight .6s ease both;
+	-moz-animation: moveFromRight .6s ease both;
+	animation: moveFromRight .6s ease both;
 }
 
 .pt-page-moveToTop {
