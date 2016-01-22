@@ -1,9 +1,8 @@
 var PageTransitions = (function() {
 
-	var $main = $( '#pt-main' ),
-		$pages = $main.children( 'div.pt-page' ),
-		$iterate = $( '.article_item' ),
-		animcursor = 1,
+	var $main = $('#pt-main'),
+		$pages = $main.children('div.pt-page'),
+
 		pagesCount = $pages.length,
 		current = 0,
 		isAnimating = false,
@@ -16,66 +15,55 @@ var PageTransitions = (function() {
 			'animation' : 'animationend'
 		},
 		// animation end event name
-		animEndEventName = animEndEventNames[ Modernizr.prefixed( 'animation' ) ],
+		animEndEventName = animEndEventNames[ Modernizr.prefixed('animation') ],
 		// support css animations
 		support = Modernizr.cssanimations;
 	
-	function init() {
-
+	function init(current) {
+		this.current = current;
+		console.log(this.current);
 		$pages.each( function() {
 			var $page = $( this );
-			$page.data( 'originalClassList', $page.attr( 'class' ) );
-		} );
+			$page.data('originalClassList', $page.attr('class'));
+		});
 
-		$pages.eq( current ).addClass( 'pt-page-current' );
-
-		$iterate.on( 'click', function() {
-			if( isAnimating ) {
-				return false;
-			}
-			if( animcursor > 2 ) {
-				animcursor = 1;
-			}
-			nextPage( animcursor );
-			++animcursor;
-		} );
-
+		$pages.eq( this.current ).addClass('pt-page-current');
 	}
 
 	function nextPage( animation ) {
-
 		if( isAnimating ) {
 			return false;
 		}
-
 		isAnimating = true;
 		
-		var $currPage = $pages.eq( current );
+		var $currPage = $pages.eq( this.current );
 
-		if( current < pagesCount - 1 ) {
-			++current;
+		console.log(this.current);
+		console.log(pagesCount);
+		if( this.current < pagesCount - 1 ) {
+			++this.current;
+		} else {
+			this.current = 0;
 		}
-		else {
-			current = 0;
-		}
+		
+		console.log(this.current);
 
-		var $nextPage = $pages.eq( current ).addClass( 'pt-page-current' ),
+		var $nextPage = $pages.eq( this.current ).addClass('pt-page-current'),
 			outClass = '', inClass = '';
 
 		switch( animation ) {
-
-			case 1:
+			case 'left':
 				outClass = 'pt-page-moveToLeft';
 				inClass = 'pt-page-moveFromRight';
 				break;
-			case 2:
+			case 'right':
 				outClass = 'pt-page-moveToRight';
 				inClass = 'pt-page-moveFromLeft';
 				break;
 		}
 
-		$currPage.addClass( outClass ).on( animEndEventName, function() {
-			$currPage.off( animEndEventName );
+		$currPage.addClass(outClass).on(animEndEventName, function() {
+			$currPage.off(animEndEventName);
 			endCurrPage = true;
 			if( endNextPage ) {
 				onEndAnimation( $currPage, $nextPage );
@@ -104,11 +92,9 @@ var PageTransitions = (function() {
 	}
 
 	function resetPage( $outpage, $inpage ) {
-		$outpage.attr( 'class', $outpage.data( 'originalClassList' ) );
-		$inpage.attr( 'class', $inpage.data( 'originalClassList' ) + ' pt-page-current' );
+		$outpage.attr('class', $outpage.data('originalClassList'));
+		$inpage.attr('class', $inpage.data('originalClassList') + ' pt-page-current');
 	}
-
-	init();
 
 	return { init : init, next: nextPage};
 

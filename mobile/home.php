@@ -42,14 +42,6 @@
 
 </style>
 
-<nav class="navbar">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="javascript:void(0)"><i class="glyphicon glyphicon-home"></i>&nbsp;好车故事</a>
-    </div>
-  </div>
-</nav>
-
 <div class="swiper-pagination nav_bar"></div>
 <div class="swiper-container" id="swiper">
     <div class="swiper-wrapper">
@@ -100,11 +92,5 @@ var swiper = new Swiper('#swiper', {
         var cat = ['检测保障','二手车问答','好车杂谈','车主卖车'];
         return '<span class="' + className + '">' + cat[index] + '</span>';
     }
-});
-$(function() {
-	var h = $(window).height();
-	var h2 = $('.navbar').height();
-	var h3 = $('.nav_bar').height();
-	$('#swiper').find('.swiper-slide').attr('style', 'height:'+(h-h2-h3-2)+'px;overflow:auto');
 });
 </script>
