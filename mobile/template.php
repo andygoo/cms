@@ -29,6 +29,11 @@ a:focus, a:hover {color: #fff}
 .page-loading-logo,.page-loading-anim{margin-top:160px;height:70px;width:70px;display:inline-block;background:url(/media/img/loading-logo-webapp.png) 0 0 no-repeat;background-size:70px 140px} 
 .page-loading-anim{margin:0;-webkit-animation:loading-anim 2s linear infinite;background-position:0 -70px}
 </style>
+<style>
+.media {margin-top:8px;padding-bottom:8px; border-bottom: 1px solid #f5f5f5;text-align:left;}
+.media-list{margin:10px;}
+.media-heading {font-size:16px;}
+</style>
 </head>
 <body>
 <div id="pt-main" class="pt-perspective">
@@ -82,7 +87,9 @@ var currentState = {
     title: document.title,
 }
 $(function() {
-
+	$.ajaxSetup({
+		async: true
+	});
 	function set_list_content(res) {
         $('#article_list').html(res);
     	$('#swiper').find('.swiper-slide').attr('style', 'height:'+(wh-50-42)+'px;overflow:auto');
@@ -100,14 +107,18 @@ $(function() {
     	if (url == home_url) {
     	    PageTransitions.init(0);
     	    $.get(url, function(res) {
-    	    	set_list_content(res);
-            	loading = false;
+    	    	setTimeout(function() {
+        	    	set_list_content(res);
+                	loading = false;
+    	    	}, 300);
     	    });
     	} else {
     	    PageTransitions.init(1);
     	    $.get(url, function(res) {
-    	    	set_detail_content(res);
-            	loading = false;
+    	    	setTimeout(function() {
+        	    	set_detail_content(res);
+                	loading = false;
+    	    	}, 300);
     	    });
     	}
 	}
@@ -203,6 +214,19 @@ $(function() {
 		if (url != location.href) {
 			push(url);
 		}
+	});
+	$(document).on('click', '.ajax-link', function() {
+		var t = $(this);
+		var url = t.attr('href');
+	    $.get(url, function(res) {
+		    if (res.next_page != '') {
+		        t.parent('div').before(res.content);
+		        t.attr('href', res.next_page);
+		    } else {
+		        t.parent('div').hide();
+		    }
+	    });
+	    return false;
 	});
 });
 </script>

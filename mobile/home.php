@@ -35,13 +35,7 @@
 .swiper_c .swiper-pagination-bullet{background: #fff;opacity: .8}
 .swiper_c .swiper-pagination-bullet-active{background: #dd0000}
 
-.media {margin-top:8px;padding-bottom:8px; border-bottom: 1px solid #f5f5f5;text-align:left;}
-.media-list{margin:10px;}
-.media-list li:last-chid{border-bottom:none;}
-.media-heading {font-size:16px;}
-
 </style>
-
 <div class="swiper-pagination nav_bar"></div>
 <div class="swiper-container" id="swiper">
     <div class="swiper-wrapper">
@@ -51,7 +45,7 @@
             <div class="swiper-container swiper_c" id="<?= $cid?>" style="height:160px">
                 <div class="swiper-wrapper">
                     <?php foreach(array_slice($article_list, 0, 2) as $item): ?>
-                    <div class="swiper-slide">
+                    <div class="swiper-slide ajax-click" data-url="<?= URL::site('article?id='.$item['id'], true)?>">
                         <img class="img" src="<?= $item['pic']?>?imageView2/1/w/400/h/200" width="100%">
                     </div>
                     <?php endforeach; ?>
@@ -60,19 +54,13 @@
             </div>
                 
             <?php unset($article_list[0],$article_list[1])?>
-            <ul class="media-list">
-                <?php foreach($article_list as $item): ?>
-                <li class="media ajax-click" data-url="<?= URL::site('article?id='.$item['id'], true)?>">
-                    <div class="media-left">
-                        <?= HTML::image($item['pic'].'?imageView2/2/w/160/h/120', array('width'=>'100px')) ?>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading"><?= $item['title'] ?></h4>
-                        <div class="text-muted"><?= date('Y-m-d', $item['add_time'])?></div>
-                    </div>
-                </li>
-                <?php endforeach; ?>
-            </ul>
+            <?php include __DIR__ . '/list_incr.php';?>
+
+            <?php if (!empty($next_page[$cid])): ?>
+            <div style="text-align: center;width: 80%;margin-bottom:20px; margin-left:auto; margin-right:auto">
+               <a class="btn btn-default btn-block ajax-link" href="<?= $next_page[$cid] ?>">查看更多</a>
+            </div>
+            <?php endif ?>
         </div>
         <?php endforeach;?>
     </div>
