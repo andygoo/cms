@@ -2,8 +2,6 @@ var PageTransitions = (function() {
 
 	var $main = $('#pt-main'),
 		$pages = $main.children('div.pt-page'),
-
-		pagesCount = $pages.length,
 		current = 0,
 		isAnimating = false,
 		endCurrPage = false,
@@ -14,44 +12,40 @@ var PageTransitions = (function() {
 			'msAnimation' : 'MSAnimationEnd',
 			'animation' : 'animationend'
 		},
-		// animation end event name
-		animEndEventName = animEndEventNames[ Modernizr.prefixed('animation') ],
-		// support css animations
+		animEndEventName = animEndEventNames[Modernizr.prefixed('animation')],
 		support = Modernizr.cssanimations;
 	
 	function init(current) {
-		this.current = current;
-		console.log(this.current);
-		$pages.each( function() {
-			var $page = $( this );
+		$pages.each(function() {
+			var $page = $(this);
 			$page.data('originalClassList', $page.attr('class'));
 		});
 
-		$pages.eq( this.current ).addClass('pt-page-current');
+		this.current = current;
+		$pages.eq(this.current).addClass('pt-page-current');
 	}
 
-	function nextPage( animation ) {
-		if( isAnimating ) {
+	function nextPage(animation, current) {
+		if(isAnimating) {
 			return false;
 		}
 		isAnimating = true;
 		
-		var $currPage = $pages.eq( this.current );
+		var $currPage = $pages.eq(this.current);
 
-		console.log(this.current);
-		console.log(pagesCount);
-		if( this.current < pagesCount - 1 ) {
-			++this.current;
-		} else {
+		if (current == 0) {
 			this.current = 0;
+		} else {
+			if (this.current == 1) {
+				this.current = 2;
+			} else {
+				this.current = 1;
+			}
 		}
-		
-		console.log(this.current);
-
-		var $nextPage = $pages.eq( this.current ).addClass('pt-page-current'),
+		var $nextPage = $pages.eq(this.current).addClass('pt-page-current'),
 			outClass = '', inClass = '';
 
-		switch( animation ) {
+		switch(animation) {
 			case 'left':
 				outClass = 'pt-page-moveToLeft';
 				inClass = 'pt-page-moveFromRight';
@@ -65,37 +59,36 @@ var PageTransitions = (function() {
 		$currPage.addClass(outClass).on(animEndEventName, function() {
 			$currPage.off(animEndEventName);
 			endCurrPage = true;
-			if( endNextPage ) {
-				onEndAnimation( $currPage, $nextPage );
+			if(endNextPage) {
+				onEndAnimation($currPage, $nextPage);
 			}
-		} );
+		});
 
-		$nextPage.addClass( inClass ).on( animEndEventName, function() {
-			$nextPage.off( animEndEventName );
+		$nextPage.addClass(inClass).on(animEndEventName, function() {
+			$nextPage.off(animEndEventName);
 			endNextPage = true;
-			if( endCurrPage ) {
-				onEndAnimation( $currPage, $nextPage );
+			if(endCurrPage) {
+				onEndAnimation($currPage, $nextPage);
 			}
-		} );
+		});
 
-		if( !support ) {
-			onEndAnimation( $currPage, $nextPage );
+		if(!support) {
+			onEndAnimation($currPage, $nextPage);
 		}
-
 	}
 
-	function onEndAnimation( $outpage, $inpage ) {
+	function onEndAnimation($outpage, $inpage) {
 		endCurrPage = false;
 		endNextPage = false;
-		resetPage( $outpage, $inpage );
+		resetPage($outpage, $inpage);
 		isAnimating = false;
 	}
 
-	function resetPage( $outpage, $inpage ) {
+	function resetPage($outpage, $inpage) {
 		$outpage.attr('class', $outpage.data('originalClassList'));
 		$inpage.attr('class', $inpage.data('originalClassList') + ' pt-page-current');
 	}
 
-	return { init : init, next: nextPage};
+	return {init: init, next: nextPage};
 
 })();

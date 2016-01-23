@@ -6,7 +6,7 @@ class Controller_Home extends Controller_Website {
         $cid = Arr::get($_GET, 'cid');
 
         if ($this->request->user_agent('mobile')) {
-            if ($this->auto_render !== TRUE && isset($_GET['page'])) {
+            if (isset($_GET['page'])) {
                 $where = array();
                 $where['cid'] = $cid;
                 $where['status'] = 'open';

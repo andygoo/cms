@@ -6,10 +6,9 @@ class Controller_Article extends Controller_Website {
         $id = Arr::get($_GET, 'id');
         $m_article = Model::factory('article');
         $article = $m_article->getRowById($id);
-        if (empty($article)) return;
         
         $this->title = $article['title'];
-
+        /*
         $cid = $article['cid'];
         $m_category = Model::factory('category');
         $cat_info = $m_category->getRowById($cid);
@@ -19,17 +18,13 @@ class Controller_Article extends Controller_Website {
         $prev_article = $m_article->getRow($where);
         $where = array('ORDER'=>'id DESC', 'id|<'=>$id);
         $next_article = $m_article->getRow($where);
-        
+        */
         $this->add_history($id);
-        
-        $pv = $this->get_pv($id);
-        $article['pv'] = $pv;
-        $this->set_pv($id, $pv+1);
         
         $this->content = View::factory('article');
         $this->content->article = $article;
-        $this->content->prev_article = $prev_article;
-        $this->content->next_article = $next_article;
+        //$this->content->prev_article = $prev_article;
+        //$this->content->next_article = $next_article;
     }
     
     public function action_customurl() {

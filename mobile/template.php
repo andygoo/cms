@@ -19,8 +19,8 @@
 a:link, a:hover, a:active, a:visited {text-decoration:none;}
 a:focus, a:hover {color: #fff}
 .navbar {min-height: 50px;margin-bottom:0px;background: #dd0000;}
-.navbar-brand {height: 50px;line-height: 50px;padding: 2px 0 0 10px; color:#fff;}
-.navbar-header span{ color:#fff;height: 50px;line-height: 50px; text-align:center}
+.navbar-header {height: 50px;line-height: 50px;}
+.navbar-brand {color:#fff;}
 </style>
 <style type="text/css">
 @-webkit-keyframes loading-anim{0%{-webkit-transform:rotate(0)} 50%{-webkit-transform:rotate(180deg)} 100%{-webkit-transform:rotate(360deg)}} 
@@ -42,10 +42,11 @@ a:focus, a:hover {color: #fff}
           <div class="container-fluid">
             <div class="navbar-header">
               <a class="navbar-brand" href="javascript:void(0)"><i class="glyphicon glyphicon-home"></i>&nbsp;好车故事</a>
+              <a class="navbar-brand pull-right ajax-click" href="<?= URL::site('history')?>"><i class="glyphicon glyphicon-time"></i></a>
             </div>
           </div>
         </nav>
-        <div id="article_list">
+        <div id="home_page">
             <div class="page-loading">
                 <div class="page-loading-logo">
                     <div class="page-loading-anim"></div>
@@ -59,11 +60,27 @@ a:focus, a:hover {color: #fff}
           <div class="container-fluid">
             <div class="navbar-header">
               <a class="navbar-brand" href="javascript:void(0)" onclick="history.back()"><i class="glyphicon glyphicon-menu-left"></i></a>
-              <span></span>
             </div>
           </div>
         </nav>
-        <div id="article_content">
+        <div id="other_page1">
+            <div class="page-loading">
+                <div class="page-loading-logo">
+                    <div class="page-loading-anim"></div>
+                </div>
+                <div class="page-loading-text">加载中，请稍候...</div>
+            </div>
+        </div>
+	</div>
+	<div class="pt-page pt-page-3" style="background: #fff">
+    	<nav class="navbar">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="javascript:void(0)" onclick="history.back()"><i class="glyphicon glyphicon-menu-left"></i></a>
+            </div>
+          </div>
+        </nav>
+        <div id="other_page2">
             <div class="page-loading">
                 <div class="page-loading-logo">
                     <div class="page-loading-anim"></div>
@@ -79,6 +96,7 @@ a:focus, a:hover {color: #fff}
 var loading = false;
 var timer = null;
 var wh = $(window).height();
+var curr_page = 0;
 var home_url = 'http://'+location.host+'/';
 var curr_url = location.href;
 var home_content = curr_url==home_url ? true : false;
@@ -87,33 +105,38 @@ var currentState = {
     title: document.title,
 }
 $(function() {
-	$.ajaxSetup({
-		async: true
-	});
-	function set_list_content(res) {
-        $('#article_list').html(res);
+
+	function set_home_content(res) {
+        $('#home_page').html(res);
     	$('#swiper').find('.swiper-slide').attr('style', 'height:'+(wh-50-42)+'px;overflow:auto');
-    	$('#article_content').html('<div class="page-loading"><div class="page-loading-logo"><div class="page-loading-anim"></div></div><div class="page-loading-text">加载中，请稍候...</div></div>');
+    	$('#other_page1').html('<div class="page-loading"><div class="page-loading-logo"><div class="page-loading-anim"></div></div><div class="page-loading-text">加载中，请稍候...</div></div>');
+    	$('#other_page2').html('<div class="page-loading"><div class="page-loading-logo"><div class="page-loading-anim"></div></div><div class="page-loading-text">加载中，请稍候...</div></div>');
     }
 
 	function set_detail_content(res) {
-        $('#article_content').html(res);
-        $('#article_content').attr('style', 'height:'+(wh-50)+'px;overflow:auto');
-        //$('#article_list').html('<div class="page-loading"><div class="page-loading-logo"><div class="page-loading-anim"></div></div><div class="page-loading-text">加载中，请稍候...</div></div>');
+		if (curr_page == 1) {
+		    $('#other_page1').html(res).attr('style', 'height:'+(wh-50)+'px;overflow:auto');
+		    $('#other_page2').html('<div class="page-loading"><div class="page-loading-logo"><div class="page-loading-anim"></div></div><div class="page-loading-text">加载中，请稍候...</div></div>');
+		} else {
+		    $('#other_page2').html(res).attr('style', 'height:'+(wh-50)+'px;overflow:auto');
+		    $('#other_page1').html('<div class="page-loading"><div class="page-loading-logo"><div class="page-loading-anim"></div></div><div class="page-loading-text">加载中，请稍候...</div></div>');
+		}
 	}
 	
 	function init(url) {
 		loading = true;
     	if (url == home_url) {
     	    PageTransitions.init(0);
+    	    curr_page = 0;
     	    $.get(url, function(res) {
     	    	setTimeout(function() {
-        	    	set_list_content(res);
+        	    	set_home_content(res);
                 	loading = false;
     	    	}, 300);
     	    });
     	} else {
     	    PageTransitions.init(1);
+    	    curr_page = 1;
     	    $.get(url, function(res) {
     	    	setTimeout(function() {
         	    	set_detail_content(res);
@@ -124,72 +147,58 @@ $(function() {
 	}
 	function push(url) {
 		loading = true;
-		PageTransitions.next('left');
 	    history.pushState({url: url, title: document.title}, null, url);
     	if (url == home_url) {
+    	    PageTransitions.next('left', 0);
+    	    curr_page = 0;
     	    $.get(url, function(res) {
     	    	setTimeout(function() {
-                	loading = false;
-        	    	set_list_content(res);
-    	    	}, 600);
-    	    });
-    	} else {
-    	    $.get(url, function(res) {
-    	    	setTimeout(function() {
-                	loading = false;
-        	    	set_detail_content(res);
-    	    	}, 600);
-    	    });
-    	}
-	}
-	function next(url) {
-		PageTransitions.next('left');
-    	if (url == home_url) {
-    	    $.get(url, function(res) {
-    			setTimeout(function() {
-        	    	set_list_content(res);
+        	    	set_home_content(res);
                 	loading = false;
     	    	}, 600);
     	    });
     	} else {
+    	    PageTransitions.next('left');
+    	    curr_page = curr_page==1 ? 2 : 1;
     	    $.get(url, function(res) {
-    			setTimeout(function() {
+    	    	setTimeout(function() {
         	    	set_detail_content(res);
                 	loading = false;
     	    	}, 600);
     	    });
     	}
 	}
+
 	function prev(url) {
 		timer = setInterval(function() {
 			if (loading == false) {
 				clearInterval(timer);
-			    PageTransitions.next('right');
-			    setTimeout(function() {
-			        $('#article_content').html('<div class="page-loading"><div class="page-loading-logo"><div class="page-loading-anim"></div></div><div class="page-loading-text">加载中，请稍候...</div></div>');
-			    }, 600);
+				if (url == home_url) {
+				    PageTransitions.next('right', 0);
+            	    curr_page = 0;
+                	if (home_content == false) {
+                	    $.get(url, function(res) {
+                			setTimeout(function() {
+                    	    	set_home_content(res);
+                    	    	home_content = true;
+                	    	}, 600);
+                	    });
+                	}
+    			    setTimeout(function() {
+    			    	$('#other_page2').html('<div class="page-loading"><div class="page-loading-logo"><div class="page-loading-anim"></div></div><div class="page-loading-text">加载中，请稍候...</div></div>');
+    			    	$('#other_page1').html('<div class="page-loading"><div class="page-loading-logo"><div class="page-loading-anim"></div></div><div class="page-loading-text">加载中，请稍候...</div></div>');
+    				}, 600);
+				} else {
+				    PageTransitions.next('right');
+		    	    curr_page = curr_page==1 ? 2 : 1;
+	        	    $.get(url, function(res) {
+	        			setTimeout(function() {
+	            	    	set_detail_content(res);
+	        	    	}, 600);
+	        	    });
+				}
 			}
-		}, 10);
-		if (url != curr_url) {
-        	if (url == home_url) {
-            	if (home_content == false) {
-            	    $.get(url, function(res) {
-            			setTimeout(function() {
-                	    	set_list_content(res);
-                	    	home_content = true;
-            				loading = false;
-            	    	}, 600);
-            	    });
-            	}
-        	} else {
-        	    $.get(url, function(res) {
-        			setTimeout(function() {
-            	    	set_detail_content(res);
-        				loading = false;
-        	    	}, 600);
-        	    });
-        	}
-		}
+		}, 20);
 	}
     init(location.href);
 
@@ -199,7 +208,7 @@ $(function() {
             console.log(event.state);
             document.title = event.state.title;
             var url = event.state.url;
-            next(url);
+            prev(url);
         } else{
             console.log('prev');
             console.log(currentState);
@@ -210,10 +219,11 @@ $(function() {
     });
 	$(document).on('click', '.ajax-click', function() {
 		var t = $(this);
-		var url = t.data('url');
+		var url = this.href || t.data('url');
 		if (url != location.href) {
 			push(url);
 		}
+	    return false;
 	});
 	$(document).on('click', '.ajax-link', function() {
 		var t = $(this);
