@@ -129,15 +129,15 @@ $(function() {
     	if (url == home_url) {
     	    $.get(url, function(res) {
     	    	setTimeout(function() {
-        	    	set_list_content(res);
                 	loading = false;
+        	    	set_list_content(res);
     	    	}, 600);
     	    });
     	} else {
     	    $.get(url, function(res) {
     	    	setTimeout(function() {
-        	    	set_detail_content(res);
                 	loading = false;
+        	    	set_detail_content(res);
     	    	}, 600);
     	    });
     	}
@@ -169,7 +169,7 @@ $(function() {
 			        $('#article_content').html('<div class="page-loading"><div class="page-loading-logo"><div class="page-loading-anim"></div></div><div class="page-loading-text">加载中，请稍候...</div></div>');
 			    }, 600);
 			}
-		}, 50);
+		}, 10);
 		if (url != curr_url) {
         	if (url == home_url) {
             	if (home_content == false) {
