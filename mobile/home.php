@@ -13,20 +13,20 @@
     display: table;
     table-layout: fixed;
     width: 100%;
-    height: 41px;
+    height: 40px;
     background: #fff;
     border-bottom: 1px solid #d9d9d9;
 }
 .nav_bar span {
 	display: table-cell;
-    height: 40px;
-    line-height: 40px;
+    vertical-align: middle;
+	height: 100%;
 	background: #fff;
 	border-radius: 0;
-    border-bottom: 1px solid #fff;
+    border-bottom: 2px solid #fff;
 	opacity: 0.8;
 }
-.nav_bar .swiper-pagination-bullet-active  {
+.nav_bar span.swiper-pagination-bullet-active  {
     border-bottom: 2px solid #dd0000;
     color: #dd0000;
 }
@@ -34,6 +34,9 @@
 .swiper_c .swiper-pagination{bottom: 0; text-align: right}
 .swiper_c .swiper-pagination-bullet{background: #fff;opacity: .8}
 .swiper_c .swiper-pagination-bullet-active{background: #dd0000}
+
+
+.ui-refresh{ display: block; height:36px;line-height:36px;background-color:#f8f9fa;text-align:center;border:1px solid #ebedef;border-radius:1px;color:#545454;margin:14px 40px}
 
 </style>
 <div class="swiper-pagination nav_bar"></div>
@@ -57,9 +60,7 @@
             <?php include __DIR__ . '/list_incr.php';?>
 
             <?php if (!empty($next_page[$cid])): ?>
-            <div style="text-align: center;width: 80%;margin-bottom:20px; margin-left:auto; margin-right:auto">
-               <a class="btn btn-default btn-block ajax-link" href="<?= $next_page[$cid] ?>">查看更多</a>
-            </div>
+            <div class="ui-refresh ajax-link" data-url="<?= $next_page[$cid] ?>">点击加载更多</div>
             <?php endif ?>
         </div>
         <?php endforeach;?>

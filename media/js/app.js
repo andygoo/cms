@@ -134,13 +134,13 @@ $(function() {
 	});
 	$(document).on('click', '.ajax-link', function() {
 		var t = $(this);
-		var url = t.attr('href');
+		var url = this.href || t.data('url');
 	    $.get(url, function(res) {
 		    if (res.next_page != '') {
-		        t.parent('div').before(res.content);
-		        t.attr('href', res.next_page);
+		        t.before(res.content);
+		        t.data('url', res.next_page);
 		    } else {
-		        t.parent('div').hide();
+		        t.hide();
 		    }
 	    });
 	    return false;

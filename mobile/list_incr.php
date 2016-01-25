@@ -3,7 +3,7 @@
 <?php foreach($article_list as $item): ?>
 <li class="media ajax-click" data-url="<?= URL::site('article?id='.$item['id'], true)?>">
     <div class="media-left">
-        <?= HTML::image($item['pic'].'?imageView2/2/w/160/h/120', array('width'=>'100px')) ?>
+        <img src="<?= $item['pic']; ?>?imageView2/2/w/160/h/120" width="100">
     </div>
     <div class="media-body">
         <h4 class="media-heading"><?= $item['title'] ?></h4>

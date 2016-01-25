@@ -38,7 +38,7 @@ html, body { height: 100%; }
 /*common*/
 .img, .article_content img {max-width: 100%}
 a:link, a:hover, a:active, a:visited {text-decoration:none;}
-a:focus, a:hover {color: #fff}
+.navbar a:focus, .navbar a:hover {color: #fff}
 
 /*nav*/
 .navbar {min-height: 50px;margin-bottom:0px;background: #dd0000;}
