@@ -35,13 +35,12 @@ $(function(){
         title: document.title,
         content: $("#content").html(),
     };
-	$(document).on('click', 'a', function(){
+	$(document).on('click', '.pagination a', function() {
 		var t = $(this);
 		var url = t.attr('href');
 		if (url.split('#')[0].length) {
     		$.get(url, function(res) {
-    			$('#content').html(res.content);
-    			$('#history').html(res.history);
+    			$('#content').html(res);
     			var state = {
                     url: url,
                     title: document.title,
@@ -63,31 +62,7 @@ $(function(){
             $("#content").html(currentState.content);
         }
     });
-    
-	var nav = $('#main-nav');
-	var nt = nav.offset().top;
-	$(window).scroll(function() {
-		var st = $(document).scrollTop();
-		if (nt < st) {
-			nav.css({"position":"fixed","top":0, 'width':'100%','z-index':9});
-			$('.content-wrap').css({'margin-top': '95px'});
-		} else {
-			nav.css({"position":"static"});
-			$('.content-wrap').css({'margin-top': '0'});
-		}
-	});
 });
-</script>
-
-<script>
-var _maq = _maq || [];
-_maq.push(['_setAccount', '222222']);
-_maq.push(['_trackPageview']);
-(function() {
-    var ma = document.createElement('script'); ma.type = 'text/javascript'; ma.async = true;
-    ma.src = document.location.protocol + '//127.0.0.1:10099/ma.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ma, s);
-})();
 </script>
 
 </body>
