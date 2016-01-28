@@ -62,7 +62,7 @@ $(function() {
     	    	setTimeout(function() {
         	    	set_home_content(res);
                 	loading = false;
-    	    	}, 600);
+    	    	}, 500);
     	    });
     	} else {
     	    PageTransitions.next('left');
@@ -71,7 +71,7 @@ $(function() {
     	    	setTimeout(function() {
         	    	set_detail_content(res);
                 	loading = false;
-    	    	}, 600);
+    	    	}, 500);
     	    });
     	}
 	}
@@ -88,20 +88,20 @@ $(function() {
                 			setTimeout(function() {
                     	    	set_home_content(res);
                     	    	home_content = true;
-                	    	}, 600);
+                	    	}, 500);
                 	    });
                 	}
     			    setTimeout(function() {
     			    	$('#other_page2').html(loading_html);
     			    	$('#other_page1').html(loading_html);
-    				}, 600);
+    				}, 500);
 				} else {
 				    PageTransitions.next('right');
 		    	    curr_page = curr_page==1 ? 2 : 1;
 	        	    $.get(url, function(res) {
 	        			setTimeout(function() {
 	            	    	set_detail_content(res);
-	        	    	}, 600);
+	        	    	}, 500);
 	        	    });
 				}
 			}

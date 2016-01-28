@@ -11,6 +11,7 @@
 <?= HTML::style('media/css/component.css')?>
 <?= HTML::style('media/css/animations.css')?>
 <?= HTML::script('media/js/jquery.min.js')?>
+<?= HTML::script('media/js/iscroll.js')?>
 </head>
 <body>
 <div id="pt-main" class="pt-perspective">
@@ -32,8 +33,8 @@
             </div>
         </div>
 	</div>
-	<div class="pt-page pt-page-2" style="background: #fff">
-    	<nav class="navbar">
+	<div class="pt-page pt-page-2" style="background: #fff;">
+    	<nav class="navbar" style="z-index:9;">
           <div class="container-fluid">
             <div class="navbar-header">
               <a class="navbar-brand" href="javascript:void(0)" onclick="history.back()"><i class="glyphicon glyphicon-menu-left"></i></a>
@@ -42,8 +43,8 @@
         </nav>
         <div id="other_page1"></div>
 	</div>
-	<div class="pt-page pt-page-3" style="background: #fff">
-    	<nav class="navbar">
+	<div class="pt-page pt-page-3" style="background: #fff;">
+    	<nav class="navbar" style="z-index:9;">
           <div class="container-fluid">
             <div class="navbar-header">
               <a class="navbar-brand" href="javascript:void(0)" onclick="history.back()"><i class="glyphicon glyphicon-menu-left"></i></a>
