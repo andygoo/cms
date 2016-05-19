@@ -4,8 +4,8 @@
 <?= HTML::style('media/bootstrap-3.3.5/css/bootstrap.css')?>
 <?= HTML::script('media/js/iscroll.js')?>
 
-<?php include __DIR__ . '/list_header.php';?>
-<?php include __DIR__ . '/list_filter.php';?>
+<?php include __DIR__ . '/vehicle_list/list_header.php';?>
+<?php include __DIR__ . '/vehicle_list/list_filter.php';?>
 
 <?php if (!empty($filter_list)):?>
 <div id="selected_options" class="sx-box-o">
@@ -39,7 +39,7 @@
 */
 </style>
 <div id="vehicle_list_container" class="list_car">
-    <?php include __DIR__ . '/list_vehicle.php';?>
+    <?php include __DIR__ . '/vehicle_list/list_vehicle.php';?>
 </div>
 
 
@@ -51,13 +51,13 @@ $(function() {
 		var t = $('#a'+id);
 		if ($('#a'+id+'_content').is(":hidden")) {
 			$('body').css({'overflow': 'hidden'});
-			$(window).scrollTop('45');
 			$('#vehicle_filter').addClass('fixed');
 			$('#a'+id+'_content').show().siblings('.filter_option').hide();
             $('.class1').removeClass('slided');
             t.addClass('slided').removeClass('no-hover');
 		} else {
 			$('body').css({'overflow': 'auto'});
+			$('#vehicle_filter').removeClass('fixed');
 			$('#a'+id+'_content').hide();
             t.removeClass('slided').addClass('no-hover');
 		}
@@ -93,7 +93,6 @@ $(function() {
     });
 	
 	$('#wrapper1, #wrapper3, #a4_content').click(function (event) {
-		console.log(event.target.className);
 		if (event.target.className.indexOf('close_box') != -1) {
 		    var id = $(this).data("id");
 		    filter_tab_click(id);
@@ -127,20 +126,16 @@ $(function() {
 	$(document).on('click', '#a4_content ul li', function() {
     	var url = $(this).find('a').data('url');
     	$('#comform_filter_btn').attr('href', url);
-	    //if(cache_count[u]) {
-	    //    $('#vehicle_count').html(cache_count[u]);
-	    //} else {
-		    var params = {};
-		    params.get_vehicle_count = 1;
-	    	$.get(url, params, function(res) {
-		    	$('#scroller4').html(res);
-		    });
-	    //}
+	    var params = {};
+	    params.get_vehicle_count = 1;
+    	$.get(url, params, function(res) {
+	    	$('#scroller4').html(res);
+	    });
 	    return false;
 	});
 
 	$(window).scroll(function() {
-		if ($(this).scrollTop()>44) {
+		if ($(this).scrollTop()>45) {
 			$('#vehicle_filter').addClass('fixed');
 		} else {
 			$('#vehicle_filter').removeClass('fixed');

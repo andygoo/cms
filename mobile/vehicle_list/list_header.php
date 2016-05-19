@@ -17,7 +17,7 @@
     </div>
     <a class="lgico4new" style="height: 43px;" id="search_button"></a>
     <div id="search_pannel" class="searchbox" style="display:none;">
-        <?php include __DIR__ . '/search.php';?>
+        <?php include __DIR__ . '/../common/search.php';?>
     </div>
     <div class="logo" style="background-image: url(http://m.haocheweb.com/img/logo_new.png);height: 43px;"></div>
 </div>

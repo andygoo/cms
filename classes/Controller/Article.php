@@ -3,62 +3,71 @@
 class Controller_Article extends Controller_Website {
 
     public function action_index() {
+        $cid = Arr::get($_GET, 'cid');
+    
+        if (isset($_GET['page'])) {
+            $where = array();
+            $where['cid'] = $cid;
+            $where['status'] = 'open';
+            $where['ORDER'] = 'id DESC';
+            $where = array_filter($where);
+
+            $m_article = Model::factory('article', 'cms');
+            $total = $m_article->count($where);
+            $pager = new Pager($total, 10);
+            $list = $m_article->select($pager->offset, $pager->size, $where)->as_array();
+
+            $content = View::factory('list_incr');
+            $content->article_list = $list;
+            $next_page = $pager->next_page ? $pager->url($pager->next_page, array('cid'=>$cid)) : '';
+
+            header('Content-Type: application/json; charset=utf-8');
+            $ret = array('content' => (string)$content, 'next_page' => $next_page);
+            echo json_encode($ret);
+            exit;
+        }
+        
+        $list = array();
+        $pagers = array();
+        $cids = array(1,2,3,5);
+        foreach ($cids as $cid) {
+            $where = array();
+            $where['cid'] = $cid;
+            $where['status'] = 'open';
+            $where['ORDER'] = 'featured DESC,id DESC';
+            $where = array_filter($where);
+
+            $m_article = Model::factory('article', 'cms');
+            $total = $m_article->count($where);
+            $pager = new Pager($total, 10);
+            $pagers[$cid] = $pager->next_page ? $pager->url($pager->next_page, array('cid'=>$cid)) : '';
+            $list[$cid] = $m_article->select($pager->offset, $pager->size, $where)->as_array();
+        }
+
+        $this->content = View::factory('article_list');
+        $this->content->list = $list;
+        $this->content->next_page = $pagers;
+    }
+    
+    public function action_detail() {
         $id = Arr::get($_GET, 'id');
-        $m_article = Model::factory('article');
+        $m_article = Model::factory('article', 'cms');
         $article = $m_article->getRowById($id);
         
         $this->title = $article['title'];
-        /*
-        $cid = $article['cid'];
-        $m_category = Model::factory('category');
-        $cat_info = $m_category->getRowById($cid);
-        $article['cat_name'] = $cat_info['name'];
-        
-        $where = array('ORDER'=>'id ASC', 'id|>'=>$id);
-        $prev_article = $m_article->getRow($where);
-        $where = array('ORDER'=>'id DESC', 'id|<'=>$id);
-        $next_article = $m_article->getRow($where);
-        */
-        $this->add_history($id);
-        
-        $this->content = View::factory('article');
+        $this->content = View::factory('article_detail');
         $this->content->article = $article;
-        //$this->content->prev_article = $prev_article;
-        //$this->content->next_article = $next_article;
     }
     
     public function action_customurl() {
         $customurl = $this->request->param('customurl');
-        $m_article = Model::factory('article');
+        $m_article = Model::factory('article', 'cms');
         $article = $m_article->getRow(array('custom_url'=>$customurl));
-        
-        $this->template = View::factory('article2');
-        $this->template->article = $article;
+
+        $this->title = $article['title'];
+        $this->content = View::factory('article_detail');
+        $this->content->article = $article;
     }
 
-    public function add_history($id) {
-        $history = Cookie::get('history');
-        $history = explode(',', $history);
-        array_unshift($history, $id);
-        $history = array_map('intval', $history);
-        $history = array_unique($history);
-        $history = array_filter($history);
-        $history = array_slice($history, 0, 10);
-        $history = implode(',', $history);
-        Cookie::set('history', $history, 30*86400);
-    }
-    
-    public function get_pv($id) {
-        $key = 'artivle_pv_'.$id;
-        $cache = Cache::instance('sqlite');
-        $pv = $cache->get($key, 0);
-        return $pv;
-    }
-    
-    public function set_pv($id, $pv) {
-        $key = 'artivle_pv_'.$id;
-        $cache = Cache::instance('sqlite');
-        $cache->set($key, $pv, 86400*365);
-    }
 }
 

@@ -101,7 +101,7 @@ $list = array(
     </ul>
 </div>
 
-<?php include __DIR__ . '/photoswipe.php';?>
+<?php include __DIR__ . '/vehicle_detail/photoswipe.php';?>
 
 <script>
 $(function() {

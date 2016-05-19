@@ -33,7 +33,7 @@ class Controller_List extends Controller_Website {
                 $year_list = $this->_getYearList();
                 $miles_list = $this->_getMilesList();
                 
-                $view = View::factory('list_more');
+                $view = View::factory('vehicle_list/list_more');
                 $view->year_list = $year_list;
                 $view->miles_list = $miles_list;
                 echo $view;
@@ -49,7 +49,7 @@ class Controller_List extends Controller_Website {
                     $series_list = $this->_getSeriesList($brand_id);
                 }
                 
-                $view = View::factory('list_series');
+                $view = View::factory('vehicle_list/list_series');
                 $view->series_list = $series_list;
                 echo $view;
                 exit;
@@ -82,7 +82,7 @@ class Controller_List extends Controller_Website {
         $this->_format_list($vehicle_list);
 
         if ($this->auto_render === false) {
-            $view = View::factory('list_vehicle');
+            $view = View::factory('vehicle_list/list_vehicle');
             $view->vehicle_list = $vehicle_list;
             echo $view;
             exit;
