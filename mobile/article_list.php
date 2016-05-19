@@ -53,7 +53,7 @@
             <div class="swiper-container swiper_c" id="<?= $cid?>">
                 <div class="swiper-wrapper">
                     <?php foreach(array_slice($article_list, 0, 2) as $item): ?>
-                    <div class="swiper-slide ajax-click" data-url="<?= URL::site('article/detail?id='.$item['id'], true)?>">
+                    <div class="swiper-slide ajax-click" onclick="window.open('<?= URL::site('article/detail?id='.$item['id'], true)?>')">
                         <img class="img" src="<?= $item['pic']?>?imageView2/1/w/400/h/200" width="100%">
                     </div>
                     <?php endforeach; ?>
