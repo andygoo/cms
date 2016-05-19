@@ -17,7 +17,7 @@ class Controller_Article extends Controller_Website {
             $pager = new Pager($total, 10);
             $list = $m_article->select($pager->offset, $pager->size, $where)->as_array();
 
-            $content = View::factory('list_incr');
+            $content = View::factory('article_list/list_incr');
             $content->article_list = $list;
             $next_page = $pager->next_page ? $pager->url($pager->next_page, array('cid'=>$cid)) : '';
 

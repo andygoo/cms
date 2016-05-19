@@ -74,7 +74,6 @@
 </div>
 
 <script>
-var sc1=sc2=sc3=sc4=null;
 $(function() {
 	$('.swiper_c').each(function() {
 		var t = $(this);
