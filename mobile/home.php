@@ -1,7 +1,6 @@
 <style>
 .swiper-container {
     width: 100%;
-	height:100%;
 }
 .swiper-slide {
     text-align: center;
@@ -31,21 +30,21 @@
     color: #dd0000;
 }
 
-.swiper_c .swiper-pagination{bottom: 0; text-align: right}
-.swiper_c .swiper-pagination-bullet{background: #fff;opacity: .8}
-.swiper_c .swiper-pagination-bullet-active{background: #dd0000}
-
-
 .ui-refresh{ display: block; height:36px;line-height:36px;background-color:#f8f9fa;text-align:center;border:1px solid #ebedef;border-radius:1px;color:#545454;margin:14px 40px}
 
+.swiper_c .swiper-pagination{bottom: 0; text-align: right}
+.swiper_c .swiper-pagination-bullet{width:6px;height:6px;background: #fff;opacity: .6}
+.swiper_c .swiper-pagination-bullet-active{opacity: 1}
 </style>
+
 <div class="swiper-pagination nav_bar"></div>
-<div class="swiper-container" id="swiper">
+
+<div id="swiper" class="swiper-container">
     <div class="swiper-wrapper">
         <?php foreach($list as $cid=>$article_list): ?>
-        <div class="swiper-slide">
+        <div class="swiper-slide swiper-slide2" data-hash="slide<?= $cid?>">
         
-            <div class="swiper-container swiper_c" id="<?= $cid?>" style="height:160px">
+            <div class="swiper-container swiper_c" id="<?= $cid?>">
                 <div class="swiper-wrapper">
                     <?php foreach(array_slice($article_list, 0, 2) as $item): ?>
                     <div class="swiper-slide ajax-click" data-url="<?= URL::site('article?id='.$item['id'], true)?>">
@@ -62,24 +61,46 @@
             <?php if (!empty($next_page[$cid])): ?>
             <div class="ui-refresh ajax-link" data-url="<?= $next_page[$cid] ?>">点击加载更多</div>
             <?php endif ?>
+            
         </div>
         <?php endforeach;?>
     </div>
 </div>
 
-<?= HTML::script('media/swiper/js/swiper.min.js')?>
 <script>
-$('.swiper_c').each(function() {
-	var t = $(this);
-	var pid = t.attr('id');
-	new Swiper(t, {pagination: '#pagination_'+pid});
-});
-var swiper = new Swiper('#swiper', {
-    pagination: '.nav_bar',
-    paginationClickable: true,
-    paginationBulletRender: function (index, className) {
-        var cat = ['检测保障','二手车问答','好车杂谈','车主卖车'];
-        return '<span class="' + className + '">' + cat[index] + '</span>';
-    }
+var sc1=sc2=sc3=sc4=null;
+$(function() {
+	$('.swiper_c').each(function() {
+		var t = $(this);
+		var pid = t.attr('id');
+		new Swiper($(this), {pagination: '#pagination_'+pid});
+	});
+	$('.swiper-slide2').attr('style', 'height:'+($(window).height()-42)+'px;overflow:auto');
+	var swiper = new Swiper('#swiper', {
+	    pagination: '.nav_bar',
+	    hashnav:true,
+	    paginationClickable: true,
+	    paginationBulletRender: function (index, className) {
+	        var cat = ['检测保障','二手车问答','好车杂谈','车主卖车'];
+	        return '<span class="' + className + '">' + cat[index] + '</span>';
+	    },
+        onSlideChangeStart: function(swiper) {
+            var idx = swiper.activeIndex;
+        }
+	});
+	
+	$(document).on('click', '.ajax-link', function() {
+		var t = $(this);
+		var url = this.href || t.data('url');
+	    $.get(url, function(res) {
+		    if (res.next_page != '') {
+		        t.before(res.content);
+		        t.data('url', res.next_page);
+		    } else {
+		        t.hide();
+		    }
+	    });
+	    return false;
+	});
 });
 </script>

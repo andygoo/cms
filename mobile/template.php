@@ -9,54 +9,11 @@
 <?= HTML::style('media/bootstrap-3.3.5/css/bootstrap.min.css')?>
 <?= HTML::style('media/swiper/css/swiper.min.css')?>
 <?= HTML::style('media/css/component.css')?>
-<?= HTML::style('media/css/animations.css')?>
 <?= HTML::script('media/js/jquery.min.js')?>
 <?= HTML::script('media/js/iscroll.js')?>
+<?= HTML::script('media/swiper/js/swiper.min.js')?>
 </head>
 <body>
-<div id="pt-main" class="pt-perspective">
-	<div class="pt-page pt-page-1">
-    	<nav class="navbar">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <a class="navbar-brand" href="javascript:void(0)"><i class="glyphicon glyphicon-home"></i>&nbsp;好车故事</a>
-              <a class="navbar-brand pull-right ajax-click" href="<?= URL::site('history')?>"><i class="glyphicon glyphicon-time"></i></a>
-            </div>
-          </div>
-        </nav>
-        <div id="home_page">
-            <div class="page-loading">
-                <div class="page-loading-logo">
-                    <div class="page-loading-anim"></div>
-                </div>
-                <div class="page-loading-text">加载中，请稍候...</div>
-            </div>
-        </div>
-	</div>
-	<div class="pt-page pt-page-2" style="background: #fff;">
-    	<nav class="navbar" style="z-index:9;">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <a class="navbar-brand" href="javascript:void(0)" onclick="history.back()"><i class="glyphicon glyphicon-menu-left"></i></a>
-            </div>
-          </div>
-        </nav>
-        <div id="other_page1"></div>
-	</div>
-	<div class="pt-page pt-page-3" style="background: #fff;">
-    	<nav class="navbar" style="z-index:9;">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <a class="navbar-brand" href="javascript:void(0)" onclick="history.back()"><i class="glyphicon glyphicon-menu-left"></i></a>
-            </div>
-          </div>
-        </nav>
-        <div id="other_page2"></div>
-	</div>
-</div>
-
-<?= HTML::script('media/js/modernizr.custom.js')?>
-<?= HTML::script('media/js/pagetransitions.js')?>
-<?= HTML::script('media/js/app.js')?>
+<?php echo $content?>
 </body>
 </html>
