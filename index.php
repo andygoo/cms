@@ -42,6 +42,31 @@ Kohana::modules(array(
 ));
 Kohana::$log->attach(new Log_File(APPPATH.'logs'));
 
+
+Route::set('list', '(<city_pinyin>/)list(/(b<brand_id>)(c<series_id>)(p<price_f>-<price_t>)(y<year_f>-<year_t>)(m<mile_f>-<mile_t>)(s<sort_f>-<sort_d>))(/p<page>)', array(
+    'city_pinyin' => '([a-z]+)',
+    'brand_id' => '(\d+)',
+    'series_id' => '(\d+)',
+    'price_f' => '(\d+)',
+    'price_t' => '(\d+)',
+    'year_f' => '(\d+)',
+    'year_t' => '(\d+)',
+    'mile_f' => '(\d+)',
+    'mile_t' => '(\d+)',
+    'sort_f' => '(p|y|m)',
+    'sort_d' => '(a|d)',
+    'page' => '(\d+)' 
+))->defaults(array(
+    'controller' => 'list',
+));
+
+Route::set('detail', 'detail/<id>', array(
+    'id' => '(\d+)' 
+))->defaults(array(
+    'controller' => 'detail',
+));
+
+
 Route::set('custom', 'fruit/<customurl>', array('customurl' => '[a-z0-9_-]+'))->defaults(array('controller' => 'article', 'action' => 'customurl'));
 Route::set('default', '(<controller>(/<action>))')->defaults(array('controller' => 'home'));
 Route::set('catch_all', '<path>', array('path' => '.*'))->defaults(array('controller' => 'Error','action' => '404'));

@@ -13,7 +13,7 @@ class Controller_Home extends Controller_Website {
                 $where['ORDER'] = 'id DESC';
                 $where = array_filter($where);
             
-                $m_article = Model::factory('article');
+                $m_article = Model::factory('article', 'cms');
                 $total = $m_article->count($where);
                 $pager = new Pager($total, 10);
                 $list = $m_article->select($pager->offset, $pager->size, $where)->as_array();
@@ -37,7 +37,7 @@ class Controller_Home extends Controller_Website {
                     $where['ORDER'] = 'featured DESC,id DESC';
                     $where = array_filter($where);
                     
-                    $m_article = Model::factory('article');
+                    $m_article = Model::factory('article', 'cms');
                     $total = $m_article->count($where);
                     $pager = new Pager($total, 10);
                     $pagers[$cid] = $pager->next_page ? $pager->url($pager->next_page, array('cid'=>$cid)) : '';
@@ -55,12 +55,12 @@ class Controller_Home extends Controller_Website {
             $where['ORDER'] = 'id DESC';
             $where = array_filter($where);
             
-            $m_article = Model::factory('article');
+            $m_article = Model::factory('article', 'cms');
             $total = $m_article->count($where);
             $pager = new Pager($total, 10);
             $list = $m_article->select($pager->offset, $pager->size, $where)->as_array();
             
-            $m_category = Model::factory('category');
+            $m_category = Model::factory('category', 'cms');
             $cat_list = $m_category->getAll()->as_array('id', 'name');
             foreach ($list as &$item) {
                 $item['cat_name'] = isset($cat_list[$item['cid']]) ? $cat_list[$item['cid']] : '';
