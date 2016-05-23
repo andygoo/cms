@@ -41,6 +41,9 @@ input[type="button"], input[type="submit"], input[type="reset"] {-webkit-appeara
 #search_result ul li{padding:0;background: none;}
 </style>
 
+<?= HTML::style('media/autocomplete/jquery.autocomplete.css')?>
+<?= HTML::script('media/autocomplete/jquery.autocomplete.js')?>
+
 <div class="seitchbox">
     <form action="<?php echo URL::site($city_info['city_pinyin'].'/list')?>" method="get">
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -82,3 +85,17 @@ input[type="button"], input[type="submit"], input[type="reset"] {-webkit-appeara
     <ul></ul>
 </div>
 
+<script>
+/*
+$(function() {
+	$('#search_input').autocomplete({
+		 source:[
+		         function( q,add ){
+		          $.getJSON('http://m.haoche51.com/suggest/index?kw=f',function(resp){
+		           add(resp.data)
+		          })
+		         }
+		        ]
+	});
+});*/
+</script>
