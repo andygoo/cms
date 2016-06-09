@@ -41,7 +41,8 @@ Kohana::modules(array(
     'devtools' => MODPATH . 'devtools',
     'logreader' => MODPATH . 'logreader',
     'myadmin' => MODPATH . 'myadmin',
-    'media' => MODPATH . 'media' 
+    'media' => MODPATH . 'media',
+    'weixin' => MODPATH . 'weixin',
 ));
 Kohana::$log->attach(new Log_File(APPPATH . 'logs'));
 
