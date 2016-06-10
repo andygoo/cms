@@ -166,7 +166,7 @@ class Controller_Auction extends Controller_Website {
         $item_id = Arr::get($_GET, 'id');
     
         $m_auction = Model::factory('auction', 'paimai');
-        $info = $m_auction->getRowById($item_id);
+        $info = $m_auction->getRowById($item_id, 'id,end_time,curr_price');
     
         header('Content-Type: application/json; charset=utf-8');
         $ret = array('errno'=>0, 'data'=> $info);

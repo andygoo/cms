@@ -56,8 +56,17 @@ body {background: #f5f2f2;}
             <span class="text-muted" style="font-size:10px;">222</span> -->
             </div>
         
-            <?php if ($status == 1):?>
-            <div id="countdown" style="margin-bottom:10px;">
+            <?php if ($status == 1 || $status == 0):?>
+            <?php if ($status == 0):?>
+            <div id="countdown2" style="margin-bottom:10px;">
+                <span class="label label-info" style="border-radius:0;font-weight:normal;">未开拍</span>
+                <span class="pull-right">
+                    <span style="font-size: 12px;">距离开拍：</span>
+                    <span class="countdown2" data-starttime="<?= 1000*$info['start_time']?>"></span>
+                </span>
+            </div>
+            <?php endif;?>
+            <div id="countdown" style="margin-bottom:10px;<?php if ($status == 0):?>display: none<?php endif;?>">
                 <span class="label label-danger" style="border-radius:0;font-weight:normal;">正在拍卖</span>
                 <span class="pull-right">
                     <span style="font-size: 12px;">距离结束：</span>
@@ -70,9 +79,9 @@ body {background: #f5f2f2;}
                 <?php if ($status == 2):?>
                 <div class="weui_btn weui_btn_default weui_btn_disabled"><?php echo date('n月j日 H:i')?> 拍卖结束</div>
                 <?php elseif ($status == 0):?>
-                <div class="weui_btn weui_btn_primary weui_btn_disabled">等待开始</div>
-                <?php else:?>
-                <div class="weui_btn weui_btn_primary" id="showActionSheet">出价</div>
+                <div id="showActionSheet2" class="weui_btn weui_btn_primary weui_btn_disabled">等待开拍</div>
+                <?php elseif ($status == 1):?>
+                <div id="showActionSheet" class="weui_btn weui_btn_primary">出价</div>
                 <?php endif;?>
             </div>
             
@@ -116,21 +125,110 @@ body {background: #f5f2f2;}
 
 <script>
 var get_latest_auction_info_timer = null;
+var diff_ms = +(new Date) - <?= strtotime('now')*1000?>;
 function set_bid_log() {
 	$('#bidlog li').first().find('h3 span').attr('class', 'pull-right label label-danger').text('领先');
 	$('#bidlog li').first().siblings().find('h3 span').attr('class', 'pull-right label label-default').text('出局');
 }
+
 function update_countdown(t) {
 	$('#countdown').show();
     $('.countdown').data('endtime', t);
     $('.countdown').removeClass('ended').data('countdown').update(t).start();
 }
-function end_countdown() {
+
+function end_kaipai_countdown() {
     clearInterval(get_latest_auction_info_timer);
-    $(this.el).addClass('ended');
     $('#countdown').hide();
     $('#showActionSheet').addClass('weui_btn_disabled').attr('id', '');
 }
+
+function start_kaipai_countdown() {
+	countdown_kaipai();
+
+	$('#countdown2').remove();
+	$('#countdown').show();
+    $('#showActionSheet2').removeClass('weui_btn_disabled').text('出价').attr('id', 'showActionSheet');
+    
+    get_latest_auction_info_timer = setInterval(function() {
+    	get_latest_auction_info();
+    }, 3000);
+}
+
+function countdown_kaipai() {
+    $('.countdown').countdown({
+        date: $('.countdown').data('endtime'),
+        offset: diff_ms,
+        render: function(data) {
+            if (data.hours==0 && data.min==0 && data.sec==0) {
+            	get_latest_auction_info();
+            }
+            $(this.el).html('<span class="text-danger">'+data.hours+'</span>时<span class="text-danger">'+data.min+'</span>分<span class="text-danger">'+data.sec+'</span>');
+        },
+        onEnd: function() {
+        	end_kaipai_countdown();
+        }
+    });
+}
+
+function countdown_weikaipai() {
+    $('.countdown2').countdown({
+        date: $('.countdown2').data('starttime'),
+        offset: diff_ms,
+        render: function(data) {
+            $(this.el).html('<span class="text-danger">'+data.hours+'</span>时<span class="text-danger">'+data.min+'</span>分<span class="text-danger">'+data.sec+'</span>');
+        },
+        onEnd: function() {
+        	start_kaipai_countdown();
+        }
+    });
+}
+
+function get_recent_bidlog() {
+    var url = $('#nexturl').data('url');
+    if (url == '') {
+        return false;
+    }
+    var params = {};
+    params.logid = $('#nexturl').prev().data('logid');
+    $.get(url, params, function(res) {
+        $('#nexturl').before(res.content);
+        if (res.next_page != '') {
+        	$('#nexturl').data('url', res.next_page).show();
+        } else {
+        	$('#nexturl').data('url', '').hide();
+        }
+    });
+}
+
+function get_latest_bidlog() {
+    var url = '<?php echo URL::site('bidlog/latest?id=' . $info['id'])?>';
+    var params = {};
+    params.logid = $('#bidlog li').eq(0).data('logid');
+    $.get(url, params, function(res) {
+        $('#bidlog').prepend(res.content);
+        set_bid_log();
+    });
+}
+
+function get_latest_auction_info() {
+    var url = '<?php echo URL::site('auction/info?id=' . $info['id'])?>';
+    $.get(url, function(res) {
+        var latest_price = res.data.curr_price;
+        var latest_endtime = res.data.end_time*1000;
+        var curr_price = $('#bidlog li').find('.bid_price').eq(0).text();
+        var curr_endtime = $('.countdown').data('endtime');
+        $('#curr_price').text(curr_price + '元');
+
+        if (latest_price > curr_price) {
+        	get_latest_bidlog();
+        }
+        if (latest_endtime > curr_endtime) {
+        	update_countdown(latest_endtime);
+        }
+    });
+}
+
 $(function() {
 	$('.media-desc').readmore({
         speed: 75,
@@ -139,74 +237,17 @@ $(function() {
         lessLink: '<a href="#">收起</a>'
 	});
 
-    $('.countdown').countdown({
-        date: $('.countdown').data('endtime'),
-        offset: +(new Date) - <?= strtotime('now')*1000?>,
-        render: function(data) {
-            if (data.hours==0 && data.min==0 && data.sec==0) {
-            	get_latest_auction_info();
-            }
-            $(this.el).html('<span class="text-danger">'+data.hours+'</span>时<span class="text-danger">'+data.min+'</span>分<span class="text-danger">'+data.sec+'</span>');
-        },
-        onEnd: function() {
-        	end_countdown();
-        }
-    });
-
-    function get_recent_bidlog() {
-        var url = $('#nexturl').data('url');
-        if (url == '') {
-            return false;
-        }
-        var params = {};
-        params.logid = $('#nexturl').prev().data('logid');
-        $.get(url, params, function(res) {
-            $('#nexturl').before(res.content);
-            if (res.next_page != '') {
-            	$('#nexturl').data('url', res.next_page).show();
-            } else {
-            	$('#nexturl').data('url', '').hide();
-            }
-        });
-    }
-    function get_latest_bidlog() {
-        var url = '<?php echo URL::site('bidlog/latest?id=' . $info['id'])?>';
-        var params = {};
-        params.logid = $('#bidlog li').eq(0).data('logid');
-        $.get(url, params, function(res) {
-            $('#bidlog').prepend(res.content);
-            set_bid_log();
-        });
-    }
-
-    function get_latest_auction_info() {
-        var url = '<?php echo URL::site('auction/info?id=' . $info['id'])?>';
-        $.get(url, function(res) {
-            var latest_price = res.data.curr_price;
-            var latest_endtime = res.data.end_time*1000;
-            var curr_price = $('#bidlog li').find('.bid_price').eq(0).text();
-            var curr_endtime = $('.countdown').data('endtime');
-
-            if (latest_price > curr_price) {
-            	get_latest_bidlog();
-            }
-            if (latest_endtime > curr_endtime) {
-            	update_countdown(latest_endtime);
-            }
-        });
-    }
-
-    <?php if($status == 1):?>
-    get_latest_auction_info_timer = setInterval(function() {
-    	get_latest_auction_info();
-    }, 3000);
+	<?php if ($status == 0):?>
+	countdown_weikaipai();
+	<?php elseif ($status == 1):?>
+	start_kaipai_countdown();
     <?php endif;?>
     
     $('#nexturl').click(function() {
         get_recent_bidlog();
     });
 
-    var str = '<?= $status == 1 ? '领先' : '成交'?>';
+    var str = '<?= $status == 2 ? '成交' : '领先'?>';
 	$('#bidlog li').first().find('h3 span').attr('class', 'pull-right label label-danger').text(str);
 });
 </script>
