@@ -73,7 +73,14 @@ class Controller_Auction extends Controller_Website {
                     }
                 }
             }
-            $item['src'] = $pic;
+            if(empty($pic_info['scheme'])) {
+                $item['src'] = URL::site('/imagefly/w'.$w.'-h'.$h.'/' . $pic);
+                $item['src_sml'] = URL::site('/imagefly/w200-h200-c/' . $pic);
+            } else {
+                $pic = $pic_info['scheme'].'://'.$pic_info['host'].$pic_info['path'];
+                $item['src'] = $pic;
+                $item['src_sml'] = $pic.'?imageView2/1/w/300/h/300';
+            }
             $item['w'] = $w;
             $item['h'] = $h;
             $item['size'] = $w . 'x' . $h;

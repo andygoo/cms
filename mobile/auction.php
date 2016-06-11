@@ -40,8 +40,8 @@ body {background: #f5f2f2;}
             <div class="row swiper-container" style="padding: 12px;">
                 <?php $pic_count = count($pics)?>
                 <?php foreach ($pics as $pic):?>
-                <a class="swipe" href="<?= URL::site("/imagefly/w{$pic['w']}-h{$pic['h']}/{$pic['src']}")?>" data-size="<?php echo $pic['size']?>">
-                    <?php $url = $pic_count > 3 ? URL::site('/imagefly/w200-h200-c/' . $pic['src']) : URL::site('/imagefly/w200-h200/' . $pic['src']);?>
+                <a class="swipe" href="<?= $pic['src']?>" data-size="<?= $pic['size']?>">
+                    <?php $url = $pic_count > 3 ? $pic['src_sml'] : $pic['src_sml'];?>
                     <img class="col-xs-4 col-sm-3 col-md-2" style="padding: 3px;" src="<?= $url?>">
                 </a>
                 <?php endforeach;?>
@@ -51,7 +51,7 @@ body {background: #f5f2f2;}
              -->
              <span class="label label-success" style="background:#ff3d00;border-radius:1px;font-weight:normal;font-size:10px;padding: 1px 4px;">包邮</span>
             <span class="label label-success" style="border-radius:1px;font-weight:normal;font-size:10px;padding: 1px 2px;"><i class="weui_icon_safe weui_icon_safe_success"></i></span>
-            <span class="text-muted" style="font-size:10px;"><?php echo date('n月j日',$info['start_time'])?></span>
+            <span class="text-muted" style="font-size:10px;"><?= date('n月j日',$info['start_time'])?></span>
             <!-- <i class="glyphicon glyphicon-eye-open" style="color: #ff4081;vertical-align:middle"></i>
             <span class="text-muted" style="font-size:10px;">222</span> -->
             </div>
@@ -77,7 +77,7 @@ body {background: #f5f2f2;}
         
             <div class="bd spacing">
                 <?php if ($status == 2):?>
-                <div class="weui_btn weui_btn_default weui_btn_disabled"><?php echo date('n月j日 H:i')?> 拍卖结束</div>
+                <div class="weui_btn weui_btn_default weui_btn_disabled"><?= date('n月j日 H:i')?> 拍卖结束</div>
                 <?php elseif ($status == 0):?>
                 <div id="showActionSheet2" class="weui_btn weui_btn_primary weui_btn_disabled">等待开拍</div>
                 <?php elseif ($status == 1):?>
@@ -86,16 +86,16 @@ body {background: #f5f2f2;}
             </div>
             
             <div class="row text-muted" style="margin: 2px 0 8px;font-size: 12px;">
-                <div class="col-xs-4 col-sm-3 col-md-2" style="border-right:1px solid #f2f2f2;">起 ￥<?php echo $info['start_price']?>元</div>
-                <div class="col-xs-4 col-sm-3 col-md-2" style="border-right:1px solid #f2f2f2;">加 ￥<span id="step_price"><?php echo $info['step_price']?></span>元</div>
-                <div class="col-xs-4 col-sm-3 col-md-2">保 ￥<?php echo $info['reserve_price']?>元</div>
+                <div class="col-xs-4 col-sm-3 col-md-2" style="border-right:1px solid #f2f2f2;">起 ￥<?= $info['start_price']?>元</div>
+                <div class="col-xs-4 col-sm-3 col-md-2" style="border-right:1px solid #f2f2f2;">加 ￥<span id="step_price"><?= $info['step_price']?></span>元</div>
+                <div class="col-xs-4 col-sm-3 col-md-2">保 ￥<?= $info['reserve_price']?>元</div>
             </div>
             
             <ul class="media-list list-group" id="bidlog">
                 <?php include __DIR__ . '/auction/bidlog.php';?>
                 
                 <?php if ($total_bidlog > 5):?>
-                <li class="list-group-item" id="nexturl" data-url="<?php echo URL::site('bidlog/recent?page=2&id=' . $info['id'])?>" style="border: 1px solid #ececec;border-radius:0;background-color: #f5f5f5;padding: 5px 6px;">
+                <li class="list-group-item" id="nexturl" data-url="<?= URL::site('bidlog/recent?page=2&id=' . $info['id'])?>" style="border: 1px solid #ececec;border-radius:0;background-color: #f5f5f5;padding: 5px 6px;">
                     <div class="media-body">
                         <div class="text-muted" style="text-align:center;font-size: 13px;">查看更多</div>
                     </div>
@@ -114,7 +114,7 @@ body {background: #f5f2f2;}
         <div class="panel-body" style="padding: 12px;">
             <?php foreach ($list_more as $key=>$item):?>
             <?php $pics = json_decode($item['pic'], true)?>
-            <a href="<?php echo URL::site('auction?id='.$item['id'])?>">
+            <a href="<?= URL::site('auction?id='.$item['id'])?>">
                 <img class="col-xs-4 col-sm-3" style="padding: 3px;" src="<?= URL::site('/imagefly/w200-h200-c/' . $pics[0])?>">
             </a>
             <?php endforeach;?>
@@ -202,7 +202,7 @@ function get_recent_bidlog() {
 }
 
 function get_latest_bidlog() {
-    var url = '<?php echo URL::site('bidlog/latest?id=' . $info['id'])?>';
+    var url = '<?= URL::site('bidlog/latest?id=' . $info['id'])?>';
     var params = {};
     params.logid = $('#bidlog li').eq(0).data('logid');
     $.get(url, params, function(res) {
@@ -212,7 +212,7 @@ function get_latest_bidlog() {
 }
 
 function get_latest_auction_info() {
-    var url = '<?php echo URL::site('auction/info?id=' . $info['id'])?>';
+    var url = '<?= URL::site('auction/info?id=' . $info['id'])?>';
     $.get(url, function(res) {
         var latest_price = res.data.curr_price;
         var latest_endtime = res.data.end_time*1000;
