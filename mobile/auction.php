@@ -152,7 +152,7 @@ function start_kaipai_countdown() {
     
     get_latest_auction_info_timer = setInterval(function() {
     	get_latest_auction_info();
-    }, 3000);
+    }, 3500);
 }
 
 function countdown_kaipai() {
@@ -254,3 +254,4 @@ $(function() {
 
 <?php include __DIR__ . '/auction/keybord.php';?>
 <?php include __DIR__ . '/vehicle_detail/photoswipe.php';?>
+<?php include __DIR__ . '/auction/wxshare.php';?>

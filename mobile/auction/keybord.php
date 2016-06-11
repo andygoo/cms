@@ -28,8 +28,8 @@
                 <div class="weui_grid weui_grid_label">7</div>
                 <div class="weui_grid weui_grid_label">8</div>
                 <div class="weui_grid weui_grid_label">9</div>
-                <div class="weui_grid weui_grid_label">0</div>
                 <div class="weui_grid weui_grid_label">00</div>
+                <div class="weui_grid weui_grid_label">0</div>
                 <div class="weui_grid weui_grid_label">DEL</div>
             </div>
         </div>

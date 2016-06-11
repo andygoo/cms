@@ -1,7 +1,7 @@
 <?php foreach ($list_bidlog as $item):?>
 <li class="media list-group-item" data-logid="<?php echo $item['id']?>" style="border: 1px solid #ececec;border-radius:0;margin-top:0;background-color: #f5f5f5;padding: 5px 6px;">
     <div class="media-left media-middle" style="padding-right:6px;">
-        <img class="media-object" width="45" src="<?php echo $item['bidder_avatar']?>">
+        <img class="media-object" width="45" src="<?php echo preg_replace('|/0$|', '/64', $item['bidder_avatar'])?>">
     </div>
     <div class="media-body" style="padding-top: 4px; ">
         <h3 class="media-heading" style="font-size: 13px;color:#37474f;"><?php echo $item['bidder_name']?>

@@ -11,23 +11,37 @@ class Controller_Auction extends Controller_Website {
     public $wx_user = array(
         'openid' => 'openid11111111111',
         'nickname' => '清明上河图',
-        'headimgurl' => 'http://static.oschina.net/uploads/user/33/66764_100.jpg',
+        'headimgurl' => 'http://wx.qlogo.cn/mmopen/CttmTaYSYkS3fyWVgtngxRqQ8VC0XAUvRGQevIYzPS19pcW3D6EyhQx5LCHQj8Wo1vyDBmNaJm89J4ggvRwuOw/0',
     );
     
     public function before() {
         parent::before();
         /*
-        $wx = new WeixinOauth();
+        $wx = new WeixinOauth('test');
         $user_info = $wx->get_user_info();
         if (empty($user_info)) {
             $callback_url = URL::curr();
             $this->redirect('weixin/oauth/login?callback_url=' . urlencode($callback_url));
         }
+
+        $update_user_info = Cookie::get('update_user_info');
+        if (empty($update_user_info)) {
+            $m_wx = Model::factory('wx_user', 'admin');
+            $wx_user_field = array('openid'=>1,'nickname'=>1,'sex'=>1,'city'=>1,'province'=>1,'country'=>1,'headimgurl'=>1);
+            $wx_user_info = array_intersect_key($user_info, $wx_user_field);
+            $m_wx->replace_into($wx_user_info);
+            Cookie::set('update_user_info', 1, 86400);
+        }
+        
         $this->wx_user = $user_info;
-        */
+        //*/
         if ($this->auto_render === TRUE) {
             View::bind_global('siteinfo', $this->siteinfo);
             View::bind_global('wx_user', $this->wx_user);
+            
+            $wx_js_api = new WeixinJSAPI('test');
+            $wx_jsapi_config = $wx_js_api->get_jsapi_config();
+            View::bind_global('wx_jsapi_config', $wx_jsapi_config);
         }
     }
     
