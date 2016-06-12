@@ -168,8 +168,10 @@ class Controller_Auction extends Controller_Website {
     
         if ($ret !== false) {
             $info_data = array('curr_price'=>$price);
+            $info_data['bid_num'] = $info['bid_num'] + 1;
             if ($info['end_time'] - $now < 300) {
                 $info_data['end_time'] = $info['end_time'] + 300;
+                $info_data['delay_num'] = $info['delay_num'] + 1;
             }
             $m_auction->updateById($info_data, $item_id);
     
