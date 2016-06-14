@@ -73,7 +73,7 @@ class Controller_Article extends Controller_Website {
         
         $this->content = View::factory('article_list');
         $this->content->list = $list;
-        $this->content->pager = $pager;
+        $this->content->pager = $pager->render('article/pager');
     }
     
     public function action_detail() {

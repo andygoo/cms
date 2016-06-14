@@ -10,56 +10,10 @@
 <?= HTML::style('media/css/screen.css')?>
 </head>
 <body>
-<?php include __DIR__ . '/header.php';?>
-<?php include __DIR__ . '/nav.php';?>
+<?php include __DIR__ . '/common/header.php';?>
 
-<section class="content-wrap">
-    <div class="container">
-        <div class="row">
-            <main class="col-md-8 main-content" id="content">
-            <?php echo $content?>
-            </main>
-            <?php include __DIR__ . '/sidebar.php';?>
-        </div>
-    </div>
-</section>
+<?= $content?>
 
-<?php include __DIR__ . '/footer.php';?>
-<script>
-$(function(){
-	var currentState = {
-        url: document.location.href,
-        title: document.title,
-        content: $("#content").html(),
-    };
-	$(document).on('click', '.pagination a', function() {
-		var t = $(this);
-		var url = t.attr('href');
-		if (url.split('#')[0].length) {
-    		$.get(url, function(res) {
-    			$('#content').html(res);
-    			var state = {
-                    url: url,
-                    title: document.title,
-                    content: $("#content").html(),
-                };
-                history.pushState(state,null,url);
-                $(document).scrollTop(0);
-                themeApp.responsiveIframe();
-    		});
-		}
-		return false;
-	});
-    window.addEventListener("popstate",function(event) {
-        if(event && event.state) {
-            document.title = event.state.title;
-            $("#content").html(event.state.content);
-        } else{
-            document.title = currentState.title;
-            $("#content").html(currentState.content);
-        }
-    });
-});
-</script>
+<?php include __DIR__ . '/common/footer.php';?>
 </body>
 </html>

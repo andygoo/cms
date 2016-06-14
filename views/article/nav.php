@@ -11,11 +11,8 @@
                 <div class="collapse navbar-collapse" id="main-menu">
                     <ul class="menu">
                         <li class="nav-current"><a href="/">首页</a></li>
-                        <li><a href="http://wenda.ghostchina.com">论坛</a></li>
-                        <li><a href="/ghost-cheat-sheet/">快捷手册</a></li>
-                        <li><a href="http://docs.ghostchina.com/zh/">中文文档</a></li>
-                        <li><a href="/download/">下载</a></li>
-                        <li><a href="/about/">关于</a></li>
+                        <li><a href="#">论坛</a></li>
+                        <li><a href="#">关于</a></li>
                     </ul>   
                 </div>
             </div>
