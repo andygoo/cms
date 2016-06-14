@@ -14,10 +14,7 @@ require SYSPATH . 'classes/Kohana.php';
 date_default_timezone_set('Asia/Shanghai');
 setlocale(LC_ALL, "chs");
 
-spl_autoload_register(array(
-    'Kohana',
-    'auto_load' 
-));
+spl_autoload_register(array('Kohana', 'auto_load'));
 ini_set('unserialize_callback_func', 'spl_autoload_call');
 
 error_reporting(E_ALL | E_STRICT);
