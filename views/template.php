@@ -10,8 +10,8 @@
 <?= HTML::style('media/css/screen.css')?>
 </head>
 <body>
-<?php include Kohana::find_file('views', 'header');?>
-<?php include Kohana::find_file('views', 'nav');?>
+<?php include __DIR__ . '/header.php';?>
+<?php include __DIR__ . '/nav.php';?>
 
 <section class="content-wrap">
     <div class="container">
@@ -19,12 +19,12 @@
             <main class="col-md-8 main-content" id="content">
             <?php echo $content?>
             </main>
-            <?php include Kohana::find_file('views', 'sidebar');?>
+            <?php include __DIR__ . '/sidebar.php';?>
         </div>
     </div>
 </section>
 
-<?php include Kohana::find_file('views', 'footer');?>
+<?php include __DIR__ . '/footer.php';?>
 <script>
 $(function(){
 	var currentState = {
