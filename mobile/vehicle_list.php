@@ -4,8 +4,8 @@
 <?= HTML::style('media/bootstrap-3.3.5/css/bootstrap.css')?>
 <?= HTML::script('media/js/iscroll.js')?>
 
-<?php include __DIR__ . '/vehicle_list/list_header.php';?>
-<?php include __DIR__ . '/vehicle_list/list_filter.php';?>
+<?php include __DIR__ . '/vehicle/list_header.php';?>
+<?php include __DIR__ . '/vehicle/list_filter.php';?>
 
 <?php if (!empty($filter_list)):?>
 <div id="selected_options" class="sx-box-o">
@@ -39,7 +39,7 @@
 */
 </style>
 <div id="vehicle_list_container" class="list_car">
-    <?php include __DIR__ . '/vehicle_list/list_vehicle.php';?>
+    <?php include __DIR__ . '/vehicle/list_vehicle.php';?>
 </div>
 
 

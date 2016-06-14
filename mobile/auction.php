@@ -1,10 +1,9 @@
 
 <?= HTML::style('media/bootstrap/css/bootstrap.min.css')?>
 <?= HTML::style('media/css/weui.min.css')?>
-<?php HTML::style('media/css/weui_example.less', array('rel'=>'stylesheet/less'))?>
-<?php HTML::script('media/js/less.min.js')?>
 <?= HTML::script('media/js/readmore.min.js')?>
 <?= HTML::script('media/js/jquery.countdown.min.js')?>
+
 <style>
 body {background: #f5f2f2;}
 .container{padding:0;background: #fff}
@@ -252,6 +251,6 @@ $(function() {
 });
 </script>
 
+<?php include __DIR__ . '/common/photoswipe.php';?>
 <?php include __DIR__ . '/auction/keybord.php';?>
-<?php include __DIR__ . '/vehicle_detail/photoswipe.php';?>
 <?php include __DIR__ . '/auction/wxshare.php';?>

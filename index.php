@@ -46,7 +46,7 @@ Kohana::modules(array(
 ));
 Kohana::$log->attach(new Log_File(APPPATH . 'logs'));
 
-Route::set('list', '(<city_pinyin>/)list(/(b<brand_id>)(c<series_id>)(p<price_f>-<price_t>)(y<year_f>-<year_t>)(m<mile_f>-<mile_t>)(s<sort_f>-<sort_d>))(/p<page>)', array(
+Route::set('list', '(<city_pinyin>/)ershouche(/(b<brand_id>)(c<series_id>)(p<price_f>-<price_t>)(y<year_f>-<year_t>)(m<mile_f>-<mile_t>)(s<sort_f>-<sort_d>))(/p<page>)', array(
     'city_pinyin' => '([a-z]+)',
     'brand_id' => '(\d+)',
     'series_id' => '(\d+)',

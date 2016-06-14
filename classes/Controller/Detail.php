@@ -6,7 +6,7 @@ class Controller_Detail extends Controller_Website {
         $id = $this->request->param('id');
         $vehicle_info = $this->_getVehicleInfo($id);
         
-        $this->content = View::factory('detail');
+        $this->content = View::factory('vehicle_detail');
         $this->content->vehicle_info = $vehicle_info;
     }
 

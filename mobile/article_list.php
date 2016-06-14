@@ -62,7 +62,7 @@
             </div>
                 
             <?php unset($article_list[0],$article_list[1])?>
-            <?php include __DIR__ . '/article_list/list_incr.php';?>
+            <?php include __DIR__ . '/article/list_incr.php';?>
 
             <?php if (!empty($next_page[$cid])): ?>
             <div class="ui-refresh ajax-link" data-url="<?= $next_page[$cid] ?>">点击加载更多</div>
