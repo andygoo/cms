@@ -50,7 +50,7 @@ class Controller_Article extends Controller_Website {
     }
     
 
-    public function action_lists() {
+    public function action_list() {
         $cid = Arr::get($_GET, 'cid');
         
         $where = array();

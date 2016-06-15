@@ -5,9 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title></title>
-<?= HTML::style('media/bootstrap-3.3.5/css/bootstrap.min.css')?>
-<?= HTML::style('media/font-awesome-4.3.0/css/font-awesome.min.css')?>
-<?= HTML::style('media/css/screen.css')?>
+<?= HTML::script('media/js/jquery.min.js')?>
 </head>
 <body>
 <?php include __DIR__ . '/common/header.php';?>

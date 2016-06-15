@@ -12,7 +12,6 @@
 
 <a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 
-<?= HTML::script('media/js/jquery.min.js')?>
 <?= HTML::script('media/bootstrap-3.3.5/js/bootstrap.min.js')?>
 <?= HTML::script('media/js/jquery.fitvids.min.js')?>
 <?= HTML::script('media/js/main.js')?>
