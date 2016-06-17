@@ -1,6 +1,7 @@
 
 <?= HTML::style('media/bootstrap/css/bootstrap.min.css')?>
 <?= HTML::style('media/css/weui.min.css')?>
+<?= HTML::style('media/css/flexboxgrid.min.css')?>
 <?= HTML::script('media/js/readmore.min.js')?>
 <?= HTML::script('media/js/jquery.countdown.min.js')?>
 
@@ -36,13 +37,14 @@ body {background: #f5f2f2;}
         <div class="media-body">
             <h5 class="media-heading" style="color:#ff6000;font-weight:600"><?= $siteinfo['name']?></h5>
             <div class="media-desc" style="font-size:13px"><?= str_replace("\n", '<br>', $info['desc'])?></div>
-            <div class="row swiper-container" style="padding: 12px;">
+            <div class="row top-xs swiper-container" style="padding: 12px 0;">
                 <?php $pic_count = count($pics)?>
                 <?php foreach ($pics as $pic):?>
-                <a class="swipe" href="<?= $pic['src']?>" data-size="<?= $pic['size']?>">
-                    <?php $url = $pic_count > 3 ? $pic['src_sml'] : $pic['src_sml'];?>
-                    <img class="col-xs-4 col-sm-3 col-md-2" style="padding: 3px;" src="<?= $url?>">
-                </a>
+                <div class="swipe col-xs-4 col-sm-3 col-md-2" style="padding: 3px;">
+                    <a class="swipe" href="<?= $pic['src']?>" data-size="<?= $pic['size']?>">
+                        <img style="width: 100%" src="<?= $pic['src_sml']?>">
+                    </a>
+                </div>
                 <?php endforeach;?>
             </div>
             <div style="margin-bottom:10px;margin-top:-9px;">

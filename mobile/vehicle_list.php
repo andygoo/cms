@@ -17,31 +17,15 @@
 </div>
 <?php endif;?>
 
-<div class="ck-sorting" style="background: #fff;">
-    <div class="find-car">有<?php echo $total_items?>辆二手车
-    <?php if (!empty($filter_list)):?>
-    <a href="<?php echo URL::site('list')?>">[清除筛选]</a> 
-    <?php endif;?>
+<div class="panel panel-default" style="background: #fff; margin:10px 0 0;border-radius:0;border:none">
+    <div class="panel-heading" style="background: #fff;">
+        &nbsp;有<?php echo $total_items?>辆二手车
+        <?php if (!empty($filter_list)):?><a href="<?php echo URL::site('list')?>">[清除筛选]</a> <?php endif;?>
     </div>
+    <ul class="list-group" id="vehicle_list_container" style="">
+        <?php include __DIR__ . '/vehicle/list_vehicle.php';?>
+    </ul>
 </div>
-
-<style>
-.media {margin-top: 1px; background:#fff; padding: 10px}
-.media:first-child {margin-top: 1px;}
-/*
-.media {float: left; width: 50%; margin-top: 1px; background:#fff;}
-.media:first-child {margin-top: 1px;}
-.media:nth-child(odd){padding: 10px 5px 10px 10px;}
-.media:nth-child(even){padding: 10px 10px 10px 5px;}
-.media-left, .media-right {display: inline;}
-.media-left {padding-right: 0px;}
-.media-object {width: 100%;margin: 10px 0;}
-*/
-</style>
-<div id="vehicle_list_container" class="list_car">
-    <?php include __DIR__ . '/vehicle/list_vehicle.php';?>
-</div>
-
 
 <script>
 var myScroll_b = myScroll_s = myScroll_more = myScroll_price = myScroll_sort = null;
