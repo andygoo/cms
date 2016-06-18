@@ -92,6 +92,13 @@ if (!defined('KOHANA_START_MEMORY')) {
     define('KOHANA_START_MEMORY', memory_get_usage());
 }
 
-echo Request::instance()->execute();
-//try {echo Request::instance()->execute();} catch(Exception $e) {}
+if (0) {
+    echo Request::instance()->execute();
+} else {
+    try {
+        echo Request::instance()->execute();
+    } catch(Exception $e) {
+    	Kohana_Exception::log($e);
+    }
+}
 
