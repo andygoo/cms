@@ -17,10 +17,13 @@ setlocale(LC_ALL, "chs");
 spl_autoload_register(array('Kohana', 'auto_load'));
 ini_set('unserialize_callback_func', 'spl_autoload_call');
 
-error_reporting(E_ALL | E_STRICT);
-//error_reporting(E_ALL ^ E_NOTICE ^ E_STRICT);
-//ini_set('display_errors', TRUE);
-
+define('ENV', 'dev');
+if (ENV == 'dev') {
+    error_reporting(E_ALL | E_STRICT);
+    ini_set('display_errors', TRUE);
+} else {
+    error_reporting(E_ALL ^ E_NOTICE ^ E_STRICT);
+}
 
 Kohana::init(array(
     'base_url' => '/',
@@ -92,7 +95,7 @@ if (!defined('KOHANA_START_MEMORY')) {
     define('KOHANA_START_MEMORY', memory_get_usage());
 }
 
-if (0) {
+if (ENV == 'dev') {
     echo Request::instance()->execute();
 } else {
     try {
