@@ -42,10 +42,10 @@ class Controller_Article extends Controller_Website {
         }
         unset($item);
         
-        if ($this->auto_render === false) {
+        if (isset($_GET['get_next_page'])) {
             $content = View::factory('article/list_incr');
             $content->list = $list;
-            $next_page = $pager->next_page ? $pager->url($pager->next_page, array('cid'=>$cid)) : '';
+            $next_page = $pager->next_page ? $pager->url($pager->next_page, array('cid'=>$cid, 'get_next_page'=>'ajax')) : '';
         
             header('Content-Type: application/json; charset=utf-8');
             $ret = array('content' => (string)$content, 'next_page' => $next_page);
@@ -56,7 +56,7 @@ class Controller_Article extends Controller_Website {
         $this->content = View::factory('article_list');
         $this->content->list = $list;
         $this->content->pager = $pager->render('article/pager');
-        $this->content->next_page = $pager->next_page ? $pager->url($pager->next_page, array('cid'=>$cid)) : '';
+        $this->content->next_page = $pager->next_page ? $pager->url($pager->next_page, array('cid'=>$cid, 'get_next_page'=>'ajax')) : '';
     }
     
     public function action_detail() {
