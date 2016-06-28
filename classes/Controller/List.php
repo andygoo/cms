@@ -120,7 +120,8 @@ class Controller_List extends Controller_Website {
         $this->content->vehicle_list = $vehicle_list;
         
         //var_dump($pager->url($pager->next_page));exit;
-        
+
+        $this->content->pager = $pager->render('vehicle/pager');
         $this->content->total_items = $pager->total_items;
         $this->content->curr_page = $pager->current_page;
         $this->content->total_pages = $pager->total_pages;
@@ -225,165 +226,70 @@ class Controller_List extends Controller_Website {
     }
 
     protected function _getPriceList() {
-        $pf = -1;
-        $pt = -1;
-        if (!empty($this->_filter_array['price_f']) || !empty($this->_filter_array['price_t'])) {
-            $pf = $this->_filter_array['price_f'];
-            $pt = $this->_filter_array['price_t'];
+        $price_f = '';
+        $price_t = '';
+        if (isset($this->_filter_array['price_f'])) {
+            $price_f = $this->_filter_array['price_f'];
         }
-        $selected_idx = 0;
-        
-        $list = array(
-            array(
-                'desc' => '不限',
-                'url' => $this->_getUrl(array(
-                    'price_f' => '',
-                    'price_t' => '' 
-                )),
-                'selected' => ($pf == -1 && $pt == -1) 
-            ),
-            array(
-                'desc' => '2万以内',
-                'url' => $this->_getUrl(array(
-                    'price_f' => 0,
-                    'price_t' => 2 
-                )),
-                'selected' => ($pf == 0 && $pt == 2 && $selected_idx = 1) 
-            ),
-            array(
-                'desc' => '2-3万',
-                'url' => $this->_getUrl(array(
-                    'price_f' => 2,
-                    'price_t' => 3 
-                )),
-                'selected' => ($pf == 2 && $pt == 3 && $selected_idx = 2) 
-            ),
-            array(
-                'desc' => '3-5万',
-                'url' => $this->_getUrl(array(
-                    'price_f' => 3,
-                    'price_t' => 5 
-                )),
-                'selected' => ($pf == 3 && $pt == 5 && $selected_idx = 3) 
-            ),
-            array(
-                'desc' => '5-7万',
-                'url' => $this->_getUrl(array(
-                    'price_f' => 5,
-                    'price_t' => 7 
-                )),
-                'selected' => ($pf == 5 && $pt == 7 && $selected_idx = 4) 
-            ),
-            array(
-                'desc' => '7-9万',
-                'url' => $this->_getUrl(array(
-                    'price_f' => 7,
-                    'price_t' => 9 
-                )),
-                'selected' => ($pf == 7 && $pt == 9 && $selected_idx = 5) 
-            ),
-            array(
-                'desc' => '9-12万',
-                'url' => $this->_getUrl(array(
-                    'price_f' => 9,
-                    'price_t' => 12 
-                )),
-                'selected' => ($pf == 9 && $pt == 12 && $selected_idx = 6) 
-            ),
-            array(
-                'desc' => '12-15万',
-                'url' => $this->_getUrl(array(
-                    'price_f' => 12,
-                    'price_t' => 15 
-                )),
-                'selected' => ($pf == 12 && $pt == 15 && $selected_idx = 7) 
-            ),
-            array(
-                'desc' => '15-20万',
-                'url' => $this->_getUrl(array(
-                    'price_f' => 15,
-                    'price_t' => 20 
-                )),
-                'selected' => ($pf == 15 && $pt == 20 && $selected_idx = 8) 
-            ),
-            array(
-                'desc' => '20-30万',
-                'url' => $this->_getUrl(array(
-                    'price_f' => 20,
-                    'price_t' => 30 
-                )),
-                'selected' => ($pf == 20 && $pt == 30 && $selected_idx = 9) 
-            ),
-            array(
-                'desc' => '30万以上',
-                'url' => $this->_getUrl(array(
-                    'price_f' => 30,
-                    'price_t' => 10000 
-                )),
-                'selected' => ($pf == 30 && $pt == 10000 && $selected_idx = 10) 
-            ) 
+        if (isset($this->_filter_array['price_t'])) {
+            $price_t = $this->_filter_array['price_t'];
+        }
+        $price_list = array(
+            array('price_f'=>'', 'price_t'=>'', 'desc'=>'不限'),
+            array('price_f'=>0, 'price_t'=>2, 'desc'=>'2万以内'),
+            array('price_f'=>2, 'price_t'=>3, 'desc'=>'2-3万'),
+            array('price_f'=>3, 'price_t'=>5, 'desc'=>'3-5万'),
+            array('price_f'=>5, 'price_t'=>8, 'desc'=>'5-8万'),
+            array('price_f'=>8, 'price_t'=>10, 'desc'=>'8-10万'),
+            array('price_f'=>10, 'price_t'=>15, 'desc'=>'10-15万'),
+            array('price_f'=>15, 'price_t'=>20, 'desc'=>'15-20万'),
+            array('price_f'=>20, 'price_t'=>30, 'desc'=>'20-30万'),
+            array('price_f'=>30, 'price_t'=>1000, 'desc'=>'30万以上'),
         );
-        
-        if ($selected_idx != 0) {
-            $this->filter_list['price'] = array(
-                'desc' => $list[$selected_idx]['desc'],
-                'url' => $list[0]['url'] 
+        foreach($price_list as $item) {
+            $selected = ($price_f == $item['price_f'] && $price_t == $item['price_t']);
+            $url = $this->_getUrl(array('price_f' => $item['price_f'], 'price_t' => $item['price_t']));
+            $list[] = array(
+                'url' => $url,
+                'desc' => $item['desc'],
+                'selected' => $selected,
             );
+            if ($selected && $price_f!=='' && $price_t!=='') {
+                $this->filter_list['price'] = array(
+                    'url' => $this->_getUrl(array('price_f' => '', 'price_t' => '')),
+                    'desc' => $item['desc'],
+                );
+            }
         }
         return $list;
     }
 
     protected function _getSortList() {
-        $sf = '';
-        $od = '';
+        $sort_f = '';
+        $sort_d = '';
         if (isset($this->_filter_array['sort_f'])) {
-            $sf = $this->_filter_array['sort_f'];
+            $sort_f = $this->_filter_array['sort_f'];
         }
         if (isset($this->_filter_array['sort_d'])) {
-            $od = $this->_filter_array['sort_d'];
+            $sort_d = $this->_filter_array['sort_d'];
         }
-        $list = array(
-            array(
-                'desc' => '默认排序',
-                'url' => $this->_getUrl(array(
-                    "sort_f" => '',
-                    "sort_d" => '' 
-                )),
-                'selected' => ($sf == "" && $od == "") 
-            ),
-            array(
-                'desc' => '价格低到高',
-                'url' => $this->_getUrl(array(
-                    "sort_f" => 'p',
-                    "sort_d" => 'a' 
-                )),
-                'selected' => ($sf == "p" && $od == "a") 
-            ),
-            array(
-                'desc' => '价格高到低',
-                'url' => $this->_getUrl(array(
-                    "sort_f" => 'p',
-                    "sort_d" => 'd' 
-                )),
-                'selected' => ($sf == "p" && $od == "d") 
-            ),
-            array(
-                'desc' => '车龄新到旧',
-                'url' => $this->_getUrl(array(
-                    "sort_f" => 'y',
-                    "sort_d" => 'd' 
-                )),
-                'selected' => ($sf == "y" && $od == "d") 
-            ),
-            array(
-                'desc' => '里程短到长',
-                'url' => $this->_getUrl(array(
-                    "sort_f" => 'm',
-                    "sort_d" => 'a' 
-                )),
-                'selected' => ($sf == "m" && $od == "a") 
-            ) 
+
+        $sort_list = array(
+            array('sort_f'=>'', 'sort_d'=>'', 'desc'=>'默认排序'),
+            array('sort_f'=>'p', 'sort_d'=>'a', 'desc'=>'价格低到高'),
+            array('sort_f'=>'p', 'sort_d'=>'d', 'desc'=>'价格高到低'),
+            array('sort_f'=>'y', 'sort_d'=>'d', 'desc'=>'车龄新到旧'),
+            array('sort_f'=>'m', 'sort_d'=>'a', 'desc'=>'里程短到长'),
         );
+        foreach($sort_list as $item) {
+            $selected = ($sort_f == $item['sort_f'] && $sort_d == $item['sort_d']);
+            $url = $this->_getUrl(array('sort_f' => $item['sort_f'], 'sort_d' => $item['sort_d']));
+            $list[] = array(
+                'url' => $url,
+                'desc' => $item['desc'],
+                'selected' => $selected,
+            );
+        }
         return $list;
     }
 
