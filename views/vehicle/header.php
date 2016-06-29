@@ -1,9 +1,7 @@
 
 
 <?= HTML::style('media/bootstrap-3.3.5/css/bootstrap.css')?>
-<style>
-#vehicle_filter a.active {color: red}
-</style>
+<?= HTML::script('media/bootstrap-3.3.5/js/bootstrap.min.js')?>
 
 <nav class="navbar">
     <div class="container">

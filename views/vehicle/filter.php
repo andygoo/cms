@@ -1,38 +1,68 @@
+<style>
+#vehicle_filter {font-size: 14px;}
+#vehicle_filter.dl-horizontal dt {text-align: left;width: 50px;padding: 2px 5px; margin: 5px 0;}
+#vehicle_filter.dl-horizontal dd {margin-left: 50px;}
+#vehicle_filter.dl-horizontal .nav > li > a {padding: 2px 5px; margin: 5px 0;border-radius: 1px;}
+</style>
+
 
 <div class="container">
-
-<ul class="list-group" id="vehicle_filter">
-    <li class="list-group-item">品牌&nbsp;&nbsp;
-        <?php foreach ($brand_list['B'] as $item): ?>
-        <a <?php if($item['selected']):?>class="active"<?php endif;?> href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>&nbsp;&nbsp;
-        <?php endforeach; ?>
-    </li>
+<dl class="dl-horizontal" id="vehicle_filter">
+    <dt>品牌</dt>
+    <dd>
+        <ul class="nav nav-pills">
+          <?php foreach ($brand_list['B'] as $item): ?>
+          <li class="<?php if($item['selected']):?>active<?php endif;?>">
+            <a href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>
+          </li>
+          <?php endforeach; ?>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">更多 <span class="caret"></span></a>
+          </li>
+        </ul>
+    </dd>
     <?php if (!empty($series_list)):?>
-        <li class="list-group-item">车系&nbsp;&nbsp;
-            <?php foreach ($series_list as $item): ?>
-            <a <?php if($item['selected']):?>class="active"<?php endif;?> href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>&nbsp;&nbsp;
-            <?php endforeach; ?>
-        </li>
+    <dt>车系</dt>
+    <dd>
+        <ul class="nav nav-pills">
+          <?php foreach ($series_list as $item): ?>
+          <li class="<?php if($item['selected']):?>active<?php endif;?>">
+            <a href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>
+          </li>
+          <?php endforeach; ?>
+        </ul>
+    </dd>
     <?php endif;?>
-    <li class="list-group-item">价格&nbsp;&nbsp;
-        <?php foreach ($price_list as $item): ?>
-        <a <?php if($item['selected']):?>class="active"<?php endif;?> href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>&nbsp;&nbsp;
-        <?php endforeach; ?>
-    </li>
-    <li class="list-group-item">车龄&nbsp;&nbsp;
-        <?php foreach ($year_list as $item): ?>
-        <a <?php if($item['selected']):?>class="active"<?php endif;?> href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>&nbsp;&nbsp;
-        <?php endforeach; ?>
-    </li>
-    <li class="list-group-item">排序&nbsp;&nbsp;
-        <?php foreach ($sort_list as $item): ?>
-        <a <?php if($item['selected']):?>class="active"<?php endif;?> href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>&nbsp;&nbsp;
-        <?php endforeach; ?>
-    </li>
-</ul>
-<?php foreach ($filter_list as $item): ?>
-<span class="label label-info"><?php echo $item['desc']?> 
-<a href="<?php echo $item['url']?>">X</a></span>
-<?php endforeach; ?>
-
+    <dt>价格</dt>
+    <dd>
+        <ul class="nav nav-pills">
+          <?php foreach ($price_list as $item): ?>
+          <li class="<?php if($item['selected']):?>active<?php endif;?>">
+            <a href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>
+          </li>
+          <?php endforeach; ?>
+        </ul>
+    </dd>
+    <dt>车龄</dt>
+    <dd>
+        <ul class="nav nav-pills">
+          <?php foreach ($year_list as $item): ?>
+          <li class="<?php if($item['selected']):?>active<?php endif;?>">
+            <a href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>
+          </li>
+          <?php endforeach; ?>
+        </ul>
+    </dd>
+    <dt>排序</dt>
+    <dd>
+        <ul class="nav nav-pills">
+          <?php foreach ($sort_list as $item): ?>
+          <li class="<?php if($item['selected']):?>active<?php endif;?>">
+            <a href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>
+          </li>
+          <?php endforeach; ?>
+        </ul>
+    </dd>
+</dl>
 </div>
+
