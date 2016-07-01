@@ -28,7 +28,7 @@ if (ENV == 'dev') {
 Kohana::init(array(
     'base_url' => '/',
     'index_file' => false,
-    'profile' => false 
+    'profile' => ENV=='dev', 
 ));
 
 Kohana::modules(array(
