@@ -34,7 +34,7 @@
 
   </div>
 </div>
-<div class="parallax"><img src="http://image3.hc51img.com/fev2/banners/pc20.png" alt="Unsplashed background img 1"></div>
+<div class="parallax"><img src="http://7xkkhh.com1.z0.glb.clouddn.com/2016/07/01/14673617523734.jpg" alt="Unsplashed background img 1"></div>
 </div>
 
 
