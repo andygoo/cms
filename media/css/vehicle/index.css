@@ -5,6 +5,8 @@
  *
  * Made By MaterializeCSS.com
  */
+body {background: #fcfcfc}
+.container {width: 85%}
 
 nav ul a,
 nav .brand-logo {

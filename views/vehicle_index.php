@@ -41,17 +41,17 @@
 <div class="container">
 <div class="section">
   <div class="row">
-    <?php foreach (range(1, 6) as $item):?>
-    <div class="col s12 m4">
-     <div class="card">
-         <div class="card-image">
-           <img class="activator" src="http://image1.hc51img.com/1317f1ea4564-c307-4aa1-aa91-09053e00df21.jpg?imageView2/2/w/320/h/240/format/webp">
-         </div>
-         <div class="card-content">
-           <p>骐达 2011款 1.6L CVT舒适型</p>
-           <small>2012.12上牌 · 6.6万公里 · 自动</small>
-         </div>
-       </div>
+    <?php foreach (range(1, 8) as $item):?>
+    <div class="col s12 m3">
+      <div class="card">
+        <div class="card-image">
+          <img class="activator" src="http://image1.hc51img.com/1317f1ea4564-c307-4aa1-aa91-09053e00df21.jpg?imageView2/2/w/320/h/240/format/webp">
+        </div>
+        <div class="card-content">
+          <p><a>骐达 2011款 1.6L CVT舒适型</a></p>
+          <small>2012.12上牌 · 6.6万公里 · 自动</small>
+        </div>
+      </div>
     </div>
     <?php endforeach;?>
   </div>
