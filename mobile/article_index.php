@@ -1,7 +1,8 @@
 
 <?= HTML::style('media/bootstrap-3.3.5/css/bootstrap.min.css')?>
 <?= HTML::style('media/swiper/css/swiper.min.css')?>
-<?= HTML::style('media/css/component.css')?>
+<?= HTML::style('media/css/article/component.css')?>
+
 <?= HTML::script('media/swiper/js/swiper.min.js')?>
 
 <style>

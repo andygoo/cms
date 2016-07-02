@@ -14,3 +14,5 @@
     
     <?php echo $pager?>
 </div>
+
+<?php include __DIR__ . '/vehicle/footer.php';?>

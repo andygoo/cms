@@ -1,7 +1,7 @@
 
 <?= HTML::style('media/bootstrap-3.3.5/css/bootstrap.min.css')?>
 <?= HTML::style('media/font-awesome-4.3.0/css/font-awesome.min.css')?>
-<?= HTML::style('media/css/screen.css')?>
+<?= HTML::style('media/css/article/screen.css')?>
 
 <header class="main-header"  style="background-image: url(http://static.ghostchina.com/image/6/d1/fcb3879e14429d75833a461572e64.jpg)">
     <div class="container">

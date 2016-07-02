@@ -1,5 +1,5 @@
-<?= HTML::style('media/css/header.css')?>
-<?= HTML::style('media/css/details.css')?>
+<?= HTML::style('media/css/vehicle/header.css')?>
+<?= HTML::style('media/css/vehicle/details.css')?>
 <?php 
 //HTML::script('media/swiper/js/swiper.min.js');
 ?>
