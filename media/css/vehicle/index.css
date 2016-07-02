@@ -5,8 +5,8 @@
  *
  * Made By MaterializeCSS.com
  */
-body {}
-.container {width: 85%}
+
+.container-fluid {width: 90%}
 
 nav ul a,
 nav .brand-logo {

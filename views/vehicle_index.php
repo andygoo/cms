@@ -1,23 +1,5 @@
 
-<?= HTML::style('https://fonts.googleapis.com/icon?family=Material+Icons')?>
-<?= HTML::style('media/materialize/css/materialize.css')?>
-<?= HTML::style('media/css/vehicle/index.css')?>
-<?= HTML::script('media/materialize/js/materialize.min.js')?>
-
-<nav class="white" role="navigation">
-<div class="nav-wrapper container">
-  <a id="logo-container" href="#" class="brand-logo">好车无忧</a>
-  <ul class="right hide-on-med-and-down">
-    <li><a href="#">我要买车</a></li>
-    <li><a href="#">我要买车</a></li>
-  </ul>
-
-  <ul id="nav-mobile" class="side-nav">
-    <li><a href="#">Navbar Link</a></li>
-  </ul>
-  <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-</div>
-</nav>
+<?php include __DIR__ . '/vehicle/header.php';?>
 
 <div id="index-banner" class="parallax-container">
 <div class="section no-pad-bot">
@@ -113,44 +95,4 @@
   </div>
 
 
-<footer class="page-footer teal">
-  <div class="container">
-    <div class="row">
-      <div class="col l6 s12">
-        <h5 class="white-text">Footer Content</h5>
-        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-      </div>
-      <div class="col l3 s12">
-        <h5 class="white-text">Links</h5>
-        <ul>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-        </ul>
-      </div>
-      <div class="col l3 s12">
-        <h5 class="white-text">Links</h5>
-        <ul>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="footer-copyright">
-    <div class="container">
-    © 2014 Copyright Text
-    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-    </div>
-  </div>
-</footer>
-
-<script>
-$(function(){
-    $('.button-collapse').sideNav();
-    $('.parallax').parallax();
-});
-</script>
+<?php include __DIR__ . '/vehicle/footer.php';?>

@@ -5,7 +5,7 @@
  * @preview  Pages: 1 … 4 5 6 7 8 … 15
  */
 ?>
-<nav>
+
 <ul class="pagination">
 <?php if ($previous_page): ?>
 	<li><a href="<?= $page->url($previous_page) ?>"><?= '上一页' ?></a></li>
@@ -42,4 +42,3 @@
 	<li class="disabled"><a href="#"><?= '下一页' ?></a></li>
 <?php endif ?>
 </ul>
-</nav>

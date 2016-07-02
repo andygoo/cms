@@ -1,68 +1,58 @@
-<style>
-#vehicle_filter {font-size: 14px;}
-#vehicle_filter.dl-horizontal dt {text-align: left;width: 50px;padding: 2px 5px; margin: 5px 0;}
-#vehicle_filter.dl-horizontal dd {margin-left: 50px;}
-#vehicle_filter.dl-horizontal .nav > li > a {padding: 2px 5px; margin: 5px 0;border-radius: 1px;}
-</style>
 
 
-<div class="container">
-<dl class="dl-horizontal" id="vehicle_filter">
-    <dt>品牌</dt>
-    <dd>
-        <ul class="nav nav-pills">
-          <?php foreach ($brand_list['B'] as $item): ?>
-          <li class="<?php if($item['selected']):?>active<?php endif;?>">
-            <a href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>
-          </li>
-          <?php endforeach; ?>
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">更多 <span class="caret"></span></a>
-          </li>
-        </ul>
-    </dd>
-    <?php if (!empty($series_list)):?>
-    <dt>车系</dt>
-    <dd>
-        <ul class="nav nav-pills">
-          <?php foreach ($series_list as $item): ?>
-          <li class="<?php if($item['selected']):?>active<?php endif;?>">
-            <a href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>
-          </li>
-          <?php endforeach; ?>
-        </ul>
-    </dd>
-    <?php endif;?>
-    <dt>价格</dt>
-    <dd>
-        <ul class="nav nav-pills">
-          <?php foreach ($price_list as $item): ?>
-          <li class="<?php if($item['selected']):?>active<?php endif;?>">
-            <a href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>
-          </li>
-          <?php endforeach; ?>
-        </ul>
-    </dd>
-    <dt>车龄</dt>
-    <dd>
-        <ul class="nav nav-pills">
-          <?php foreach ($year_list as $item): ?>
-          <li class="<?php if($item['selected']):?>active<?php endif;?>">
-            <a href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>
-          </li>
-          <?php endforeach; ?>
-        </ul>
-    </dd>
-    <dt>排序</dt>
-    <dd>
-        <ul class="nav nav-pills">
-          <?php foreach ($sort_list as $item): ?>
-          <li class="<?php if($item['selected']):?>active<?php endif;?>">
-            <a href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>
-          </li>
-          <?php endforeach; ?>
-        </ul>
-    </dd>
-</dl>
+<div class="container-fluid" style="margin-top: 20px">
+    <ul class="collection z-depth-0">
+        <li class="collection-item">
+            <ul class="pagination">
+            <li style="font-size:14px;margin-right:5px;">品牌</li>
+            <?php foreach ($brand_list['B'] as $item): ?>
+            <li class="<?php if($item['selected']):?>active<?php endif;?>" style="font-size:12px">
+                <a href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>
+            </li>
+            <?php endforeach; ?>
+            </ul>
+        </li>
+        <?php if (!empty($series_list)):?>
+        <li class="collection-item">
+            <ul class="pagination">
+            <li style="font-size:14px;margin-right:5px;">车系</li>
+            <?php foreach ($series_list as $item): ?>
+            <li class="<?php if($item['selected']):?>active<?php endif;?>" style="font-size:12px">
+                <a href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>
+            </li>
+            <?php endforeach; ?>
+            </ul>
+        </li>
+        <?php endif;?>
+        <li class="collection-item">
+            <ul class="pagination">
+            <li style="font-size:14px;margin-right:5px;">价格</li>
+            <?php foreach ($price_list as $item): ?>
+            <li class="<?php if($item['selected']):?>active<?php endif;?>" style="font-size:12px">
+                <a href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>
+            </li>
+            <?php endforeach; ?>
+            </ul>
+        </li>
+        <li class="collection-item">
+            <ul class="pagination">
+            <li style="font-size:14px;margin-right:5px;">车龄</li>
+            <?php foreach ($year_list as $item): ?>
+            <li class="<?php if($item['selected']):?>active<?php endif;?>" style="font-size:12px">
+                <a href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>
+            </li>
+            <?php endforeach; ?>
+            </ul>
+        </li>
+        <li class="collection-item">
+            <ul class="pagination">
+            <li style="font-size:14px;margin-right:5px;">排序</li>
+            <?php foreach ($sort_list as $item): ?>
+            <li class="<?php if($item['selected']):?>active<?php endif;?>" style="font-size:12px">
+                <a href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>
+            </li>
+            <?php endforeach; ?>
+            </ul>
+        </li>
+    </ul>
 </div>
-
