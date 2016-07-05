@@ -1,6 +1,6 @@
 
 
-<div class="container-fluid" style="margin-top: 20px">
+<div class="container-fluid" style="margin-top: 30px">
     <ul class="collection z-depth-0">
         <li class="collection-item">
             <ul class="pagination">

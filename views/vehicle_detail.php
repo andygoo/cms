@@ -1,4 +1,7 @@
 
+<?php
+ echo HTML::style('media/bootstrap-3.3.5/css/bootstrap.css')
+ ?>
 <?php include __DIR__ . '/vehicle/header.php';?>
 
 
@@ -7,21 +10,23 @@
 
 <div class="container-fluid" style="margin-top:20px">
 <div class="row">
-    <div class="col-md-12">
-        <div class="card large">
+    <div class="col-md-6">
+        <div class="card">
             <div class="card-image">
                 <img src="http://image1.hc51img.com/17855901962e8ba9076942410b41b962c9aba21a.jpg?imageView2/1/w/400/h/300" width="100%" class="swiper-lazy">
             </div>
             <div class="card-content">
                 <span class="card-title"><?= $vehicle_info['vehicle_name'];?></span>
-                <p><?= $vehicle_info['seller_words'];?></p>
+                <p>2012.10上牌 | 行驶2.4万公里 | 手自一体</p>
             </div>
             <div class="card-action">
                 <a href="#">This is a link</a>
                 <a href="#">This is a link</a>
             </div>
         </div>
+    </div>
         
+    <div class="col-md-6">
         <ul class="collection with-header">
           <li class="collection-header"><h4>12.00万</h4></li>
           <li class="collection-item">新车含税价<a href="#!" class="secondary-content">14.06万</a></li>
@@ -33,11 +38,44 @@
 
         <a class="waves-effect waves-light btn 2red"><i class="material-icons left">cloud</i>预约看车</a>
         <a class="waves-effect waves-light btn 2red"><i class="material-icons right">cloud</i>我要砍价</a>
-        
     </div>
-    
 </div>
 </div>
 
+<div class="container-fluid">
+<div class="page-header">
+  <h4>车辆外观</h4>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-image">
+                <img src="http://image1.hc51img.com/17855901962e8ba9076942410b41b962c9aba21a.jpg?imageView2/1/w/400/h/300" width="100%" class="swiper-lazy">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-image">
+                <img src="http://image1.hc51img.com/17855901962e8ba9076942410b41b962c9aba21a.jpg?imageView2/1/w/400/h/300" width="100%" class="swiper-lazy">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-image">
+                <img src="http://image1.hc51img.com/17855901962e8ba9076942410b41b962c9aba21a.jpg?imageView2/1/w/400/h/300" width="100%" class="swiper-lazy">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-image">
+                <img src="http://image1.hc51img.com/17855901962e8ba9076942410b41b962c9aba21a.jpg?imageView2/1/w/400/h/300" width="100%" class="swiper-lazy">
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 <?php include __DIR__ . '/vehicle/footer.php';?>
 

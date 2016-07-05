@@ -1,8 +1,5 @@
 
 
-<?php
- //HTML::style('media/bootstrap-3.3.5/css/bootstrap.css')
- ?>
 
 <?= HTML::style('https://fonts.googleapis.com/icon?family=Material+Icons')?>
 <?= HTML::style('media/materialize/css/materialize.css')?>
