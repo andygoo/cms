@@ -2,6 +2,7 @@
 	<div class="sx-h">车龄</div>
 	<div class="xh-l">
 		<ul>
+		    <?php array_shift($year_list)?>
 		    <?php foreach ($year_list as $key=>$item): ?>
 			<li <?php if($item['selected']):?>class="active"<?php endif;?>><span><a data-url="<?php echo $item['url']?>"><?php echo $item['desc']?></a></span></li>
 			<?php endforeach;?>
@@ -10,6 +11,7 @@
 	<div class="sx-h">里程</div>
 	<div class="xh-l">
 		<ul>
+		    <?php array_shift($miles_list)?>
 		    <?php foreach ($miles_list as $key=>$item): ?>
 			<li <?php if($item['selected']):?>class="active"<?php endif;?>><span><a data-url="<?php echo $item['url']?>"><?php echo $item['desc']?></a></span></li>
 			<?php endforeach;?>

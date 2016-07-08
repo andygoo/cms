@@ -5,7 +5,7 @@
         <li class="collection-item">
             <ul class="pagination">
             <li style="font-size:14px;margin-right:5px;">品牌</li>
-            <?php foreach ($brand_list['B'] as $item): ?>
+            <?php foreach ($brand_top_list as $item): ?>
             <li class="<?php if($item['selected']):?>active<?php endif;?>" style="font-size:12px">
                 <a href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>
             </li>
@@ -38,6 +38,16 @@
             <ul class="pagination">
             <li style="font-size:14px;margin-right:5px;">车龄</li>
             <?php foreach ($year_list as $item): ?>
+            <li class="<?php if($item['selected']):?>active<?php endif;?>" style="font-size:12px">
+                <a href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>
+            </li>
+            <?php endforeach; ?>
+            </ul>
+        </li>
+        <li class="collection-item">
+            <ul class="pagination">
+            <li style="font-size:14px;margin-right:5px;">里程</li>
+            <?php foreach ($miles_list as $item): ?>
             <li class="<?php if($item['selected']):?>active<?php endif;?>" style="font-size:12px">
                 <a href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>
             </li>

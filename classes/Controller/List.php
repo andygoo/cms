@@ -88,7 +88,7 @@ class Controller_List extends Controller_Website {
             exit;
         }
 
-        $brand_list = $this->_getBrandList();
+        list($brand_top_list, $brand_list) = $this->_getBrandList();
         $price_list = $this->_getPriceList();
         $year_list = $this->_getYearList();
         $miles_list = $this->_getMilesList();
@@ -109,7 +109,8 @@ class Controller_List extends Controller_Website {
         $this->content = View::factory('vehicle_list');
         $this->content->city_list = $city_list;
         $this->content->city_info = $this->city_info;
-        
+
+        $this->content->brand_top_list = $brand_top_list;
         $this->content->brand_list = $brand_list;
         $this->content->series_list = $series_list;
         $this->content->price_list = $price_list;
@@ -162,11 +163,19 @@ class Controller_List extends Controller_Website {
         $m_brand = Model::factory('auto_brand');
         $brand_list = $m_brand->getAll()->as_array();
         
-        $list = array();
-        foreach($brand_list as $item) {
+        $top_list[] = array(
+            'desc' => '不限',
+            'url' => $this->_getUrl(array(
+                'brand_id' => ''
+            )),
+            'selected' => !isset($this->_filter_array['brand_id']),
+        );
+        
+        $group_list = array();
+        foreach($brand_list as $key => $item) {
             $brand_id = $item['id'];
             $selected = isset($this->_filter_array['brand_id']) && ($brand_id == $this->_filter_array['brand_id']);
-            $list[$item['first_char']][] = array(
+            $brand_item = array(
                 'id' => $brand_id,
                 'desc' => $item['name'],
                 'url' => $this->_getUrl(array(
@@ -174,24 +183,35 @@ class Controller_List extends Controller_Website {
                 )),
                 'selected' => $selected 
             );
+            $group_list[$item['first_char']][] = $brand_item;
+            
             if ($selected) {
                 $this->filter_list['brand'] = array(
                     'desc' => $item['name'],
                     'url' => $this->_getUrl(array(
                         'brand_id' => '' 
-                    )) 
+                    )),
+                    'selected' => $selected,
                 );
             }
+            if ($key < 15) {
+                $top_list[] = $brand_item;
+            }
         }
-        ksort($list);
-        return $list;
+        ksort($group_list);
+        
+        $top_brand_ids = array_column($top_list, 'id');
+        if (isset($this->filter_list['brand']) && !in_array($this->_filter_array['brand_id'], $top_brand_ids)) {
+            array_pop($top_list);
+            $top_list[] = $this->filter_list['brand'];
+        }
+        
+        return array($top_list, $group_list);
     }
 
     protected function _getSeriesList($brand_id) {
         $m_series = Model::factory('auto_series');
-        $series_list = $m_series->getAll(array(
-            'brand_id' => $brand_id 
-        ))->as_array();
+        $series_list = $m_series->getAll(array('brand_id' => $brand_id))->as_array();
         
         $list = array();
         $list[] = array(
@@ -264,44 +284,18 @@ class Controller_List extends Controller_Website {
         return $list;
     }
 
-    protected function _getSortList() {
-        $sort_f = '';
-        $sort_d = '';
-        if (isset($this->_filter_array['sort_f'])) {
-            $sort_f = $this->_filter_array['sort_f'];
-        }
-        if (isset($this->_filter_array['sort_d'])) {
-            $sort_d = $this->_filter_array['sort_d'];
-        }
-
-        $sort_list = array(
-            array('sort_f'=>'', 'sort_d'=>'', 'desc'=>'默认排序'),
-            array('sort_f'=>'p', 'sort_d'=>'a', 'desc'=>'价格低到高'),
-            array('sort_f'=>'p', 'sort_d'=>'d', 'desc'=>'价格高到低'),
-            array('sort_f'=>'y', 'sort_d'=>'d', 'desc'=>'车龄新到旧'),
-            array('sort_f'=>'m', 'sort_d'=>'a', 'desc'=>'里程短到长'),
-        );
-        foreach($sort_list as $item) {
-            $selected = ($sort_f == $item['sort_f'] && $sort_d == $item['sort_d']);
-            $url = $this->_getUrl(array('sort_f' => $item['sort_f'], 'sort_d' => $item['sort_d']));
-            $list[] = array(
-                'url' => $url,
-                'desc' => $item['desc'],
-                'selected' => $selected,
-            );
-        }
-        return $list;
-    }
-
     protected function _getYearList() {
-        $year_f = -1;
-        $year_t = -1;
-        if (!empty($this->_filter_array['year_f']) || !empty($this->_filter_array['year_t'])) {
+        $year_f = '';
+        $year_t = '';
+        if (isset($this->_filter_array['year_f'])) {
             $year_f = $this->_filter_array['year_f'];
+        }
+        if (isset($this->_filter_array['year_t'])) {
             $year_t = $this->_filter_array['year_t'];
         }
         
         $year_list = array(
+            array('year_f'=>'', 'year_t'=>'', 'desc'=>'不限'),
             array('year_f'=>1, 'year_t'=>0, 'desc'=>'1年内'), 
             array('year_f'=>3, 'year_t'=>1, 'desc'=>'1-3年'),
             array('year_f'=>5, 'year_t'=>3, 'desc'=>'3-5年'),
@@ -312,10 +306,6 @@ class Controller_List extends Controller_Website {
             $selected = ($year_f == $item['year_f'] && $year_t == $item['year_t']);
             if ($selected) {
                 $url = $this->_getUrl(array('year_f' => '', 'year_t' => ''));
-                $this->filter_list['year'] = array(
-                    'desc' => $item['desc'],
-                    'url' => $url,
-                );
             } else {
                 $url = $this->_getUrl(array('year_f' => $item['year_f'], 'year_t' => $item['year_t']));
             }
@@ -324,20 +314,29 @@ class Controller_List extends Controller_Website {
                 'desc' => $item['desc'],
                 'selected' => $selected,
             );
+            if ($selected && $year_f!=='' && $year_t!=='') {
+                $this->filter_list['year'] = array(
+                    'desc' => $item['desc'],
+                    'url' => $url,
+                );
+            }
         }
         
         return $list;
     }
 
     protected function _getMilesList() {
-        $mile_f = -1;
-        $mile_t = -1;
-        if (!empty($this->_filter_array['mile_f']) || !empty($this->_filter_array['mile_t'])) {
+        $mile_f = '';
+        $mile_t = '';
+        if (isset($this->_filter_array['mile_f'])) {
             $mile_f = $this->_filter_array['mile_f'];
+        }
+        if (isset($this->_filter_array['mile_t'])) {
             $mile_t = $this->_filter_array['mile_t'];
         }
         
         $mile_list = array(
+                array('mile_f'=>'', 'mile_t'=>'', 'desc'=>'不限'),
                 array('mile_f'=>0, 'mile_t'=>2, 'desc'=>'2万公里内'),
                 array('mile_f'=>0, 'mile_t'=>5, 'desc'=>'5万公里内'),
                 array('mile_f'=>1, 'mile_t'=>3, 'desc'=>'1~3万公里'),
@@ -349,13 +348,44 @@ class Controller_List extends Controller_Website {
             $selected = ($mile_f == $item['mile_f'] && $mile_t == $item['mile_t']);
             if ($selected) {
                 $url = $this->_getUrl(array('mile_f' => '', 'mile_t' => ''));
-                $this->filter_list['mile'] = array(
-                        'desc' => $item['desc'],
-                        'url' => $url,
-                );
             } else {
                 $url = $this->_getUrl(array('mile_f' => $item['mile_f'], 'mile_t' => $item['mile_t']));
             }
+            $list[] = array(
+                'url' => $url,
+                'desc' => $item['desc'],
+                'selected' => $selected,
+            );
+            if ($selected && $mile_f!=='' && $mile_t!=='') {
+                $this->filter_list['mile'] = array(
+                    'desc' => $item['desc'],
+                    'url' => $url,
+                );
+            }
+        }
+        return $list;
+    }
+
+    protected function _getSortList() {
+        $sort_f = '';
+        $sort_d = '';
+        if (isset($this->_filter_array['sort_f'])) {
+            $sort_f = $this->_filter_array['sort_f'];
+        }
+        if (isset($this->_filter_array['sort_d'])) {
+            $sort_d = $this->_filter_array['sort_d'];
+        }
+    
+        $sort_list = array(
+                array('sort_f'=>'', 'sort_d'=>'', 'desc'=>'默认排序'),
+                array('sort_f'=>'p', 'sort_d'=>'a', 'desc'=>'价格低到高'),
+                array('sort_f'=>'p', 'sort_d'=>'d', 'desc'=>'价格高到低'),
+                array('sort_f'=>'y', 'sort_d'=>'d', 'desc'=>'车龄新到旧'),
+                array('sort_f'=>'m', 'sort_d'=>'a', 'desc'=>'里程短到长'),
+        );
+        foreach($sort_list as $item) {
+            $selected = ($sort_f == $item['sort_f'] && $sort_d == $item['sort_d']);
+            $url = $this->_getUrl(array('sort_f' => $item['sort_f'], 'sort_d' => $item['sort_d']));
             $list[] = array(
                     'url' => $url,
                     'desc' => $item['desc'],
@@ -364,7 +394,7 @@ class Controller_List extends Controller_Website {
         }
         return $list;
     }
-
+    
     protected function _buildQueryCondition() {
         $ret = array();
         if (isset($this->_filter_array['brand_id'])) {
