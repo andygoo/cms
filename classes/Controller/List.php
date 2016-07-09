@@ -89,7 +89,7 @@ class Controller_List extends Controller_Website {
         }
 
         list($brand_top_list, $brand_list) = $this->_getBrandList();
-        $price_list = $this->_getPriceList();
+        list($price_list, $custom_price) = $this->_getPriceList();
         $year_list = $this->_getYearList();
         $miles_list = $this->_getMilesList();
         $sort_list = $this->_getSortList();
@@ -114,6 +114,7 @@ class Controller_List extends Controller_Website {
         $this->content->brand_list = $brand_list;
         $this->content->series_list = $series_list;
         $this->content->price_list = $price_list;
+        $this->content->custom_price = $custom_price;
         $this->content->year_list = $year_list;
         $this->content->miles_list = $miles_list;
         $this->content->sort_list = $sort_list;
@@ -246,14 +247,8 @@ class Controller_List extends Controller_Website {
     }
 
     protected function _getPriceList() {
-        $price_f = '';
-        $price_t = '';
-        if (isset($this->_filter_array['price_f'])) {
-            $price_f = $this->_filter_array['price_f'];
-        }
-        if (isset($this->_filter_array['price_t'])) {
-            $price_t = $this->_filter_array['price_t'];
-        }
+        $price_f = isset($this->_filter_array['price_f']) ? $this->_filter_array['price_f'] : '';
+        $price_t = isset($this->_filter_array['price_t']) ? $this->_filter_array['price_t'] : '';
         $price_list = array(
             array('price_f'=>'', 'price_t'=>'', 'desc'=>'不限'),
             array('price_f'=>0, 'price_t'=>2, 'desc'=>'2万以内'),
@@ -266,34 +261,42 @@ class Controller_List extends Controller_Website {
             array('price_f'=>20, 'price_t'=>30, 'desc'=>'20-30万'),
             array('price_f'=>30, 'price_t'=>1000, 'desc'=>'30万以上'),
         );
-        foreach($price_list as $item) {
-            $selected = ($price_f == $item['price_f'] && $price_t == $item['price_t']);
+        $selected = 0;
+        foreach($price_list as $key => $item) {
+            if ($price_f == $item['price_f'] && $price_t == $item['price_t']) {
+                $selected = $key;
+            }
             $url = $this->_getUrl(array('price_f' => $item['price_f'], 'price_t' => $item['price_t']));
-            $list[] = array(
+            $list[$key] = array(
                 'url' => $url,
                 'desc' => $item['desc'],
-                'selected' => $selected,
+                'selected' => ($price_f == $item['price_f'] && $price_t == $item['price_t']),
             );
-            if ($selected && $price_f!=='' && $price_t!=='') {
-                $this->filter_list['price'] = array(
-                    'url' => $this->_getUrl(array('price_f' => '', 'price_t' => '')),
-                    'desc' => $item['desc'],
-                );
-            }
         }
-        return $list;
+
+        if ($selected) {
+            $this->filter_list['price'] = array(
+                'url' => $this->_getUrl(array('price_f' => '', 'price_t' => '')),
+                'desc' => $list[$selected]['desc'],
+            );
+        } elseif (!empty($price_f) || !empty($price_t)) {
+            $this->filter_list['price'] = array(
+                'url' => $this->_getUrl(array('price_f' => '', 'price_t' => '')),
+                'desc' => "$price_f-{$price_t}万",
+            );
+        }
+        $custom_price = array(
+            'price_f' => !$selected ? $price_f : '',
+            'price_t' => !$selected ? $price_t : '',
+            'url' => $this->_getUrl(array('price_f' => 1, 'price_t' => 100)),
+        );
+        
+        return array($list, $custom_price);
     }
 
     protected function _getYearList() {
-        $year_f = '';
-        $year_t = '';
-        if (isset($this->_filter_array['year_f'])) {
-            $year_f = $this->_filter_array['year_f'];
-        }
-        if (isset($this->_filter_array['year_t'])) {
-            $year_t = $this->_filter_array['year_t'];
-        }
-        
+        $year_f = isset($this->_filter_array['year_f']) ? $this->_filter_array['year_f'] : '';
+        $year_t = isset($this->_filter_array['year_t']) ? $this->_filter_array['year_t'] : '';
         $year_list = array(
             array('year_f'=>'', 'year_t'=>'', 'desc'=>'不限'),
             array('year_f'=>1, 'year_t'=>0, 'desc'=>'1年内'), 
@@ -326,15 +329,8 @@ class Controller_List extends Controller_Website {
     }
 
     protected function _getMilesList() {
-        $mile_f = '';
-        $mile_t = '';
-        if (isset($this->_filter_array['mile_f'])) {
-            $mile_f = $this->_filter_array['mile_f'];
-        }
-        if (isset($this->_filter_array['mile_t'])) {
-            $mile_t = $this->_filter_array['mile_t'];
-        }
-        
+        $mile_f = isset($this->_filter_array['mile_f']) ? $this->_filter_array['mile_f'] : '';
+        $mile_t = isset($this->_filter_array['mile_t']) ? $this->_filter_array['mile_t'] : '';
         $mile_list = array(
                 array('mile_f'=>'', 'mile_t'=>'', 'desc'=>'不限'),
                 array('mile_f'=>0, 'mile_t'=>2, 'desc'=>'2万公里内'),
@@ -367,15 +363,8 @@ class Controller_List extends Controller_Website {
     }
 
     protected function _getSortList() {
-        $sort_f = '';
-        $sort_d = '';
-        if (isset($this->_filter_array['sort_f'])) {
-            $sort_f = $this->_filter_array['sort_f'];
-        }
-        if (isset($this->_filter_array['sort_d'])) {
-            $sort_d = $this->_filter_array['sort_d'];
-        }
-    
+        $sort_f = isset($this->_filter_array['sort_f']) ? $this->_filter_array['sort_f'] : '';
+        $sort_d = isset($this->_filter_array['sort_d']) ? $this->_filter_array['sort_d'] : '';
         $sort_list = array(
                 array('sort_f'=>'', 'sort_d'=>'', 'desc'=>'默认排序'),
                 array('sort_f'=>'p', 'sort_d'=>'a', 'desc'=>'价格低到高'),

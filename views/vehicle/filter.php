@@ -32,6 +32,11 @@
                 <a href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>
             </li>
             <?php endforeach; ?>
+            <li class="" style="font-size:12px">
+                <input id="c_price_f" type="text" value="<?= $custom_price['price_f']?>" style="height:30px;margin-bottom:-11px; float:left;width: 60px">&nbsp;&nbsp;
+                <input id="c_price_t" type="text" value="<?= $custom_price['price_t']?>" style="height:30px;margin-bottom:-11px; float:left;margin-left: 5px;width: 60px">
+                <a class="btn" data-href="<?= $custom_price['url']?>" id="c_price_btn" style="height:30px;color:#fff; padding-top:4px;">提交</a>
+            </li>
             </ul>
         </li>
         <li class="collection-item">
