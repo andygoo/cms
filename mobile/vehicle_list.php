@@ -21,7 +21,7 @@
 <div class="panel panel-default" style="background: #fff; margin:10px 0 0;border-radius:0;border:none">
     <div class="panel-heading" style="background: #fff;">
         &nbsp;有<?php echo $total_items?>辆二手车
-        <?php if (!empty($filter_list)):?><a href="<?php echo URL::site('ershouche')?>">[清除筛选]</a> <?php endif;?>
+        <?php if (!empty($filter_list)):?><a href="<?php echo URL::site($city_info['city_pinyin'] . '/ershouche')?>">[清除筛选]</a> <?php endif;?>
     </div>
     <ul class="list-group" id="vehicle_list_container" style="">
         <?php include __DIR__ . '/vehicle/list_vehicle.php';?>

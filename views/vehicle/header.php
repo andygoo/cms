@@ -11,7 +11,7 @@
   <a id="logo-container" href="#" class="brand-logo">好车无忧</a>
   <ul class="right">
     <li>
-    <form class="form-inline" method="get" action="<?php echo URL::site('ershouche')?>">
+    <form class="form-inline" method="get" action="<?php echo URL::site($city_info['city_pinyin'] . '/ershouche')?>">
         <div class="form-group">
             <div class="input-group" style="line-height: 100%;color:#333">
                 <input type="text" id="search-input" name="kw" class="form-control" style="width:300px" value="<?= htmlspecialchars(Arr::get($_GET, 'kw'))?>" placeholder="请输入关键字" required>
