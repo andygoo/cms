@@ -32,14 +32,16 @@ $(function(){
         var c_price_t = ~~$('#c_price_t').val();
         c_price_f = Math.abs(c_price_f);
         c_price_t = Math.abs(c_price_t);
-        var _href = $(this).data('href');
-
-    	var p_part = 'p'+c_price_f+'-'+c_price_t;
-    	var re = /p\d+(\.\d+)?-\d+(\.\d+)?/;
-    	if (re.test(_href)) {
-    		_href = _href.replace(re, p_part);
-    	}
-        $(this).attr('href', _href);
+        if (c_price_t > 0 && c_price_t >= c_price_f) {
+            var _href = $(this).data('href');
+    
+        	var p_part = 'p'+c_price_f+'-'+c_price_t;
+        	var re = /p\d+(\.\d+)?-\d+(\.\d+)?/;
+        	if (re.test(_href)) {
+        		_href = _href.replace(re, p_part);
+        	}
+            $(this).attr('href', _href);
+        }
     });
 });
 </script>

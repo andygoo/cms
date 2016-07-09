@@ -35,13 +35,25 @@
 </footer>
 
 
-<?php 
-//HTML::script('media/bootstrap-3.3.5/js/bootstrap.min.js')
-?>
+<?= HTML::script('media/bootstrap-3.3.5/js/bootstrap.min.js')?>
 <?= HTML::script('media/materialize/js/materialize.min.js')?>
+
+<?= HTML::style('media/autocomplete/jquery.autocomplete.css')?>
+<?= HTML::script('media/autocomplete/jquery.autocomplete.js')?>
+
 <script>
 $(function(){
-    $('.button-collapse').sideNav();
-    $('.parallax').parallax();
+	$("#search-input").autocomplete({
+		source:[{
+			url:"/suggest?query=%QUERY%",
+			type:'remote',
+			render: function(item){
+				return '<div>'+item+'</div>';
+			}
+		}],
+		limit: 10,
+		visibleLimit: 10,
+		openOnFocus: true
+	}); 
 });
 </script>
