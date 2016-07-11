@@ -16,10 +16,21 @@ class Controller_List extends Controller_Website {
         //$this->params = $_GET;
         $this->params = array_filter($this->params, 'strlen');
         
+        $this->all_brand_pinyin = $this->_getBrandPinyin();
+        $this->all_series_pinyin = $this->_getSeriesPinyin();
+        if (!empty($this->params['brand_pinyin'])) {
+            $all_brand_pinyin = array_flip($this->all_brand_pinyin);
+            $this->params['brand_id'] = $all_brand_pinyin[$this->params['brand_pinyin']];
+        }
+        if (!empty($this->params['series_pinyin'])) {
+            $all_series_pinyin = array_flip($this->all_series_pinyin);
+            $this->params['series_id'] = $all_series_pinyin[$this->params['series_pinyin']];
+        }
+        
         $allowed = array(
-                'city_pinyin', 'brand_id', 'series_id',
-                'price_f', 'price_t', 'mile_f', 'mile_t',
-                'year_f', 'year_t', 'sort_f', 'sort_d',
+            'city_pinyin', 'brand_id', 'series_id', 'brand_pinyin', 'series_pinyin',
+            'price_f', 'price_t', 'mile_f', 'mile_t',
+            'year_f', 'year_t', 'sort_f', 'sort_d', 'format',
         );
         
         $this->_filter_array = array_intersect_key($this->params, array_flip($allowed));
@@ -599,9 +610,63 @@ class Controller_List extends Controller_Website {
     }
     
     protected function _getUrl($params) {
+        if (!empty($params['brand_id'])) {
+            $params['brand_pinyin'] = $this->all_brand_pinyin[$params['brand_id']];
+        } elseif (isset($params['brand_id'])) {
+            $params['brand_pinyin'] = '';
+        }
+        if (!empty($params['series_id'])) {
+            $params['series_pinyin'] = $this->all_series_pinyin[$params['series_id']];
+        } elseif (isset($params['brand_id'])) {
+            $params['series_pinyin'] = '';
+        }
+        return Route::url('list_pinyin', array_filter($params + $this->_filter_array, 'strlen'));
+        
         //return URL::site('list') . URL::query($params);
         return Route::url('list', array_filter($params + $this->_filter_array, 'strlen'));
     }
+
+    protected function _getBrandPinyin() {
+        $redis = Cache::instance('redis');
+        $cache_key = '_ALL_BRAND_PINYIN_';
+        $data = $redis->get($cache_key);
+        if (empty($data)) {
+            $m_brand = Model::factory('auto_brand');
+            $data = $m_brand->getAll('', 'id,pinyin')->as_array();
+            $data = array_column($data, 'pinyin', 'id');
+            $data = array_map(function ($v) {return preg_replace('/[^0-9a-z]/', '', strtolower($v));}, $data);
+            $redis->setex($cache_key, 86400, json_encode($data));
+        } else {
+            $data = json_decode($data, true);
+        }
+        return $data;
+    }
     
+    protected function _getSeriesPinyin() {
+        $redis = Cache::instance('redis');
+        $cache_key = '_ALL_SERIES_PINYIN_';
+        $data = $redis->get($cache_key);
+        if (empty($data)) {
+            $m_brand = Model::factory('auto_series');
+            $data = $m_brand->getAll('', 'id,pinyin')->as_array();
+            $data = array_column($data, 'pinyin', 'id');
+            $data = array_map(function ($v) {return preg_replace('/[^0-9a-z]/', '', strtolower($v));}, $data);
+    
+            $tmp = array();
+            foreach ($data as $id => $pinyin) {
+                if (isset($tmp[$pinyin])) {
+                    $tmp[$pinyin] += 1;
+                    $data[$id] = $pinyin . $tmp[$pinyin];
+                } else {
+                    $tmp[$pinyin] = 1;
+                }
+            }
+    
+            $redis->setex($cache_key, 86400, json_encode($data));
+        } else {
+            $data = json_decode($data, true);
+        }
+        return $data;
+    }
 }
 

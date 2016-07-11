@@ -46,21 +46,41 @@ Kohana::modules(array(
 ));
 Kohana::$log->attach(new Log_File(APPPATH . 'logs'));
 
-Route::set('list', '(<city_pinyin>/)ershouche(/(b<brand_id>)(c<series_id>)(p<price_f>-<price_t>)(y<year_f>-<year_t>)(m<mile_f>-<mile_t>)(s<sort_f>-<sort_d>))(/p<page>)', array(
-    'city_pinyin' => '([a-z]+)',
-    'brand_id' => '(\d+)',
-    'series_id' => '(\d+)',
-    'price_f' => '(\d+)',
-    'price_t' => '(\d+)',
-    'year_f' => '(\d+)',
-    'year_t' => '(\d+)',
-    'mile_f' => '(\d+)',
-    'mile_t' => '(\d+)',
-    'sort_f' => '(p|y|m)',
-    'sort_d' => '(a|d)',
-    'page' => '(\d+)' 
+
+Route::set('list_pinyin', '(<city_pinyin>/)ershouche(/<brand_pinyin>(-<series_pinyin>))(/(p<price_f>-<price_t>)(y<year_f>-<year_t>)(m<mile_f>-<mile_t>)(s<sort_f>-<sort_d>))(/p<page>)(.<format>)', array(
+'city_pinyin' => '[a-z]+',
+'brand_pinyin' => '[a-z]+([a-z0-9]+)?',
+'series_pinyin' => '([a-z]+([a-z0-9]+)?){2,}',
+'price_f' => '\d+',
+'price_t' => '(\d+)',
+'year_f' => '(\d+)',
+'year_t' => '(\d+)',
+'mile_f' => '(\d+)',
+'mile_t' => '(\d+)',
+'sort_f' => '(p|y|m)',
+'sort_d' => '(a|d)',
+'page' => '(\d+)',
+'format' => '(html|htm)',
 ))->defaults(array(
-    'controller' => 'list' 
+'controller' => 'list'
+));
+
+Route::set('list', '(<city_pinyin>/)ershouche(/(b<brand_id>)(c<series_id>)(p<price_f>-<price_t>)(y<year_f>-<year_t>)(m<mile_f>-<mile_t>)(s<sort_f>-<sort_d>))(/p<page>)(.<format>)', array(
+'city_pinyin' => '([a-z]+)',
+'brand_id' => '(\d+)',
+'series_id' => '(\d+)',
+'price_f' => '(\d+)',
+'price_t' => '(\d+)',
+'year_f' => '(\d+)',
+'year_t' => '(\d+)',
+'mile_f' => '(\d+)',
+'mile_t' => '(\d+)',
+'sort_f' => '(p|y|m)',
+'sort_d' => '(a|d)',
+'page' => '(\d+)',
+'format' => '(html|htm)',
+))->defaults(array(
+'controller' => 'list' 
 ));
 
 Route::set('detail', 'detail/<id>', array(
