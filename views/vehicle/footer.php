@@ -46,11 +46,11 @@ $(function(){
 	$("#search-input").autocomplete({
 		source:[{
 			url:"/suggest?query=%QUERY%",
-			type:'remote',
-			render: function(item){
-				return '<div>'+item+'</div>';
-			}
+			type:'remote'
 		}],
+		render: function(item, source, pid, query) {
+			return '<div>'+item+'</div>';
+		},
 		limit: 10,
 		visibleLimit: 10,
 		openOnFocus: true

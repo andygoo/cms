@@ -7,18 +7,16 @@ class Controller_Suggest extends Controller_Ajax {
             $this->response = array();
             return ;
         }
-        $states = [
-        'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-        'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-        'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-        'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-        'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-        'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-        'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-        'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-        'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-        ];
-        $this->response = $states;
+        
+        $ret = array();
+        $query = strtolower(trim($_GET['query']));
+        $suggest_data = Kohana::config('suggest');
+        if (isset($suggest_data[$query])) {
+            $ret = $suggest_data[$query];
+            $ret = array_values(array_unique($ret));
+        }
+        
+        $this->response = $ret;
     }
 }
 
