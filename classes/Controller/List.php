@@ -8,6 +8,9 @@ class Controller_List extends Controller_Website {
     protected $_filter_array = array();
     protected $filter_list = array();
     protected $city_info = array();
+    
+    protected $all_brand_pinyin;
+    protected $all_series_pinyin;
 
     public function __construct(Request $request) {
         parent::__construct($request);
@@ -70,13 +73,14 @@ class Controller_List extends Controller_Website {
         $city_list = $this->_getCityList();
         
         $size = 10;
-        //*/
-        $total = $this->_getVehicleCount();
-        $pager = new Pager($total, $size, 'route');
-        //$pager = new Pager($total, $size);
-        $vehicle_list = $this->_getVehicleList($pager->offset, $pager->size)->as_array();
-        /*/
         $page_num = $this->request->param('page', 1);
+        //*/
+        $offset = ($page_num-1) * $size;
+        $ret = $this->_getVehicleList($offset, $size);
+        $vehicle_list = $ret['list'];
+        $total = $ret['count'];
+        $pager = new Pager($total, $size, 'route');
+        /*/
         $ret = $this->_getVehicleListOnSale($page_num, $size);
         $vehicle_list = $ret['data']['vehicles'];
         $total = $ret['data']['count'];
@@ -574,16 +578,12 @@ class Controller_List extends Controller_Website {
         $where = !empty($where) ? ' WHERE ' . implode(' AND ', $where) : '';
         return $where;
     }
-    
-    protected function _getVehicleCount() {
+
+    protected function _getVehicleList($offset, $size) {
         $where = $this->_buildWhereClause();
         $m_vehicle = Model::factory('vehicle_source');
         $count = $m_vehicle->count($where);
-        return $count;
-    }
-    
-    protected function _getVehicleList($offset, $size) {
-        $where = $this->_buildWhereClause();
+        
         if (isset($this->_filter_array['sort_f']) && isset($this->_filter_array['sort_d'])) {
             $field_arr = array('y'=>'register_time', 'm'=>'miles', 'p'=>'seller_price');
             $direct_arr = array('a'=>'asc', 'd'=>'desc');
@@ -593,10 +593,9 @@ class Controller_List extends Controller_Website {
             $direct = $direct_arr[$direct];
             $where .= " ORDER BY $field $direct";
         }
+        $list = $m_vehicle->select($offset, $size, $where, '*')->as_array();
         
-        $m_vehicle = Model::factory('vehicle_source');
-        $list = $m_vehicle->select($offset, $size, $where, '*');
-        return $list;
+        return array('list'=>$list, 'count'=>$count);
     }
     
     protected function _format_list(&$vehicle_list) {
@@ -617,7 +616,7 @@ class Controller_List extends Controller_Website {
         }
         if (!empty($params['series_id'])) {
             $params['series_pinyin'] = $this->all_series_pinyin[$params['series_id']];
-        } elseif (isset($params['brand_id'])) {
+        } elseif (isset($params['series_id'])) {
             $params['series_pinyin'] = '';
         }
         return Route::url('list_pinyin', array_filter($params + $this->_filter_array, 'strlen'));
