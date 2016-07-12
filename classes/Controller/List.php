@@ -71,7 +71,7 @@ class Controller_List extends Controller_Website {
         
         $page_size = 12;
         $page_num = $this->request->param('page', 1);
-        /*/
+        //*/
         $ret = $this->_getVehicleList($page_num, $page_size);
         $vehicle_list = $ret['list'];
         $total = $ret['count'];
