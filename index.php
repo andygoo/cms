@@ -17,7 +17,7 @@ setlocale(LC_ALL, "chs");
 spl_autoload_register(array('Kohana', 'auto_load'));
 ini_set('unserialize_callback_func', 'spl_autoload_call');
 
-define('ENV', 'dev');
+define('ENV', 'adev');
 if (ENV == 'dev') {
     error_reporting(E_ALL | E_STRICT);
     ini_set('display_errors', TRUE);
@@ -49,9 +49,9 @@ Kohana::$log->attach(new Log_File(APPPATH . 'logs'));
 
 Route::set('list_pinyin', '(<city_pinyin>/)ershouche(/<brand_pinyin>(-<series_pinyin>))(/(p<price_f>-<price_t>)(y<year_f>-<year_t>)(m<mile_f>-<mile_t>)(s<sort_f>-<sort_d>))(/p<page>)(.<format>)', array(
 'city_pinyin' => '[a-z]+',
-'brand_pinyin' => '[a-z]+([a-z0-9]+)?',
+'brand_pinyin' => '[a-z]+',
 'series_pinyin' => '([a-z]+([a-z0-9]+)?){2,}',
-'price_f' => '\d+',
+'price_f' => '(\d+)',
 'price_t' => '(\d+)',
 'year_f' => '(\d+)',
 'year_t' => '(\d+)',

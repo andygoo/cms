@@ -1,6 +1,4 @@
 <?php
-define('CODE_BASE', 'D:/codebasev1');
-require_once CODE_BASE . "/api/search_api/SearchApi.php";
 
 class Controller_List extends Controller_Website {
     
@@ -40,7 +38,6 @@ class Controller_List extends Controller_Website {
     }
     
     public function action_index() {
-
         if (isset($_GET['get_vehicle_count'])) {
             unset($_GET['get_vehicle_count']);
             if ($this->auto_render === false) {
@@ -72,22 +69,20 @@ class Controller_List extends Controller_Website {
         
         $city_list = $this->_getCityList();
         
-        $size = 10;
+        $page_size = 12;
         $page_num = $this->request->param('page', 1);
         //*/
-        $offset = ($page_num-1) * $size;
-        $ret = $this->_getVehicleList($offset, $size);
+        $ret = $this->_getVehicleList($page_num, $page_size);
         $vehicle_list = $ret['list'];
         $total = $ret['count'];
-        $pager = new Pager($total, $size, 'route');
+        $pager = new Pager($total, $page_size, 'route');
         /*/
-        $ret = $this->_getVehicleListOnSale($page_num, $size);
+        $ret = $this->_getVehicleList2($page_num, $page_size);
         $vehicle_list = $ret['data']['vehicles'];
         $total = $ret['data']['count'];
-        $pager = new Pager($total, $size, 'route');
-        $query = $ret['query'];
-        if (!empty($query)) {
-            $this->_getColsFromQuery($query);
+        $pager = new Pager($total, $page_size, 'route');
+        if (!empty($ret['query'])) {
+            $this->_getColsFromQuery($ret['query']);
             if (isset($this->_filter_array['brand_id'])) {
                 $brand_id = $this->_filter_array['brand_id'];
                 $series_list = $this->_getSeriesList($brand_id);
@@ -281,9 +276,8 @@ class Controller_List extends Controller_Website {
             if ($price_f == $item['price_f'] && $price_t == $item['price_t']) {
                 $selected = $key;
             }
-            $url = $this->_getUrl(array('price_f' => $item['price_f'], 'price_t' => $item['price_t']));
             $list[$key] = array(
-                'url' => $url,
+                'url' => $this->_getUrl(array('price_f' => $item['price_f'], 'price_t' => $item['price_t'])),
                 'desc' => $item['desc'],
                 'selected' => ($price_f == $item['price_f'] && $price_t == $item['price_t']),
             );
@@ -399,49 +393,45 @@ class Controller_List extends Controller_Website {
         return $list;
     }
     
-    protected function _buildQueryCondition() {
-        $ret = array();
-        if (isset($this->_filter_array['brand_id'])) {
-            $ret['brand_id'] = $this->_filter_array['brand_id'];
-        }
-        if (isset($this->_filter_array['series_id'])) {
-            $ret['class_id'] = $this->_filter_array['series_id'];
-        }
-         
-        $price = array();
-        if (isset($this->_filter_array["price_f"])) {
-            $price[] = $this->_filter_array["price_f"];
-        }
-        if (isset($this->_filter_array["price_t"])) {
-            $price[] = $this->_filter_array["price_t"];
-        }
-        $ret['price'] = $price;
-    
-        $year = array();
-        if (isset($this->_filter_array["year_f"])) {
-            $y = date('Y') - $this->_filter_array["year_f"];
-            $m = date('m');
-            $year[] = strtotime("$y-$m-01");
-        }
-        if (isset($this->_filter_array["year_t"])) {
-            $y = date('Y') - $this->_filter_array["year_t"];
-            $m = date('m');
-            $year[] = strtotime("$y-$m-01");
-        }
-        $ret['register_time'] = $year;
-         
-        $mile = array();
-        if (isset($this->_filter_array["mile_f"])) {
-            $mile[] = $this->_filter_array["mile_f"];
-        }
-        if (isset($this->_filter_array["mile_t"])) {
-            $mile[] = $this->_filter_array["mile_t"];
-        }
-        $ret['miles'] = $mile;
-    
-        return array_filter($ret);
+    protected function _getVehicleList($page_num, $page_size) {
+        $params = $this->_filter_array;
+        return SearchApi::search($params, $page_num, $page_size);
     }
     
+    protected function _getVehicleList2($page_num, $page_size) {
+        $params = $this->_filter_array;
+        return SearchApi2::search($params, $page_num, $page_size);
+    }
+
+    protected function _format_list(&$vehicle_list) {
+        if(!empty($vehicle_list)) {
+            foreach($vehicle_list as &$item) {
+                $item['cover_pic'] = 'http://image1.haoche51.com/82993604a789aed0dc26a5626d90bb77a53add03.jpg?imageView2/1/w/280/h/210';
+                $item['geerbox'] = $item['geerbox_type']==1 ? '手动' : '自动';
+            }
+            unset($item);
+        }
+    }
+    
+    protected function _getUrl($params) {
+        $params += $this->_filter_array;
+        
+        if (!empty($params['brand_id'])) {
+            $params['brand_pinyin'] = $this->all_brand_pinyin[$params['brand_id']];
+        } elseif (isset($params['brand_id'])) {
+            $params['brand_pinyin'] = '';
+        }
+        if (!empty($params['series_id'])) {
+            $params['series_pinyin'] = $this->all_series_pinyin[$params['series_id']];
+        } elseif (isset($params['series_id'])) {
+            $params['series_pinyin'] = '';
+        }
+        return Route::url('list_pinyin', array_filter($params, 'strlen'));
+        
+        //return URL::site('list') . URL::query($params);
+        return Route::url('list', array_filter($params, 'strlen'));
+    }
+
     protected function _getColsFromQuery($query) {
         if (isset($query['brand_id'])) {
             $this->_filter_array['brand_id'] = $query['brand_id'];
@@ -485,146 +475,7 @@ class Controller_List extends Controller_Website {
             $this->_filter_array['mile_t'] = $mile_t;
         }
     }
-
-    protected function  _getVehicleListOnSale($page_num, $page_size) {
-        //return require_once 'D:/test/test_vehicle.php';
-        $ret = array('data'=>array('count'=>0,'vehicles'=>array()), 'query'=>array());
-
-        $cityid = $this->_filter_array['city_id'];
-        
-        $field = 'time';
-        $direct = '1';
-        if (isset($this->_filter_array['sort_f']) && isset($this->_filter_array['sort_d'])) {
-            $field_arr = array('y'=>'register_time', 'm'=>'miles', 'p'=>'price');
-            $direct_arr = array('a'=>'0', 'd'=>'1');
-            $field = $this->_filter_array['sort_f'];
-            $direct = $this->_filter_array['sort_d'];
-            $field = $field_arr[$field];
-            $direct = $direct_arr[$direct];
-        }
-        
-        if (!empty($_GET['kw'])) {
-            $query_filter = array(
-                'query' => htmlspecialchars($_GET['kw']),
-                'city' => $cityid,
-            );
-            $query_filter = array_filter($query_filter);
-            $ret = SearchApi::getMsVehicles($query_filter, $page_num, $page_size, SearchApi::ONSALE);
-        } else {
-            $query_filter = $this->_buildQueryCondition();
-            $query_filter['city'] = $cityid;
-            $query_filter['type'] = array(1, 1);
-            $query_filter = array_filter($query_filter);
-            $query = array(
-                'query' => $query_filter,
-                'page_num' => $page_num,
-                'page_size' => $page_size,
-                'order' => $field,
-                'desc' => $direct,
-            );
-            $ret = SearchApi::SearchMs($query);
-        }
-        
-        if ($ret['errno']==0 && !empty($ret['data']['vehicles'])) {
-            foreach ($ret['data']['vehicles'] as &$vehicle) {
-                $vehicle['json'] = base64_decode($vehicle['json']);
-                $vehicle_info = json_decode($vehicle['json'], true);
-                $vehicle = array_merge($vehicle_info, $vehicle);
-                unset($vehicle['json']);
-                unset($vehicle['name']);
-            }
-            unset($vehicle);
-        }
-        return $ret;
-    }
     
-    protected function _buildWhereClause() {
-        $where = array();
-        foreach ($this->_filter_array as $key => $value) {
-            switch ($key) {
-                case 'city_id':
-                    $where[] = "city_id={$value}";
-                    break;
-                case 'brand_id':
-                    $where[] = "brand_id={$value}";
-                    break;
-                case 'series_id':
-                    $where[] = "class_id={$value}";
-                    break;
-                case 'price_f':
-                    $where[] = "seller_price>={$value}";
-                    break;
-                case 'price_t':
-                    $where[] = "seller_price<={$value}";
-                    break;
-                case 'year_f':
-                    $value = strtotime("-$value year");
-                    $where[] = "register_time>={$value}";
-                    break;
-                case 'year_t':
-                    $value = strtotime("-$value year");
-                    $where[] = "register_time<={$value}";
-                    break;
-                case 'mile_f':
-                    $where[] = "miles>={$value}";
-                    break;
-                case 'mile_t':
-                    $where[] = "miles<={$value}";
-                    break;
-                default:
-                    break;
-            }
-        }
-        $where = !empty($where) ? ' WHERE ' . implode(' AND ', $where) : '';
-        return $where;
-    }
-
-    protected function _getVehicleList($offset, $size) {
-        $where = $this->_buildWhereClause();
-        $m_vehicle = Model::factory('vehicle_source');
-        $count = $m_vehicle->count($where);
-        
-        if (isset($this->_filter_array['sort_f']) && isset($this->_filter_array['sort_d'])) {
-            $field_arr = array('y'=>'register_time', 'm'=>'miles', 'p'=>'seller_price');
-            $direct_arr = array('a'=>'asc', 'd'=>'desc');
-            $field = $this->_filter_array['sort_f'];
-            $direct = $this->_filter_array['sort_d'];
-            $field = $field_arr[$field];
-            $direct = $direct_arr[$direct];
-            $where .= " ORDER BY $field $direct";
-        }
-        $list = $m_vehicle->select($offset, $size, $where, '*')->as_array();
-        
-        return array('list'=>$list, 'count'=>$count);
-    }
-    
-    protected function _format_list(&$vehicle_list) {
-        if(!empty($vehicle_list)) {
-            foreach($vehicle_list as &$item) {
-                $item['cover_pic'] = 'http://image1.haoche51.com/82993604a789aed0dc26a5626d90bb77a53add03.jpg?imageView2/1/w/280/h/210';
-                $item['geerbox'] = $item['geerbox_type']==1 ? '手动' : '自动';
-            }
-            unset($item);
-        }
-    }
-    
-    protected function _getUrl($params) {
-        if (!empty($params['brand_id'])) {
-            $params['brand_pinyin'] = $this->all_brand_pinyin[$params['brand_id']];
-        } elseif (isset($params['brand_id'])) {
-            $params['brand_pinyin'] = '';
-        }
-        if (!empty($params['series_id'])) {
-            $params['series_pinyin'] = $this->all_series_pinyin[$params['series_id']];
-        } elseif (isset($params['series_id'])) {
-            $params['series_pinyin'] = '';
-        }
-        return Route::url('list_pinyin', array_filter($params + $this->_filter_array, 'strlen'));
-        
-        //return URL::site('list') . URL::query($params);
-        return Route::url('list', array_filter($params + $this->_filter_array, 'strlen'));
-    }
-
     protected function _getBrandPinyin() {
         $redis = Cache::instance('redis');
         $cache_key = '_ALL_BRAND_PINYIN_';
