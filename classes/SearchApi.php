@@ -2,13 +2,31 @@
 
 class SearchApi {
 
-    protected function parseQuery($query) {
-        return array();
+    protected static function parseQuery($query) {
+        $parse_rlt = array();
+        preg_match_all("/([0-9]+)[至到~-]+([0-9]+)万/", $query, $matches);
+        if(!empty($matches[1])) {
+            $parse_rlt['price_f'] = $matches[1][0];
+            $parse_rlt['price_t'] = $matches[2][0];
+            $query = str_replace($matches[0],"",$query);
+        } else {
+            preg_match_all("/([0-9]+)万/",$query, $matches);
+            if(!empty($matches[1])) {
+                $parse_rlt['price_f'] = $matches[1][0];
+                $parse_rlt['price_t'] = $matches[1][0];
+                $query = str_replace($matches[0]," ", $query);
+            }
+        }
+        return $parse_rlt;
     }
     
-    public static function query($query) {
-        $params = $this->parseQuery($query);
-        return $this->search($params);
+    public static function query($params, $query, $page_num, $page_size) {
+        $params_q = self::parseQuery($query);
+        $params = array_merge($params, $params_q);
+        
+        $ret = self::search($params, $page_num, $page_size);
+        $ret['query'] = $params_q;
+        return $ret;
     }
     
     public static function search($params, $page_num, $page_size) {

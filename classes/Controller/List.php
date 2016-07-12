@@ -71,11 +71,14 @@ class Controller_List extends Controller_Website {
         
         $page_size = 12;
         $page_num = $this->request->param('page', 1);
-        //*/
+        /*/
         $ret = $this->_getVehicleList($page_num, $page_size);
         $vehicle_list = $ret['list'];
         $total = $ret['count'];
         $pager = new Pager($total, $page_size, 'route');
+        if (!empty($ret['query'])) {
+            $this->_getColsFromQuery($ret['query']);
+        }
         /*/
         $ret = $this->_getVehicleList2($page_num, $page_size);
         $vehicle_list = $ret['data']['vehicles'];
@@ -83,10 +86,6 @@ class Controller_List extends Controller_Website {
         $pager = new Pager($total, $page_size, 'route');
         if (!empty($ret['query'])) {
             $this->_getColsFromQuery($ret['query']);
-            if (isset($this->_filter_array['brand_id'])) {
-                $brand_id = $this->_filter_array['brand_id'];
-                $series_list = $this->_getSeriesList($brand_id);
-            }
         }
         //*/
         $this->_format_list($vehicle_list);
@@ -395,7 +394,12 @@ class Controller_List extends Controller_Website {
     
     protected function _getVehicleList($page_num, $page_size) {
         $params = $this->_filter_array;
-        return SearchApi::search($params, $page_num, $page_size);
+        if (!empty($_GET['kw'])) {
+            $query = $_GET['kw'];
+            return SearchApi::query($params, $query, $page_num, $page_size);
+        } else {
+            return SearchApi::search($params, $page_num, $page_size);
+        }
     }
     
     protected function _getVehicleList2($page_num, $page_size) {
@@ -443,6 +447,12 @@ class Controller_List extends Controller_Website {
             list($price_f, $price_t) = $query['price'];
             $this->_filter_array['price_f'] = $price_f;
             $this->_filter_array['price_t'] = $price_t;
+        }
+        if (isset($query['price_f'])) {
+            $this->_filter_array['price_f'] = $query['price_f'];
+        }
+        if (isset($query['price_t'])) {
+            $this->_filter_array['price_t'] = $query['price_t'];
         }
         if (isset($query['register_time'])) {
             list($year_f, $year_t) = $query['register_time'];

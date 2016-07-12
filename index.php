@@ -17,7 +17,7 @@ setlocale(LC_ALL, "chs");
 spl_autoload_register(array('Kohana', 'auto_load'));
 ini_set('unserialize_callback_func', 'spl_autoload_call');
 
-define('ENV', 'adev');
+define('ENV', 'dev');
 if (ENV == 'dev') {
     error_reporting(E_ALL | E_STRICT);
     ini_set('display_errors', TRUE);
