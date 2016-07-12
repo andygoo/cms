@@ -48,8 +48,11 @@ $(function(){
 			url:"/suggest?query=%QUERY%",
 			type:'remote'
 		}],
-		render: function(item, source, pid, query) {
+		render: function(item) {
 			return '<div>'+item+'</div>';
+		},
+		valid: function () {
+			return true;
 		},
 		limit: 10,
 		visibleLimit: 10,
