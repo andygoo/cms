@@ -176,7 +176,8 @@ class Controller_List extends Controller_Website {
         $top_list[] = array(
             'desc' => '不限',
             'url' => $this->_getUrl(array(
-                'brand_id' => ''
+                'brand_id' => '',
+                'series_id' => '',
             )),
             'selected' => !isset($this->_filter_array['brand_id']),
         );
@@ -189,7 +190,8 @@ class Controller_List extends Controller_Website {
                 'id' => $brand_id,
                 'desc' => $item['name'],
                 'url' => $this->_getUrl(array(
-                    'brand_id' => $brand_id 
+                    'brand_id' => $brand_id,
+                    'series_id' => '',
                 )),
                 'selected' => $selected 
             );
@@ -199,7 +201,8 @@ class Controller_List extends Controller_Website {
                 $this->filter_list['brand'] = array(
                     'desc' => $item['name'],
                     'url' => $this->_getUrl(array(
-                        'brand_id' => '' 
+                        'brand_id' => '',
+                        'series_id' => '',
                     )),
                     'selected' => $selected,
                 );

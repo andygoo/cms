@@ -17,6 +17,23 @@ class SearchApi {
                 $query = str_replace($matches[0]," ", $query);
             }
         }
+        
+        $keywords = Kohana::config('keyword');
+        foreach ($keywords as $type=>$item) {
+            foreach ($item as $word => $value) {
+                if ($type == 'series' && $query == $word) {
+                    list($series_id, $brand_id) = explode('|', $value);
+                    $parse_rlt['brand_id'] = $brand_id;
+                    $parse_rlt['class_id'] = $series_id;
+                    break;
+                }
+                if ($type == 'brand' && $query == $word) {
+                    $parse_rlt['brand_id'] = $value;
+                    break;
+                }
+            }
+        }
+        
         return $parse_rlt;
     }
     
