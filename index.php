@@ -86,7 +86,8 @@ Route::set('list', '(<city_pinyin>/)ershouche(/(b<brand_id>)(c<series_id>)(p<pri
 Route::set('detail', 'detail/<id>', array(
     'id' => '(\d+)' 
 ))->defaults(array(
-    'controller' => 'detail' 
+    'controller' => 'vehicle',
+    'action' => 'detail'  
 ));
 
 Route::set('custom', 'fruit/<customurl>', array(

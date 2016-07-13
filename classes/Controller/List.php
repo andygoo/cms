@@ -17,8 +17,8 @@ class Controller_List extends Controller_Website {
         //$this->params = $_GET;
         $this->params = array_filter($this->params, 'strlen');
         
-        $this->all_brand_pinyin = $this->_getBrandPinyin();
-        $this->all_series_pinyin = $this->_getSeriesPinyin();
+        $this->all_brand_pinyin = SEO::getBrandPinyin();
+        $this->all_series_pinyin = SEO::getSeriesPinyin();
         if (!empty($this->params['brand_pinyin'])) {
             $all_brand_pinyin = array_flip($this->all_brand_pinyin);
             $this->params['brand_id'] = $all_brand_pinyin[$this->params['brand_pinyin']];
@@ -489,47 +489,5 @@ class Controller_List extends Controller_Website {
         }
     }
     
-    protected function _getBrandPinyin() {
-        $redis = Cache::instance('redis');
-        $cache_key = '_ALL_BRAND_PINYIN_';
-        $data = $redis->get($cache_key);
-        if (empty($data)) {
-            $m_brand = Model::factory('auto_brand');
-            $data = $m_brand->getAll('', 'id,pinyin')->as_array();
-            $data = array_column($data, 'pinyin', 'id');
-            $data = array_map(function ($v) {return preg_replace('/[^0-9a-z]/', '', strtolower($v));}, $data);
-            $redis->setex($cache_key, 86400, json_encode($data));
-        } else {
-            $data = json_decode($data, true);
-        }
-        return $data;
-    }
-    
-    protected function _getSeriesPinyin() {
-        $redis = Cache::instance('redis');
-        $cache_key = '_ALL_SERIES_PINYIN_';
-        $data = $redis->get($cache_key);
-        if (empty($data)) {
-            $m_brand = Model::factory('auto_series');
-            $data = $m_brand->getAll('', 'id,pinyin')->as_array();
-            $data = array_column($data, 'pinyin', 'id');
-            $data = array_map(function ($v) {return preg_replace('/[^0-9a-z]/', '', strtolower($v));}, $data);
-    
-            $tmp = array();
-            foreach ($data as $id => $pinyin) {
-                if (isset($tmp[$pinyin])) {
-                    $tmp[$pinyin] += 1;
-                    $data[$id] = $pinyin . $tmp[$pinyin];
-                } else {
-                    $tmp[$pinyin] = 1;
-                }
-            }
-    
-            $redis->setex($cache_key, 86400, json_encode($data));
-        } else {
-            $data = json_decode($data, true);
-        }
-        return $data;
-    }
 }
 
