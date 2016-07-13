@@ -36,8 +36,8 @@
           <li class="collection-item">购车咨询：<a href="#!" class="secondary-content">400-606-7905</a></li>
         </ul>
 
-        <a class="waves-effect waves-light btn 2red"><i class="material-icons left">cloud</i>预约看车</a>
-        <a class="waves-effect waves-light btn 2red"><i class="material-icons right">cloud</i>我要砍价</a>
+        <a class="btn btn-info">预约看车</a>
+        <a class="btn btn-info">我要砍价</a>
     </div>
 </div>
 </div>

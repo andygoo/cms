@@ -8,7 +8,7 @@
 
 <nav class="white" role="navigation">
 <div class="nav-wrapper container-fluid">
-  <a id="logo-container" href="#" class="brand-logo">好车无忧</a>
+  <a id="logo-container" href="<?php echo URL::site('/vehicle')?>" class="brand-logo">好车无忧</a>
   <ul class="right">
     <li>
     <form class="form-inline" method="get" action="<?php echo URL::site($city_info['city_pinyin'] . '/ershouche')?>">
