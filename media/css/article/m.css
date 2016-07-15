@@ -21,4 +21,45 @@ a:link, a:hover, a:active, a:visited {text-decoration:none;}
 .media-list{margin:10px;}
 .media-heading {font-size:16px;}
 
+/*more*/
+.ui-refresh{ display: block; height:36px;line-height:36px;background-color:#f8f9fa;text-align:center;border:1px solid #ebedef;border-radius:1px;color:#545454;margin:14px 40px}
+
+/*swiper_pager*/
+.swiper_c .swiper-pagination{bottom: 0; text-align: right}
+.swiper_c .swiper-pagination-bullet{width:5px;height:5px;background: #fff;opacity: .6}
+.swiper_c .swiper-pagination-bullet-active{width:6px;height:6px;opacity: 1}
+
+/*swiper*/
+.swiper-container {
+    width: 100%;
+}
+.swiper-slide {
+    text-align: center;
+    background: #fff;
+    width: 100%;
+}
+
+/*index nav*/
+.nav_bar {
+    position: relative; 
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    height: 40px;
+    background: #fff;
+}
+.nav_bar span {
+    display: table-cell;
+    vertical-align: middle;
+    height: 100%;
+    background: #fff;
+    border-radius: 0;
+    border-bottom: 2px solid #fff;
+    opacity: 0.8;
+}
+.nav_bar span.swiper-pagination-bullet-active  {
+    border-bottom: 2px solid #dd0000;
+    color: #dd0000;
+}
+
 

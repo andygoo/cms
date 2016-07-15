@@ -1,48 +1,9 @@
 
 <?= HTML::style('media/bootstrap-3.3.5/css/bootstrap.min.css')?>
 <?= HTML::style('media/swiper/css/swiper.min.css')?>
-<?= HTML::style('media/css/article/component.css')?>
+<?= HTML::style('media/css/article/m.css')?>
 
 <?= HTML::script('media/swiper/js/swiper.min.js')?>
-
-<style>
-.swiper-container {
-    width: 100%;
-}
-.swiper-slide {
-    text-align: center;
-    background: #fff;
-    width: 100%;
-}
-.nav_bar {
-    position: relative;	
-    display: table;
-    table-layout: fixed;
-    width: 100%;
-    height: 40px;
-    background: #fff;
-    border-bottom: 1px solid #d9d9d9;
-}
-.nav_bar span {
-	display: table-cell;
-    vertical-align: middle;
-	height: 100%;
-	background: #fff;
-	border-radius: 0;
-    border-bottom: 2px solid #fff;
-	opacity: 0.8;
-}
-.nav_bar span.swiper-pagination-bullet-active  {
-    border-bottom: 2px solid #dd0000;
-    color: #dd0000;
-}
-
-.ui-refresh{ display: block; height:36px;line-height:36px;background-color:#f8f9fa;text-align:center;border:1px solid #ebedef;border-radius:1px;color:#545454;margin:14px 40px}
-
-.swiper_c .swiper-pagination{bottom: 0; text-align: right}
-.swiper_c .swiper-pagination-bullet{width:6px;height:6px;background: #fff;opacity: .6}
-.swiper_c .swiper-pagination-bullet-active{opacity: 1}
-</style>
 
 <div class="swiper-pagination nav_bar"></div>
 
