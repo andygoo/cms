@@ -12,7 +12,13 @@ Last update : 2016-06-11
 Typography
 =========================== */
 
-body {}
+body {font-family: "Microsoft YaHei",Arial,sans-serif}
+
+
+nav.navbar.bootsnav {
+	border-bottom: none;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
 
 .wrapper{
     min-height: 800px;
