@@ -55,7 +55,7 @@ class Controller_Article extends Controller_Website {
         
         $this->content = View::factory('article_list');
         $this->content->list = $list;
-        $this->content->pager = $pager->render('article/pager');
+        $this->content->pager = $pager->render('common/pager');
         $this->content->next_page = $pager->next_page ? $pager->url($pager->next_page, array('cid'=>$cid, 'get_next_page'=>'ajax')) : '';
     }
     

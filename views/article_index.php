@@ -1,7 +1,5 @@
 
 <?php include __DIR__ . '/article/header.php';?>
-<?php include __DIR__ . '/article/nav.php';?>
-
 <?= HTML::style('media/css/article/index.css')?>
 
 <div class="intro-header" style="background: url(http://7xkkhh.com1.z0.glb.clouddn.com/2016/06/28/14671172206735.jpg)">

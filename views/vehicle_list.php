@@ -1,6 +1,7 @@
 
 <?php include __DIR__ . '/vehicle/header.php';?>
 <?php include __DIR__ . '/vehicle/filter.php';?>
+<?= HTML::style('media/css/pager.css')?>
 
 <style>
 img {max-width: 100%}

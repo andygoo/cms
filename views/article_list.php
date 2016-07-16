@@ -1,7 +1,7 @@
 
 <?php include __DIR__ . '/article/header.php';?>
-<?php include __DIR__ . '/article/nav.php';?>
 <?= HTML::style('media/css/article/list.css')?>
+<?= HTML::style('media/css/pager.css')?>
 
 <!-- Start Home -->
 <div class="pageheader">
@@ -19,7 +19,7 @@
     <div class="row">
         <main class="col-md-8">
             <h3 class="page-header">好车故事</h3>
-            <ul class="media-list">
+            <ul class="media-list" style="margin-bottom: 20px">
             <?php foreach($list as $item): ?>
                 <li class="media">
                     <div class="media-left">

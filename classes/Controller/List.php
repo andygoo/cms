@@ -132,7 +132,7 @@ class Controller_List extends Controller_Website {
         
         //var_dump($pager->url($pager->next_page));exit;
 
-        $this->content->pager = $pager->render('vehicle/pager');
+        $this->content->pager = $pager->render('common/pager');
         $this->content->total_items = $pager->total_items;
         $this->content->curr_page = $pager->current_page;
         $this->content->total_pages = $pager->total_pages;
