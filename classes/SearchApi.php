@@ -82,9 +82,11 @@ class SearchApi {
                 case 'sort_f':
                     $field_arr = array('y'=>'register_time', 'm'=>'miles', 'p'=>'seller_price');
                     $sort_field = $field_arr[$value];
+                    break;
                 case 'sort_d':
                     $direct_arr = array('a'=>'asc', 'd'=>'desc');
-                    $sort_direct = $field_arr[$value];
+                    $sort_direct = $direct_arr[$value];
+                    break;
                 default:
                     break;
             }
