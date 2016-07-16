@@ -1,6 +1,7 @@
 
+<?= HTML::style('media/css/icono.min.css')?>
+<?= HTML::style('media/css/flexboxgrid.min.css')?>
 <?= HTML::style('media/bootstrap-3.3.5/css/bootstrap.css')?>
-<?= HTML::style('media/css/vehicle/header.css')?>
 <?= HTML::style('media/css/vehicle/ershouche.css')?>
 
 <?= HTML::script('media/js/iscroll.js')?>

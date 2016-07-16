@@ -1,17 +1,25 @@
 
-<div class="ln-nav">
-    <div id="vehicle_filter" class="ln-nav">
-        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-            <td width="25%" class="yb-t"><a data-id="2" id="a2" class="class1"><span>品牌</span><i></i></a></td>
-            <td width="25%" class="yb-t"><a data-id="3" id="a3" class="class1"><span>价格</span><i></i></a></td>
-            <td width="25%" class="yb-t"><a data-id="1" id="a1" class="class1 order1"><span>默认排序</span><i></i></a></td>
-            <td width="25%"><a data-id="4" id="a4" class="class1"><span>更多</span><i></i></a></td>
-        </tr>
-        </table>
+<style>
+#vehicle_filter {background:#fff;text-align: center;height: 44px;line-height: 44px;margin:0;border-bottom:1px solid #dedede;}
+#vehicle_filter i {float: right; line-height: 44px; color: #777}
+#vehicle_filter .col-xs{border-right: 1px solid #dedede;}
+#vehicle_filter .col-xs:last-child{border-right: none;}
+
+</style>
+<div class="row" id="vehicle_filter">
+    <div class="col-xs class1" id="a2" data-id="2">
+        <span>品牌</span><i class="glyphicon glyphicon-menu-down"></i>
+    </div>
+    <div class="col-xs class1" id="a3" data-id="3">
+        <span>价格</span><i class="glyphicon glyphicon-menu-down"></i>
+    </div>
+    <div class="col-xs class1" id="a1" data-id="1">
+        <span>排序</span><i class="glyphicon glyphicon-menu-down"></i>
+    </div>
+    <div class="col-xs class1" id="a4" data-id="4">
+        <span>更多</span><i class="glyphicon glyphicon-menu-down"></i>
     </div>
 </div>
-
 
 <div id="a1_content" class="filter_option">
     <div id="wrapper1" data-id="1" class="close_box">

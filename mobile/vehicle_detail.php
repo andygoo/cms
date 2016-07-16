@@ -1,13 +1,21 @@
-<?= HTML::style('media/css/vehicle/header.css')?>
+
 <?= HTML::style('media/css/vehicle/details.css')?>
+
+<?= HTML::style('media/css/normalize.css')?>
+<?= HTML::style('media/css/flexboxgrid.min.css')?>
+
+<?= HTML::style('media/sweetalert/sweetalert.css')?>
+<?= HTML::style('media/swiper/css/swiper.min.css')?>
+
+
+<?= HTML::script('media/sweetalert/sweetalert.min.js');?>
+<?= HTML::script('media/js/swiper-3.3.1.jquery.min.js');?>
 <?php 
 //HTML::script('media/swiper/js/swiper.min.js');
 ?>
-<?= HTML::style('media/swiper/css/swiper.min.css')?>
-<?= HTML::style('media/sweetalert/sweetalert.css')?>
-<?= HTML::script('media/js/swiper-3.3.1.jquery.min.js');?>
-<?= HTML::script('media/sweetalert/sweetalert.min.js');?>
+
 <style>
+body {font-family:"Comic Sans MS","幼圆","黑体",sans-serif;font-size:12px;background:#f5f2f2;color:#212121;}
 .sweet-alert .sa-error-container .icon {width: 20px; height: 20px;}
 .sweet-alert .sa-error-container.show {padding: 0;}
 .sweet-alert .sa-input-error{top: 23px; right: 13px}
@@ -38,67 +46,28 @@ $list = array(
     </div>
     <div class="swiper-pagination" style="color:#fff"></div>
 </div>
+
 <div class="auto-tit">
     <span><?php echo $vehicle_info['vehicle_name']?></span>
     <?php echo sprintf("%s上牌 · %.1f万公里 · %s", date("Y.m", $vehicle_info['register_time']), $vehicle_info['miles'], $vehicle_info['geerbox_type']=='1' ? '手动':'自动');?>
 </div>
+
 <div class="auto-quote">
     <span class="aqtit">车主<?php echo $vehicle_info['seller_name']?>报价</span>
-    <?php if ($vehicle_info['cut_price'] > 0): ?>
-    <span class="aqdrop">已降<?php echo $vehicle_info['cut_price']*10000?>元，</span>
-    <?php endif;?>
     <span class="tax-price">新车含税价 <span class="aqdeli"><?php echo sprintf("%.2f", $vehicle_info['quoted_price']*1.1);?>万</span></span>
 </div>
+
 <div class="auto-price">
     <span class="price"><?php echo sprintf("%.2f", $vehicle_info['seller_price']);?></span>万 
 </div>
-<div class="service-charge">服务费
-<?php $service_fee = 10000*$vehicle_info['seller_price']*0.03; ?>
-<?php echo $service_fee<2000 ? 2000 : $service_fee?>元<span>(车价×3%, 2000元起)</span>
-</div>
-<div class="service-guarantee">
-    <ul>
-        <li>
-            <div class="icon"> 
-                <span class="line tip"></span> 
-                <span class="line long"></span> 
-                <span class="line dian"></span> 
-            </div>
-            <div class="ltext">218项专业检测</div>
-        </li>
-        <li>
-            <div class="icon"> 
-                <span class="line tip"></span> 
-                <span class="line long"></span> 
-                <span class="line dian"></span> 
-            </div>
-            <div class="ltext">1年/2万公里质保</div>
-        </li>
-        <li>
-            <div class="icon"> 
-                <span class="line tip"></span> 
-                <span class="line long"></span> 
-                <span class="line dian"></span> 
-            </div>
-            <div class="ltext">14天可退车承诺</div>
-        </li>
-        <li>
-            <div class="icon"> 
-                <span class="line tip"></span> 
-                <span class="line long"></span> 
-                <span class="line dian"></span> 
-            </div>
-            <div class="ltext">全程陪看代办过户</div>
-        </li>
-    </ul>
-    <div class="clear"></div>
-</div>
-<div style="height:44px;"></div>
-<div class="cars-advisory">
-    <ul>
-        <li class="telcon"><a href="javascript:void(0)" id="img_tel"><span>电话咨询</span></a></li>
-        <li class="kancar"><a href="javascript:void(0)" id="yuyue_kanche_btn">预约看车</a></li>
-    </ul>
+
+<div class="row" style="position: fixed; left:0; bottom:0; width: 100%; height: 44px; line-height: 44px; text-align: center; font-size: 16px; margin: 0">
+    <div class="col-xs" id="img_tel" style="background: #fff;color: #dd0000">
+        <div>电话咨询</div>
+    </div>
+    <div class="col-xs" id="yuyue_kanche_btn" style="background: #dd0000;color: #fff">
+        <div>预约看车</div>
+    </div>
 </div>
 
 <?php include __DIR__ . '/common/photoswipe.php';?>
