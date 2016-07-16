@@ -1,5 +1,7 @@
 
-<?= HTML::style('media/bootstrap-3.3.5/css/bootstrap.min.css')?>
+<?php include __DIR__ . '/article/header.php';?>
+<?php include __DIR__ . '/article/nav.php';?>
+
 <?= HTML::style('media/css/article/index.css')?>
 
 <div class="intro-header" style="background: url(http://7xkkhh.com1.z0.glb.clouddn.com/2016/06/28/14671172206735.jpg)">
@@ -72,15 +74,5 @@
 <?php endif;?>
 <?php endforeach;?>
 
-<footer style="background: url(http://7xkkhh.com1.z0.glb.clouddn.com/2016/06/28/14671191571578.jpg)">
-<div class="footer-overlay">
-<div class="container">
-<div class="row">
-    <div class="col-lg-12">
-        <p>Created by <a href="http://dmarby.se">David Marby</a> & <a href="https://github.com/Nijikokun">Nijiko Yonskai</a></p>
-        <p><a href="https://github.com/DMarby/unsplash-it">Source</a></p>
-    </div>
-</div>
-</div>
-</div>
-</footer>
+<?php include __DIR__ . '/article/footer.php';?>
+
