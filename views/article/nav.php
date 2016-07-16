@@ -3,7 +3,6 @@
 <?= HTML::style('media/bootsnav/css/bootsnav.css')?>
 <?= HTML::style('media/bootsnav/css/overwrite.css')?>
 <?= HTML::style('media/bootsnav/skins/color.css')?>
-<?= HTML::style('media/css/article/list.css')?>
 
 <!-- Start Navigation -->
 <nav class="navbar navbar-default bootsnav">

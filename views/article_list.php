@@ -1,6 +1,7 @@
 
 <?php include __DIR__ . '/article/header.php';?>
 <?php include __DIR__ . '/article/nav.php';?>
+<?= HTML::style('media/css/article/list.css')?>
 
 <!-- Start Home -->
 <div class="pageheader">

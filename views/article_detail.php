@@ -2,6 +2,12 @@
 <?php include __DIR__ . '/article/header.php';?>
 <?php include __DIR__ . '/article/nav.php';?>
 
+<style>
+article img {
+    max-width: 100%;
+}
+</style>
+
 <div class=" _gray">
 <div class="container">
     <div class="row">

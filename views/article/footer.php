@@ -1,3 +1,11 @@
+<style>
+footer{
+    border-top: solid 1px #efefef;
+}
+footer .container{
+    padding: 25px 15px;
+}
+</style>
 <!-- Start Footer -->
 <footer>
     <div class="container">
