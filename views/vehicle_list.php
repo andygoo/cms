@@ -2,17 +2,39 @@
 <?php include __DIR__ . '/vehicle/header.php';?>
 <?php include __DIR__ . '/vehicle/filter.php';?>
 <?= HTML::style('media/css/pager.css')?>
+<?= HTML::style('media/css/card.css')?>
 
 <style>
+body {background: #f5f5f5;}
 img {max-width: 100%}
+.card-title {font-size: 16px;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.card-title a{color: #222}
+.card-title a:hover{color: #d00}
+.card-text {font-size: 14px;#666}
+
+.form-control:focus {
+    border-color: #ccc;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
 </style>
 
 <div class="container">
-    <div class="row" style="">
+    <div class="row" style="margin: -5px;margin-bottom: 10px;">
         <?php foreach ($vehicle_list as $item): ?>
-        <div class="col-md-3" style="margin-bottom: 20px;">
-            <img src="http://image1.hc51img.com/966dc951cc5-0f3e-4b5f-8fa3-0279f0915284.jpg?imageView2/1/w/280/h/210">
-            <a href="<?php echo URL::site('detail/'.$item['id'])?>"><?= $item['vehicle_name'];?></a>
+        <div class="col-md-3" style="padding: 5px;">
+            <div class="card" style="background: #fff;border:none;">
+                <a href="<?php echo URL::site('detail/'.$item['id'])?>">
+                    <img class="card-img-top" width="100%" src="http://image1.hc51img.com/966dc951cc5-0f3e-4b5f-8fa3-0279f0915284.jpg?imageView2/1/w/280/h/210">
+                </a>
+                <div class="card-block">
+                    <h4 class="card-title"><a href="<?php echo URL::site('detail/'.$item['id'])?>"><?= $item['vehicle_name'];?></a></h4>
+                    <p class="card-text text-muted">2011.06 上牌 · 8.3万公里 · 手动</p>
+                    <p class="card-text" style="color: #d00; font-size: 28px;"><?= sprintf("%.2f", $item['seller_price']);?>
+                    <span style="color: #d00; font-size: 14px;">万</span></p>
+                </div>
+            </div>
         </div>
         <?php endforeach;?>
     </div>

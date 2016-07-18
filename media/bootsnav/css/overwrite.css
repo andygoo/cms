@@ -44,21 +44,21 @@ ul.cart-list > li.total > .btn{
         padding: 30px 15px;
         font-weight: 600;
     }
+    nav.navbar.bootsnav ul.nav > li > a {
+        font-weight: normal;
+        color: #222;
+    }    
     
     nav.navbar .navbar-brand{
         margin-top: 0;
     }
     
     nav.navbar .navbar-brand img.logo{
-        width: 50px;
+        width: 200px;margin-top: -8px;
     }
 
     nav.navbar .navbar-brand{
         margin-top: 0;
-    }
-    
-    nav.navbar .navbar-brand img.logo{
-        width: 50px;
     }
     
     nav.navbar li.dropdown ul.dropdown-menu{
@@ -135,7 +135,8 @@ ul.cart-list > li.total > .btn{
     }
     
     nav.navbar .navbar-brand img.logo{
-        width: 30px;
+        width: 200px;
+    	margin-top: -19px;
     }
     
     .attr-nav > ul > li > a{

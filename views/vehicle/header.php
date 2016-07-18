@@ -22,9 +22,24 @@
     </div>
     <!-- End Top Search -->
     <div class="container">      
-        <!-- Start Atribute Navigation -->
-        <div class="attr-nav">
-            <ul>
+        <!-- Start Header Navigation -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" href="#brand"><img src="/media/bootsnav/images/brand/logo.jpg" class="logo" alt=""></a>
+        </div>
+        <!-- End Header Navigation -->
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-menu">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="<?php echo URL::site('vehicle')?>">首页</a></li>                    
+                <li class="active"><a href="<?php echo URL::site('ershouche')?>">我要买车</a></li>
+                <li><a href="#">出售爱车</a></li>
+                <li><a href="#">服务保障</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
                 <li>&nbsp;
                     <form class="form-inline" method="get" action="<?php echo URL::site($city_info['city_pinyin'] . '/ershouche')?>">
                         <div class="form-group">
@@ -37,31 +52,6 @@
                         </div>
                     </form>
                 </li>
-                <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-            </ul>
-        </div>        
-        <!-- End Atribute Navigation -->
-        
-        <!-- Start Header Navigation -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                <i class="fa fa-bars"></i>
-            </button>
-            <a class="navbar-brand" href="#brand"><img src="/media/bootsnav/images/brand/logo-black.png" class="logo" alt=""></a>
-        </div>
-        <!-- End Header Navigation -->
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navbar-menu">
-            <ul class="nav navbar-nav navbar-left">
-                <li><a href="<?php echo URL::site('vehicle')?>">Home</a></li>                    
-                <li><a href="<?php echo URL::site('ershouche')?>">我要买车</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Portfolio</a></li>
-                <li><a href="#">Contact Us</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div>   
