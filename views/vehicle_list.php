@@ -5,7 +5,7 @@
 <?= HTML::style('media/css/card.css')?>
 
 <style>
-body {background: #f5f5f5;}
+body {background: #f7f7f7;}
 img {max-width: 100%}
 .card-title {font-size: 16px;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
 .card-title a{color: #222}

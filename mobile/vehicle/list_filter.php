@@ -1,6 +1,7 @@
 
 <style>
 #vehicle_filter {background:#fff;text-align: center;height: 44px;line-height: 44px;margin:0;border-bottom:1px solid #dedede;}
+#vehicle_filter.fixed {position:fixed; top: 0; left:0; width: 100%; z-index: 9999}
 #vehicle_filter .col-xs{border-right: 1px solid #dedede;}
 #vehicle_filter .col-xs:last-child{border-right: none;}
 #vehicle_filter .col-xs.dropup{color: #d00;}
@@ -62,7 +63,7 @@
     	<div id="scroller1">
     		<ul class="list-group">
                 <?php foreach ($sort_list as $item): ?>
-                <li class="list-group-item <?php if($item['selected']):?> active<?php endif;?>"><a href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a></li>
+                <li class="list-group-item <?php if($item['selected']):?> active<?php endif;?>"><a href="<?= $item['url']?>"><?= $item['desc'];?></a></li>
                 <?php endforeach; ?>
     		</ul>
     	</div>
@@ -74,7 +75,7 @@
     	<div id="scroller3">
     	    <ul class="list-group">
                 <?php foreach ($price_list as $item): ?>
-                <li class="list-group-item <?php if($item['selected']):?> active<?php endif;?>"><a href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a></li>
+                <li class="list-group-item <?php if($item['selected']):?> active<?php endif;?>"><a href="<?= $item['url']?>"><?= $item['desc'];?></a></li>
                 <?php endforeach; ?>
     		</ul>
     	</div>
@@ -85,14 +86,14 @@
     <div id="wrapper2">
     	<div id="scroller2">
     		<ul class="list-group">
-    	        <li class="list-group-item" style="padding:10px 15px;"><a href="<?php echo URL::site(Request::instance()->uri(array('brand_id'=>'', 'series_id'=>'', 'page'=>'')));?>">不限品牌</a></li>
+    	        <li class="list-group-item" style="padding:10px 15px;"><a href="<?= URL::site(Request::instance()->uri(array('brand_id'=>'', 'series_id'=>'', 'page'=>'')));?>">不限品牌</a></li>
     		    <?php foreach ($brand_list as $k => $v): ?>
-                    <li class="list-group-item" style="background:#f5f5f5;padding:3px 15px;"><?php echo strtoupper($k);?></li>
+                    <li class="list-group-item" style="background:#f5f5f5;padding:3px 15px;"><?= strtoupper($k);?></li>
                     <?php foreach ($v as $item): ?>
                         <li class="list-group-item <?php if($item['selected']):?> active<?php endif;?>">
-                            <a data-url="<?php echo $item['url'];?>">
-                                <img src="http://image3.hc51img.com/fev2/carb8/<?php echo $item['id'];?>.png">
-                                <?php echo $item['desc'];?>
+                            <a data-url="<?= $item['url'];?>">
+                                <img src="http://image3.hc51img.com/fev2/carb8/<?= $item['id'];?>.png">
+                                <?= $item['desc'];?>
                             </a>
                         </li>
                     <?php endforeach; ?>
@@ -113,13 +114,9 @@
             <?php include __DIR__ . '/list_more.php';?>
         </div>
     </div>
-
-    <div class="fixed-ck" style="z-index:9999; position: fixed; bottom: 90px; left: 0">
-    	<div>
-    		<div>为您找到 <span id="vehicle_count"></span> 辆车</div>
-    		<div><a id="comform_filter_btn" href="">查看</a></div>
-        	<div></div>
-        </div>
+    <div class="row" style="z-index:9999; position: fixed; bottom: 60px; left: 0; width: 100%; height: 44px; line-height: 44px;font-size:14px; text-align: center; margin: 0;">
+        <div class="col-xs-8" style="background: #fff;color: #222;font-size: 13px;border-top:1px solid #eee">为您找到 <span id="vehicle_count"><?= $total_items?></span> 辆车</div>
+        <div class="col-xs-4" style="background: #dd0000;color: #fff"><a id="comform_filter_btn" href="" style="color: #fff">查看</a></div>
     </div>
 </div>
 

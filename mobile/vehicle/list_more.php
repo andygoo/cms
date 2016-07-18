@@ -4,7 +4,7 @@
 #filter_more a.active {background: #fff0f0;border: 1px solid #ff2626;color: #ff2626;}
 #filter_more .tit {background: #fafafa;color: #929292;padding: 5px 0 5px 10px;font-size: 10px;}
 </style>
-<div id="filter_more">
+<div id="filter_more" style="padding-bottom: 40px;">
     <div class="tit">车龄</div>
     <div class="row" style="padding: 5px;margin:0">
         <?php array_shift($year_list)?>

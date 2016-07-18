@@ -4,20 +4,9 @@
 <?= HTML::style('media/bootstrap-3.3.5/css/bootstrap.css')?>
 <?= HTML::style('media/css/vehicle/ershouche.css')?>
 
-<?= HTML::script('media/js/iscroll.js')?>
-
 <?php include __DIR__ . '/vehicle/list_header.php';?>
 <?php include __DIR__ . '/vehicle/list_filter.php';?>
-
-<?php if (!empty($filter_list)):?>
-<div id="selected_options" class="sx-box-o">
-    <div class="sx-box-l sx-ls">
-        <?php foreach ($filter_list as $item):?>
-        <div class="sx-l"><?php echo $item['desc']?><a href="<?php echo $item['url']?>"></a></div>
-        <?php endforeach;?>
-    </div>
-</div>
-<?php endif;?>
+<?php include __DIR__ . '/vehicle/list_selected.php';?>
 
 <div class="panel panel-default" style="background: #fff; margin:10px 0 0;border-radius:0;border:none">
     <div class="panel-heading" style="background: #fff;">
@@ -29,6 +18,7 @@
     </ul>
 </div>
 
+<?= HTML::script('media/js/iscroll.js')?>
 <script>
 var myScroll_b = myScroll_s = myScroll_more = myScroll_price = myScroll_sort = null;
 $(function() {

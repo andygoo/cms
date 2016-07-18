@@ -4,7 +4,13 @@ a{text-decoration: none;color:#212121;}
 a:hover{text-decoration:none;}
 .header{width:100%;height:44px;line-height:44px;background:#fff;border-bottom:1px solid #dedede;}
 .logo{width:94px;height:44px;position:absolute;left:50%;margin-left:-47px;}
-.sisebox2{width:100%;height:100%;position:fixed;left:0;top:0;z-index:99999;background: rgba(0,0,0,.60);}  
+.sisebox2{width:100%;height:100%;position:fixed;left:0;top:0;z-index:99999;background: rgba(0,0,0,.60);} 
+.sisebox{width:100%;height:100%;position:fixed;left:0;top:0;z-index:99999;background: rgba(0,0,0,.60);}  
+.sisecont{width:100%;background:#fff;z-index:999;position:fixed;left:0;bottom:0;-webkit-animation-duration:0.5s;animation-duration:0.5s;-webkit-animation-name:fadeInUp;animation-name:fadeInUp;}  
+.sisetext{padding:20px 20px 10px 20px;}
+@-webkit-keyframes fadeInUp{0%{opacity:1;-webkit-transform:translate3d(0, 100%, 0);transform:translate3d(0, 100%, 0)}100%{opacity:1;-webkit-transform:none;transform:none}}
+@keyframes fadeInUp{0%{opacity:1;-webkit-transform:translate3d(0, 100%, 0);-ms-transform:translate3d(0, 100%, 0);transform:translate3d(0, 100%, 0)}100%{opacity:1;-webkit-transform:none;-ms-transform:none;transform:none}}
+
 </style>
 
 <div class="header">
