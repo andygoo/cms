@@ -1,12 +1,9 @@
 
-<?= HTML::style('media/css/vehicle/details.css')?>
-
 <?= HTML::style('media/css/normalize.css')?>
 <?= HTML::style('media/css/flexboxgrid.min.css')?>
 
 <?= HTML::style('media/sweetalert/sweetalert.css')?>
 <?= HTML::style('media/swiper/css/swiper.min.css')?>
-
 
 <?= HTML::script('media/sweetalert/sweetalert.min.js');?>
 <?= HTML::script('media/js/swiper-3.3.1.jquery.min.js');?>
@@ -20,6 +17,17 @@ body {font-family:"Comic Sans MS","幼圆","黑体",sans-serif;font-size:12px;ba
 .sweet-alert .sa-error-container.show {padding: 0;}
 .sweet-alert .sa-input-error{top: 23px; right: 13px}
 .sweet-alert .sa-input-error.show {opacity:0}
+
+.auto-tit{background:#fff;padding:13px 10px 13px 10px;position:relative;}
+.auto-tit span:nth-child(1){font-size:18px;display:block;padding:0 0 3px 0;}
+.auto-tit span:nth-child(2){}
+.auto-quote{text-align:center;padding:14px 10px 10px 10px;}
+.aqdrop{font-size:12px;color:#43a047;text-shadow:#fff 0 1px 0;}
+.aqdeli{text-decoration:line-through;font-size:12px;}
+.auto-quote .aqtit{display:block;font-size:20px;padding:0 0 3px 0;}
+.tax-price{color:#929292;}
+.auto-price{border-bottom:1px solid #fff;text-align:center;padding:0 10px 10px 10px;color:#ea2504;}
+.auto-price .price{font-size:30px;font-weight:bold;text-shadow:#fff 0 1px 0;}
 </style>
 
 <?php 
@@ -62,7 +70,7 @@ $list = array(
 </div>
 
 <div class="row" style="position: fixed; left:0; bottom:0; width: 100%; height: 44px; line-height: 44px; text-align: center; font-size: 16px; margin: 0">
-    <div class="col-xs" id="img_tel" style="background: #fff;color: #dd0000">
+    <div class="col-xs" id="img_tel" style="background: #fff;color: #dd0000;border-top:1px solid #eee">
         <div>电话咨询</div>
     </div>
     <div class="col-xs" id="yuyue_kanche_btn" style="background: #dd0000;color: #fff">

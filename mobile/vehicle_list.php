@@ -35,22 +35,23 @@ $(function() {
 
 	function filter_tab_click(id) {
 		var t = $('#a'+id);
-		if ($('#a'+id+'_content').is(":hidden")) {
+		t.toggleClass('dropup').siblings().removeClass('dropup');
+		$('#a'+id+'_content').toggle().siblings('.filter_option').hide();
+		
+		if ($('#vehicle_filter').find('.dropup').length) {
 			$('body').css({'overflow': 'hidden'});
 			$('#vehicle_filter').addClass('fixed');
-			$('#a'+id+'_content').show().siblings('.filter_option').hide();
-            $('.class1').removeClass('slided');
-            t.addClass('slided').removeClass('no-hover');
 		} else {
 			$('body').css({'overflow': 'auto'});
-			$('#vehicle_filter').removeClass('fixed');
-			$('#a'+id+'_content').hide();
-            t.removeClass('slided').addClass('no-hover');
+			if ($(this).scrollTop() <= 44) {
+				$('#vehicle_filter').removeClass('fixed');
+			}
 		}
+		
 		if (id == 2) {
 			if (!myScroll_b) {
     		    myScroll_b = new IScroll('#wrapper'+id, {mouseWheel: true, click: true, tap: true});
-    	        var act_inx = $('#scroller'+id+' li.active').data('idx');
+    	        var act_inx = $('#scroller'+id+' li.active').index();
     	        myScroll_b.scrollToElement($('#scroller'+id+' li')[act_inx>0 ? act_inx : 0], null, null, true);
 			}
 			if ($('#scroller22 li.active').length) {
@@ -109,8 +110,8 @@ $(function() {
 		}
 	});
 
-	$(document).on('click', '#a4_content ul li', function() {
-    	var url = $(this).find('a').data('url');
+	$(document).on('click', '#filter_more a', function() {
+    	var url = $(this).data('url');
     	$('#comform_filter_btn').attr('href', url);
 	    var params = {};
 	    params.get_vehicle_count = 1;
@@ -121,7 +122,7 @@ $(function() {
 	});
 
 	$(window).scroll(function() {
-		if ($(this).scrollTop()>45) {
+		if ($(this).scrollTop()>44) {
 			$('#vehicle_filter').addClass('fixed');
 		} else {
 			$('#vehicle_filter').removeClass('fixed');
