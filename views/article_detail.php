@@ -10,7 +10,7 @@ article img {
 <div class=" _gray">
 <div class="container">
     <div class="row">
-        <main class="col-md-8">
+        <main class="col-md-9">
             <article class="post">
                 <h3 class="page-header"><?= $article['title']?></h3>
                 <section class="post-content">
@@ -21,7 +21,7 @@ article img {
                 <div class="ds-thread" data-thread-key="<?= $article['id']?>" data-title="<?= $article['title']?>" data-url="<?= URL::site('article?id='.$article['id'], true)?>"></div>
             </div>
         </main>
-        <aside class="col-md-4">
+        <aside class="col-md-3">
             <?php include __DIR__ . '/article/sidebar.php';?>
         </aside>
     </div>

@@ -17,7 +17,7 @@
 <div class=" ">
 <div class="container">
     <div class="row">
-        <main class="col-md-8">
+        <main class="col-md-9">
             <h3 class="page-header">好车故事</h3>
             <ul class="media-list" style="margin-bottom: 20px">
             <?php foreach($list as $item): ?>
@@ -41,7 +41,7 @@
             </ul>
             <?= $pager?>
         </main>
-        <aside class="col-md-4">
+        <aside class="col-md-3">
             <?php include __DIR__ . '/article/sidebar.php';?>
         </aside>
     </div>
