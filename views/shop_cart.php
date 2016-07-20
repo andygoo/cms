@@ -1,5 +1,4 @@
 
-<?php include __DIR__ . '/shop/header.php';?>
 <?= HTML::style('media/css/article/list.css')?>
 
 <style>
@@ -55,12 +54,12 @@ body {background: #f7f7f7;}
                   <td colspan="2"></td>
                   <td>应付金额（不含运费）</td>
                   <td id="cart-total">￥<?= $cart['total']?></td>
-                  <td><a href="<?= URL::site('shop/clrcart')?>" data-toggle="tooltip" data-placement="top" title="清空购物车"><i class="glyphicon glyphicon-trash"></i></a></td>
+                  <td><a href="<?= URL::site('cart/clear')?>" data-toggle="tooltip" data-placement="top" title="清空购物车"><i class="glyphicon glyphicon-trash"></i></a></td>
                 </tr>
                 <tr>
                   <td colspan="3"></td>
                   <td>
-                      <a href="<?= URL::site('shop/checkout')?>" class="btn btn-danger btn-lg">去结算</a>
+                      <a href="<?= URL::site('cart/checkout')?>" class="btn btn-danger btn-lg">去结算</a>
                   </td>
                   <td></td>
                 </tr>
@@ -68,15 +67,12 @@ body {background: #f7f7f7;}
             </table>
             <?php else:?>
             <div class="center-block" style="width: 200px;padding-top: 30px;padding-bottom: 50px;">
-                <a href="<?= URL::site('shop/product')?>" class="btn btn-info btn-lg btn-block">去选购</a>
+                <a href="<?= URL::site('product')?>" class="btn btn-info btn-lg btn-block">去选购</a>
             </div>
             <?php endif;?>
         </div>
     </div>
 </div>
-
-
-<?php include __DIR__ . '/shop/footer.php';?>
 
 <script>
 $(function () {
@@ -84,7 +80,7 @@ $(function () {
 	
 	var max_cart_qty = 999;
 	function upcart(rowid, qty) {
-	    var url = '<?= URL::site('shop/upcart')?>';
+	    var url = '<?= URL::site('cart/update')?>';
 	    var parmas = [];
 	    parmas.push('id=' + rowid);
 	    parmas.push('qty=' + qty);

@@ -1,5 +1,4 @@
 
-<?php include __DIR__ . '/shop/header.php';?>
 <?= HTML::style('media/sweetalert/sweetalert.css')?>
 <?= HTML::style('media/css/article/list.css')?>
 <?= HTML::style('media/css/card.css')?>
@@ -41,13 +40,12 @@
 </div>
 
 
-<?php include __DIR__ . '/shop/footer.php';?>
 <?= HTML::script('media/sweetalert/sweetalert.min.js');?>
 
 <script>
 $(function () {
 	$('.card-img-top').click(function () {
-	    var url = "<?php echo URL::site('shop/addcart')?>";
+	    var url = "<?php echo URL::site('cart/add')?>";
 	    var parmas = {};
 	    parmas.id = $(this).data('productid');
 		$.get(url, parmas, function (res) {

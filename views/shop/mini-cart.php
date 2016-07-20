@@ -11,10 +11,10 @@
         <span class="pull-right">
             <strong>总计</strong>: <span id="mini-cart-total"><?php echo $cart['total']?></span>
         </span>
-        <a href="<?php echo URL::site('shop/checkout')?>" class="btn btn-default btn-cart">去结算</a>
+        <a href="<?php echo URL::site('cart/checkout')?>" class="btn btn-default btn-cart">去结算</a>
     </li>
 <?php else:?>
     <li class="total">
-        <a href="<?php echo URL::site('shop/product')?>" class="btn btn-default btn-block">去选购</a>
+        <a href="<?php echo URL::site('product')?>" class="btn btn-default btn-block">去选购</a>
     </li>
 <?php endif;?>

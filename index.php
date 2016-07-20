@@ -43,6 +43,7 @@ Kohana::modules(array(
     'myadmin' => MODPATH . 'myadmin',
     'media' => MODPATH . 'media',
     'weixin' => MODPATH . 'weixin',
+    'auth' => MODPATH . 'auth',
 ));
 Kohana::$log->attach(new Log_File(APPPATH . 'logs'));
 

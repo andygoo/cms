@@ -1,5 +1,4 @@
 
-<?php include __DIR__ . '/shop/header.php';?>
 <?= HTML::style('media/css/article/list.css')?>
 
 <style>
@@ -17,9 +16,9 @@ body {background: #f7f7f7;}
 
 <div class="container" style="background: #fff;margin-top: 20px;margin-bottom: 20px; ">
     <div class="row">
+        <?php if ($cart['items'] > 0):?>
         <div class="col-md-8">
             <h3 class="page-header">商品清单 <small>共有 <?php echo $cart['items']?> 件商品， 需支付总额 <?php echo $cart['total']?></small></h3>
-            <?php if ($cart['items'] > 0):?>
             <table class="table">
               <thead>
                 <tr>
@@ -50,14 +49,7 @@ body {background: #f7f7f7;}
                 </tr>
               </tbody>
             </table>
-            <?php else:?>
-            <div class="center-block" style="width: 200px;padding-top: 30px;padding-bottom: 50px;">
-                <a href="<?= URL::site('shop/product')?>" class="btn btn-info btn-lg btn-block">去选购</a>
-            </div>
-            <?php endif;?>
         </div>
-        
-        <?php if ($cart['items'] > 0):?>
         <div class="col-md-4">
             <h3 class="page-header">收货信息</h3>
             <form>
@@ -75,12 +67,17 @@ body {background: #f7f7f7;}
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-danger btn-lg">提交订单</button>
-                <a class="pull-right" href="<?php echo URL::site('shop/cart')?>">返回购物车</a>
+                <a class="pull-right" href="<?php echo URL::site('cart')?>">返回购物车</a>
               </div>
             </form>
+        </div>
+        <?php else:?>
+        <div class="col-md-12">
+            <h3 class="page-header">没有需要结算的商品</h3>
+            <div class="center-block" style="width: 200px;padding-top: 30px;padding-bottom: 50px;">
+                <a href="<?= URL::site('product')?>" class="btn btn-info btn-lg btn-block">去选购</a>
+            </div>
         </div>
         <?php endif;?>
     </div>
 </div>
-
-<?php include __DIR__ . '/shop/footer.php';?>

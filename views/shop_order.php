@@ -1,5 +1,4 @@
 
-<?php include __DIR__ . '/shop/header.php';?>
 <?= HTML::style('media/css/article/list.css')?>
 
 <style>
@@ -17,40 +16,46 @@ body {background: #f7f7f7;}
 
 <div class="container" style="background: #fff;margin-top: 20px;margin-bottom: 20px; ">
     <div class="row">
-        <div class="col-md-12">
-        <h3 class="page-header">我的订单 <small>共有<?php echo $cart['items']?>件商品</small></h3>
+        <?php if ($cart['items'] > 0):?>
+        <div class="col-md-8">
+            <h3 class="page-header">订单详情 <small>共有 <?php echo $cart['items']?> 件商品， 总额 <?php echo $cart['total']?></small></h3>
             <table class="table">
               <thead>
                 <tr>
-                  <th>名称</th>
+                  <th>选购的商品</th>
                   <th class="col-xs-2">单价</th>
                   <th class="col-xs-2">数量</th>
-                  <th class="col-xs-2">合计</th>
+                  <th class="col-xs-2">金额小计</th>
                 </tr>
               </thead>
               <tbody>
                 <?php foreach ($cart['contents'] as $item):?>
                 <tr>
-                  <td><?php echo $item['id']?></td>
-                  <td><?php echo $item['price']?> 元</td>
+                  <td>
+                    <div class="media">
+                      <div class="media-left"><a href="<?= $item['options']['url']?>"><img class="media-object" width="80" src="<?= $item['options']['pic']?>"></a></div>
+                      <div class="media-body"><h5 class="media-heading"><?= $item['options']['title']?></h5></div>
+                    </div>
+                  </td>
+                  <td>￥<?php echo $item['price']?></td>
                   <td><?php echo $item['qty']?></td>
-                  <td><?php echo $item['subtotal']?> 元</td>
+                  <td>￥<?php echo $item['subtotal']?></td>
                 </tr>
                 <?php endforeach;?>
-                <tr>
-                  <td colspan="2"></td>
-                  <td>总计</td>
-                  <td><?php echo $cart['total']?> 元</td>
-                </tr>
-                <tr>
-                  <td colspan="3"></td>
-                  <td><a href="<?php echo URL::site('shop/checkout')?>" class="btn btn-info">去支付</a></td>
-                </tr>
               </tbody>
             </table>
         </div>
+        <div class="col-md-4">
+            <h3 class="page-header">订单状态 <small>未支付</small></h3>
+            
+        </div>
+        <?php else:?>
+        <div class="col-md-12">
+            <h3 class="page-header">没有此订单</h3>
+            <div class="center-block" style="width: 200px;padding-top: 30px;padding-bottom: 50px;">
+                <a href="<?= URL::site('product')?>" class="btn btn-info btn-lg btn-block">去选购</a>
+            </div>
+        </div>
+        <?php endif;?>
     </div>
 </div>
-
-
-<?php include __DIR__ . '/shop/footer.php';?>

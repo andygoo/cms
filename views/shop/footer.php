@@ -70,3 +70,35 @@ footer a:hover {
 <?= HTML::script('media/bootstrap-3.3.5/js/bootstrap.min.js')?>
 <?= HTML::script('media/bootsnav/js/bootsnav.js')?>
 
+
+<script>
+$(function() {
+	$(document).on('click', '.ajax-modal, .ajax-modal-sm, .ajax-modal-lg', function(){
+		var t = $(this);
+	    var m = $('.modal').eq(0);
+	    var d = m.find('.modal-dialog');
+	    d.removeClass('modal-sm').removeClass('modal-lg');
+		if (t.hasClass('ajax-modal-sm')) {
+			d.addClass('modal-sm');
+    	} else if (t.hasClass('ajax-modal-lg')) {
+			d.addClass('modal-lg');
+    	}
+		var url = this.href;
+		//if (url != location.href) {
+    		$.get(url, function(res) {
+    			m.find('.modal-body').html(res);
+    			m.modal('show');
+    		});
+		//}
+		return false;
+	});
+	$('.modal').on('show.bs.modal', function (e) {
+		var t = $(this);
+		var page_title = t.find('.page-header');
+        t.find('.modal-title').html(page_title.text());
+        t.find('form').attr('class', 'ajax-submit');
+        t.find('.container').attr('class', '');
+        page_title.hide();
+	});
+});
+</script>
