@@ -2,6 +2,15 @@
 <?php include __DIR__ . '/article/header.php';?>
 <?= HTML::style('media/css/article/list.css')?>
 <?= HTML::style('media/css/pager.css')?>
+<style>
+.media-body .summary {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+	text-overflow: ellipsis;
+    overflow: hidden;
+}
+</style>
 
 <!-- Start Home -->
 <div class="pageheader">

@@ -14,6 +14,7 @@ class Controller_Suggest extends Controller_Ajax {
         if (isset($suggest_data[$query])) {
             $ret = $suggest_data[$query];
             $ret = array_values(array_unique($ret));
+            $ret = array_slice($ret, 0, 10);
         }
         
         $this->response = $ret;
