@@ -12,11 +12,6 @@
         <!-- Start Atribute Navigation -->
         <div class="attr-nav">
             <ul>
-                <?php if (empty($user)):?>
-                <li><a class="ajax-modal-sm" href="<?php echo URL::site('user/login')?>"><i class="glyphicon glyphicon-user"></i></a></li>
-                <?php else:?>
-                <li><a href="<?php echo URL::site('member')?>"><i class="glyphicon glyphicon-user"></i> <?php echo $user['username']?></a></li>
-                <?php endif;?>
                 <li class="dropdown">
                     <a href="<?php echo URL::site('cart')?>" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="glyphicon glyphicon-shopping-cart"></i>
@@ -38,8 +33,7 @@
         </div>
         <!-- End Header Navigation -->
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navbar-menu">
+        <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="<?php echo URL::site('product')?>">Home</a></li>     
                 <li><a href="<?php echo URL::site('product')?>">About Us</a></li>
@@ -47,7 +41,20 @@
                 <li><a href="#">Portfolio</a></li>
                 <li><a href="#">Contact Us</a></li>
             </ul>
-        </div><!-- /.navbar-collapse -->
+            <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                <?php if (empty($user)):?>
+                <li><a class="ajax-modal-sm" href="<?php echo URL::site('user/login')?>">登录</a></li>
+                <?php else:?>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">欢迎 <?php echo $user['username']?></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="<?php echo URL::site('member/order')?>">我的订单</a></li>
+                        <li><a href="<?php echo URL::site('member/logout')?>">退出</a></li>
+                    </ul>
+                </li>
+                <?php endif;?>
+            </ul>
+        </div>
     </div>   
 </nav>
 <!-- End Navigation -->

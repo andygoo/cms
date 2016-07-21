@@ -12,9 +12,9 @@ class Controller_User extends Controller_Shop {
     
     public function action_login() {
         if (!empty($_POST)) {
-            $username = 'admin';
-            $password = '222222';
-            $auth = Auth::instance();
+            $username = Arr::get($_POST, 'username');
+            $password = Arr::get($_POST, 'password');
+            $auth = Auth::instance('member');
             if ($auth->login($username, $password)) {
                 $this->redirect(Request::$referrer);
             }
@@ -24,6 +24,8 @@ class Controller_User extends Controller_Shop {
 
     public function action_register() {
         if (!empty($_POST)) {
+            $username = Arr::get($_POST, 'username');
+            $password = Arr::get($_POST, 'password');
             $this->redirect(Request::$referrer);
         }
         $this->content = View::factory('user_register');

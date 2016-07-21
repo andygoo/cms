@@ -10,8 +10,8 @@ class Controller_Member extends Controller_Shop {
         }
     }
     
-    public function action_index() {
-        $this->content = View::factory('member_index');
+    public function action_order() {
+        $this->content = View::factory('member_order');
     }
 
     public function action_logout() {

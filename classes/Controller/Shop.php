@@ -13,7 +13,7 @@ class Controller_Shop extends Controller_Website {
             $cart = $this->cart->contents();
             View::bind_global('cart', $cart);
         }
-        $auth = Auth::instance();
+        $auth = Auth::instance('member');
         $this->user = $auth->get_user();
         View::bind_global('user', $this->user);
     }

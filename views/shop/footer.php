@@ -96,8 +96,8 @@ $(function() {
 		var t = $(this);
 		var page_title = t.find('.page-header');
         t.find('.modal-title').html(page_title.text());
-        t.find('form').attr('class', 'ajax-submit');
         t.find('.container').attr('class', '');
+        t.find('form').attr('class', '');
         page_title.hide();
 	});
 });

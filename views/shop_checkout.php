@@ -50,20 +50,21 @@ body {background: #f7f7f7;}
               </tbody>
             </table>
         </div>
+        <?php if (1):?>
         <div class="col-md-4">
             <h3 class="page-header">收货信息</h3>
             <form>
               <div class="form-group">
                 <label class="control-label">收货人</label>
-                <input type="text" class="form-control" name="">
+                <input type="text" class="form-control" name="" required>
               </div>
               <div class="form-group">
                 <label class="control-label">联系电话</label>
-                <input type="text" class="form-control" name="">
+                <input type="text" class="form-control" name="" required>
               </div>
               <div class="form-group">
                 <label class="control-label">收货地址</label>
-                <textarea class="form-control" rows="5" name=""></textarea>
+                <textarea class="form-control" rows="5" name="" required></textarea>
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-danger btn-lg">提交订单</button>
@@ -71,6 +72,7 @@ body {background: #f7f7f7;}
               </div>
             </form>
         </div>
+        <?php endif;?>
         <?php else:?>
         <div class="col-md-12">
             <h3 class="page-header">没有需要结算的商品</h3>

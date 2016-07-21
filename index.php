@@ -44,6 +44,7 @@ Kohana::modules(array(
     'media' => MODPATH . 'media',
     'weixin' => MODPATH . 'weixin',
     'auth' => MODPATH . 'auth',
+    'oauth2' => MODPATH . 'oauth2',
 ));
 Kohana::$log->attach(new Log_File(APPPATH . 'logs'));
 
