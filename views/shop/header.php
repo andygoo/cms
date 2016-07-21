@@ -2,6 +2,7 @@
 <?= HTML::style('media/bootstrap-3.3.5/css/bootstrap.min.css')?>
 <?= HTML::style('media/font-awesome-4.3.0/css/font-awesome.min.css')?>
 
+<?= HTML::style('media/bootsnav/css/animate.css')?>
 <?= HTML::style('media/bootsnav/css/bootsnav.css')?>
 <?= HTML::style('media/bootsnav/css/overwrite.css')?>
 <?= HTML::style('media/bootsnav/skins/color.css')?>
@@ -22,7 +23,7 @@
                     </ul>
                 </li>
             </ul>
-        </div>        
+        </div>
         <!-- End Atribute Navigation -->
         <!-- Start Header Navigation -->
         <div class="navbar-header">
@@ -33,9 +34,9 @@
         </div>
         <!-- End Header Navigation -->
 
-        <div class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse" id="navbar-menu">
             <ul class="nav navbar-nav">
-                <li><a href="<?php echo URL::site('product')?>">Home</a></li>     
+                <li><a href="<?php echo URL::site('product')?>">Home</a></li>
                 <li><a href="<?php echo URL::site('product')?>">About Us</a></li>
                 <li><a href="#">Services</a></li>
                 <li><a href="#">Portfolio</a></li>

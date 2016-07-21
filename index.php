@@ -100,7 +100,8 @@ Route::set('custom', 'fruit/<customurl>', array(
 ));
 
 Route::set('default', '(<controller>(/<action>))')->defaults(array(
-    'controller' => 'home' 
+    'controller' => 'home',
+    'action' => 'index' 
 ));
 
 Route::set('catch_all', '<path>', array(

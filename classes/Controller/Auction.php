@@ -24,13 +24,13 @@ class Controller_Auction extends Controller_Website {
             $this->redirect('weixin/oauth/login?callback_url=' . urlencode($callback_url));
         }
 
-        $update_user_info = Cookie::get('update_user_info');
+        $update_user_info = Cookie::get('update_wx_user');
         if (empty($update_user_info)) {
-            $m_wx = Model::factory('wx_user', 'admin');
+            $m_wx = Model::factory('oauth_wx_user', 'admin');
             $wx_user_field = array('openid'=>1,'nickname'=>1,'sex'=>1,'city'=>1,'province'=>1,'country'=>1,'headimgurl'=>1);
             $wx_user_info = array_intersect_key($user_info, $wx_user_field);
             $m_wx->replace_into($wx_user_info);
-            Cookie::set('update_user_info', 1, 86400);
+            Cookie::set('update_wx_user', 1, 86400);
         }
         
         $this->wx_user = $user_info;

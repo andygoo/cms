@@ -1,5 +1,4 @@
 
-<?= HTML::style('media/css/flexboxgrid.min.css')?>
 <?= HTML::style('media/bootstrap-3.3.5/css/bootstrap.min.css')?>
 <?= HTML::style('media/font-awesome-4.3.0/css/font-awesome.min.css')?>
 
@@ -39,7 +38,7 @@
                 <li><a href="#">出售爱车</a></li>
                 <li><a href="#">服务保障</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right nav-search">
                 <li>&nbsp;
                     <form class="form-inline" method="get" action="<?php echo URL::site($city_info['city_pinyin'] . '/ershouche')?>">
                         <div class="form-group">

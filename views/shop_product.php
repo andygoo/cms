@@ -22,7 +22,7 @@
     <h3 class="page-header">超值低价</h3>
     <div class="row" style="margin: -5px;">
         <?php foreach ($vehicle_list as $item):?>
-        <div class="col-md-3" style="padding: 5px;">
+        <div class="col-md-3 col-sm-4" style="padding: 5px;">
             <div class="card" style="background: #f8f8f8;border:none;">
                 <a href="#<?php echo URL::site('detail/'.$item['id'])?>">
                     <img data-productid="<?php echo $item['id']?>" class="card-img-top" width="100%" src="http://image1.hc51img.com/966dc951cc5-0f3e-4b5f-8fa3-0279f0915284.jpg?imageView2/1/w/280/h/210">

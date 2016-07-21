@@ -1,6 +1,5 @@
 <style>
 footer.page-footer {
-padding-top: 20px;
 background-color: #009688;
 color: #fff;
 }
@@ -32,8 +31,9 @@ footer a:hover {
 <!-- Start Footer -->
 
 <footer class="page-footer">
+  <?php if ($controller == 'product' && $action == 'index'):?>
   <div class="container">
-    <div class="row" style="margin-bottom: 20px;">
+    <div class="row" style="margin-bottom: 20px;margin-top: 20px;">
       <div class="col-md-6">
         <h3>Footer Content</h3>
         <p style="color:#eee">You can use rows and columns here to organize your footer content.</p>
@@ -58,6 +58,7 @@ footer a:hover {
       </div>
     </div>
   </div>
+  <?php endif;?>
   <div class="footer-copyright">
     <div class="container">
     © 2014 Copyright Text
@@ -69,6 +70,7 @@ footer a:hover {
     
 <?= HTML::script('media/bootstrap-3.3.5/js/bootstrap.min.js')?>
 <?= HTML::script('media/bootsnav/js/bootsnav.js')?>
+<?= HTML::script('media/js/bootstrap-notify.min.js')?>
 
 
 <script>
@@ -97,8 +99,36 @@ $(function() {
 		var page_title = t.find('.page-header');
         t.find('.modal-title').html(page_title.text());
         t.find('.container').attr('class', '');
-        t.find('form').attr('class', '');
+        t.find('form').attr('class', 'ajax-submit');
         page_title.hide();
 	});
+
+	$(document).on('submit', '.ajax-submit', function() {
+		var t = $(this);
+		var url = t.attr('action') || location.href;
+		var type = t.attr('method');
+		$.ajax({
+            type: type,
+            url: url,
+            data: t.serialize(),
+            success: function(res) {
+    			//var res = eval('('+res+')');
+    			if (res.code == '302') {
+    				location.href = res.url;
+    			} else {
+    				$.notify(res, {
+        				type: 'danger', 
+        				z_index: 1051,
+        				placement: {
+        				    from: "top",
+        				    align: "right"
+    					}
+    				});
+    			}
+            }
+		});
+		return false;
+	});
+	
 });
 </script>

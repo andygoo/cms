@@ -54,7 +54,7 @@
 <div class="page-header" style="text-align: center"><h1>超值低价<br><small>每日精选，车主急售，特价好车</small></h1></div>
 <div class="row" style="margin: -5px;">
     <?php foreach (range(1, 8) as $item):?>
-    <div class="col-md-3" style="padding: 5px;">
+    <div class="col-md-3 col-sm-4" style="padding: 5px;">
         <div class="card" style="background: #f8f8f8;border:none;">
             <a href="/detail/6573">
                 <img class="card-img-top" width="100%" src="http://image1.hc51img.com/966dc951cc5-0f3e-4b5f-8fa3-0279f0915284.jpg?imageView2/1/w/280/h/210">

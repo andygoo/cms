@@ -14,7 +14,7 @@
 		<button type="submit" class="btn btn-info btn-block">登录</button>
 	</div>
 	<div class="form-group">
-		<a href="#" class="btn btn-warning btn-block">QQ 登录</a>
+		<a href="<?php echo URL::site('user/qqlogin');?>" class="btn btn-warning btn-block">QQ 登录</a>
 	</div>
 	<div class="form-group">
 		<a href="<?php echo URL::site('user/register')?>" class=ajax-modal-sm>现在注册</a>
