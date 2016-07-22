@@ -28,9 +28,9 @@ class Controller_Cart extends Controller_Shop {
                 'price'   => $vehicle_info['seller_price'],
                 'options' => $opts,
             );
-            $this->cart->insert($data);
+            $this->obj_cart->insert($data);
         }
-        $cart = $this->cart->contents();
+        $cart = $this->obj_cart->contents();
         
         $this->content = View::factory('shop/mini-cart');
         $this->content->cart = $cart;
@@ -43,15 +43,15 @@ class Controller_Cart extends Controller_Shop {
 			'rowid'   => $rowid,
 			'qty'     => $qty,
 		);
-		$this->cart->update($data);
-        $cart = $this->cart->contents();
+		$this->obj_cart->update($data);
+        $cart = $this->obj_cart->contents();
         
         $this->content = View::factory('shop/mini-cart');
         $this->content->cart = $cart;
     }
 
     public function action_clear() {
-        $this->cart->destroy();
+        $this->obj_cart->destroy();
         $this->redirect(Request::$referrer);
     }
     

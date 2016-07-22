@@ -50,29 +50,32 @@ body {background: #f7f7f7;}
               </tbody>
             </table>
         </div>
-        <?php if (1):?>
         <div class="col-md-4">
             <h3 class="page-header">收货信息</h3>
-            <form>
+            <form id="delivery_form" method="post" action="<?php echo URL::site('order/submit')?>">
               <div class="form-group">
                 <label class="control-label">收货人</label>
-                <input type="text" class="form-control" name="" required>
+                <input type="text" class="form-control" name="consignee" required>
               </div>
               <div class="form-group">
                 <label class="control-label">联系电话</label>
-                <input type="text" class="form-control" name="" required>
+                <input type="text" class="form-control" name="phone" required>
               </div>
               <div class="form-group">
                 <label class="control-label">收货地址</label>
-                <textarea class="form-control" rows="5" name="" required></textarea>
+                <textarea class="form-control" rows="5" name="address" required></textarea>
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-danger btn-lg">提交订单</button>
-                <a class="pull-right" href="<?php echo URL::site('cart')?>">返回购物车</a>
+                <div class="pull-right">
+                <?php if (empty($user)):?>
+                <a class="ajax-modal-sm" href="<?php echo URL::site('user/login')?>">登录</a> | 
+                <?php endif;?>
+                <a href="<?php echo URL::site('cart')?>">返回购物车</a>
+                </div>
               </div>
             </form>
         </div>
-        <?php endif;?>
         <?php else:?>
         <div class="col-md-12">
             <h3 class="page-header">没有需要结算的商品</h3>
@@ -83,3 +86,15 @@ body {background: #f7f7f7;}
         <?php endif;?>
     </div>
 </div>
+
+<script>
+$(function() {
+	<?php if (empty($user)):?>
+	$('#delivery_form input, #delivery_form textarea, #delivery_form button').focus(function () {
+		$(this).blur();
+	    $('.ajax-modal-sm').click();
+	    return false;
+	});
+	<?php endif;?>
+});
+</script>
