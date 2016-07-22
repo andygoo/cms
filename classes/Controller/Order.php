@@ -2,7 +2,43 @@
 
 class Controller_Order extends Controller_Shop {
 
-    public function action_index() {
+    public function __construct(Request $request) {
+        parent::__construct($request);
+    
+        if (empty($this->user)) {
+            $this->redirect('user/login');
+        }
+    }
+
+    public function action_list() {
+        $where = array('member_id'=>$this->user['id'], 'ORDER' => 'id DESC');
+        $m_order = Model::factory('orders', 'admin');
+    
+        $size = 5;
+        $total = $m_order->count($where);
+        $pager = new Pager($total, $size);
+        $order_list = $m_order->select($pager->offset, $size, $where)->as_array();
+    
+        $order_status_arr = array(
+                '0' => '未支付', //立即支付
+                '1' => '待发货', //
+                '2' => '已发货', //确认发货
+                '3' => '已完成', //
+        );
+        $m_order_goods = Model::factory('order_goods', 'admin');
+        foreach ($order_list as &$item) {
+            $order_id = $item['id'];
+            $item['goods_list'] = $m_order_goods->getAll(array('order_id'=>$order_id));
+            $item['status'] = isset($order_status_arr[$item['status']]) ? $order_status_arr[$item['status']] : '';
+        }
+        unset($item);
+    
+        $this->content = View::factory('order_list');
+        $this->content->order_list = $order_list;
+        $this->content->pager = $pager->render('common/pager');
+    }
+    
+    public function action_detail() {
         $order_id = Arr::get($_GET, 'id');
         
         $m_order = Model::factory('orders', 'admin');
@@ -14,7 +50,7 @@ class Controller_Order extends Controller_Shop {
             $order_items = $m_order_goods->getAll(array('order_id'=>$order_id));
         }
         
-        $this->content = View::factory('shop_order');
+        $this->content = View::factory('order_detail');
         $this->content->order_info = $order_info;
         $this->content->order_items = $order_items;
     }
@@ -51,12 +87,11 @@ class Controller_Order extends Controller_Shop {
                 );
                 $m_order_goods->insert($goodsdata);
             }
-            $this->redirect('order?id='.$order_id);
+            $this->redirect('order/detail?id='.$order_id);
         }
     }
     
     public function action_pay() {
-        
         $this->content = View::factory('order_pay');
     }
     
