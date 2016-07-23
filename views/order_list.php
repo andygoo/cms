@@ -27,7 +27,7 @@ body {background: #f7f7f7;}
                         <span class="text-danger"><?php echo $order['order_items']?></span> 件商品， 总额 
                         <span class="text-danger"><?php echo $order['order_amount']?></span> 元
                         <?php if ($order['pay_status'] == 0):?>
-                        <a class="btn btn-info">立即支付</a>
+                        <a class="btn btn-info ajax-modal" href="<?php echo URL::site('order/pay?id='.$order['id'])?>">立即支付</a>
                         <?php else:?>
                         <?php echo '，'.$order['deliver_status_str']?>
                         <?php endif;?>

@@ -109,7 +109,7 @@ $(function() {
 	$('.modal').on('show.bs.modal', function (e) {
 		var t = $(this);
 		var page_title = t.find('.page-header');
-        t.find('.modal-title').html(page_title.text());
+        t.find('.modal-title').html(page_title.html());
         t.find('.container').attr('class', '');
         t.find('form').attr('class', 'ajax-submit');
         page_title.hide();

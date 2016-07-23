@@ -45,6 +45,7 @@ Kohana::modules(array(
     'weixin' => MODPATH . 'weixin',
     'auth' => MODPATH . 'auth',
     'oauth2' => MODPATH . 'oauth2',
+    'payment' => MODPATH . 'payment',
 ));
 Kohana::$log->attach(new Log_File(APPPATH . 'logs'));
 

@@ -96,7 +96,24 @@ class Controller_Order extends Controller_Shop {
     }
     
     public function action_pay() {
+        $order_id = Arr::get($_GET, 'id');
+        
+        $m_order = Model::factory('orders', 'admin');
+        $info = $m_order->getRow(array('id'=>$order_id, 'member_id'=>$this->user['id']));
+        
+        $alipay_url = '';
+        if (!empty($info)) {
+            $order_info = array(
+                'order_id' => $order_id,
+                'order_amount' => $info['order_amount'],
+            );
+            
+            $payment = Payment::instance('alipay');
+            $alipay_url = $payment->get_pay_url($order_info);
+        }
+        
         $this->content = View::factory('order_pay');
+        $this->content->alipay_url = $alipay_url;
     }
     
 }

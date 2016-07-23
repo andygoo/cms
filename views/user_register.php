@@ -2,7 +2,7 @@
 <div class="container">
 <h3 class="page-header">注册</h3>
 
-<form action="<?php echo URL::site('user/register')?>" method="post" class="col-sm-6 col-md-4">
+<form action="<?php echo URL::site('user/register')?>" method="post" class="col-sm-6 col-md-4 ajax-submit">
 	<div class="form-group">
         <input type="text" class="form-control" name="username" placeholder="用户名" required>
 	</div>
