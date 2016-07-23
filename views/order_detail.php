@@ -23,8 +23,10 @@ body {background: #f7f7f7;}
                     <span class="text-danger"><?php echo $order_info['order_items']?></span> 件商品， 总额 
                     <span class="text-danger"><?php echo $order_info['order_amount']?></span> 元
                 </small> 
-                <?php if ($order_info['status'] == 0):?>
+                <?php if ($order_info['pay_status'] == 0):?>
                 <a class="btn btn-info">立即支付</a>
+                <?php else:?>
+                <?php echo '<small>，'.$order_info['deliver_status_str']?></small>
                 <?php endif;?>
             </h3>
             <table class="table">

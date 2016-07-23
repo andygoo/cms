@@ -25,7 +25,11 @@ body {background: #f7f7f7;}
                     <span class="text-danger"><?php echo $order['id']?></span>，共有 
                     <span class="text-danger"><?php echo $order['order_items']?></span> 件商品， 总额 
                     <span class="text-danger"><?php echo $order['order_amount']?></span> 元
+                    <?php if ($order['pay_status'] == 0):?>
                     <a class="btn btn-info">立即支付</a>
+                    <?php else:?>
+                    <?php echo '，'.$order['deliver_status_str']?>
+                    <?php endif;?>
                     <span class="text-muted pull-right">订单时间：<?php echo date('Y-m-d H:i:s', $order['created_at'])?></span>
                 </div>
                 <table class="table">
@@ -38,7 +42,7 @@ body {background: #f7f7f7;}
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach ($order['goods_list'] as $key=>$item):?>
+                    <?php foreach ($order['goods_list'] as $item):?>
                     <?php $opts = json_decode($item['goods_opts'], true)?>
                     <tr>
                       <td>
@@ -50,12 +54,6 @@ body {background: #f7f7f7;}
                       <td>￥<?php echo $item['goods_price']?></td>
                       <td><?php echo $item['goods_qty']?></td>
                       <td>￥<?php echo $item['goods_total']?></td>
-                      <?php if (0&&$key==0):?>
-                      <td rowspan="<?php echo $order['order_items']?>">
-                          <p class="text-danger"><?php echo $order['status']?></p>
-                          <a class="btn btn-info">立即支付</a>
-                      </td>
-                      <?php endif;?>
                     </tr>
                     <?php endforeach;?>
                   </tbody>

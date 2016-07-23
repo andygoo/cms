@@ -18,18 +18,16 @@ class Controller_Order extends Controller_Shop {
         $total = $m_order->count($where);
         $pager = new Pager($total, $size);
         $order_list = $m_order->select($pager->offset, $size, $where)->as_array();
-    
-        $order_status_arr = array(
-                '0' => '未支付', //立即支付
-                '1' => '待发货', //
-                '2' => '已发货', //确认发货
-                '3' => '已完成', //
+
+        $deliver_status_arr = array(
+            '0' => '等待发货',
+            '1' => '已发货',
         );
         $m_order_goods = Model::factory('order_goods', 'admin');
         foreach ($order_list as &$item) {
             $order_id = $item['id'];
             $item['goods_list'] = $m_order_goods->getAll(array('order_id'=>$order_id));
-            $item['status'] = isset($order_status_arr[$item['status']]) ? $order_status_arr[$item['status']] : '';
+            $item['deliver_status_str'] = isset($deliver_status_arr[$item['deliver_status']]) ? $deliver_status_arr[$item['deliver_status']] : '';
         }
         unset($item);
     
@@ -46,6 +44,12 @@ class Controller_Order extends Controller_Shop {
         
         $order_items = array();
         if (!empty($order_info)) {
+            $deliver_status_arr = array(
+                '0' => '等待发货',
+                '1' => '已发货',
+            );
+            $order_info['deliver_status_str'] = isset($deliver_status_arr[$order_info['deliver_status']]) ? $deliver_status_arr[$order_info['deliver_status']] : '';
+            
             $m_order_goods = Model::factory('order_goods', 'admin');
             $order_items = $m_order_goods->getAll(array('order_id'=>$order_id));
         }
