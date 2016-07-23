@@ -13,6 +13,14 @@
 		<input type="password" class="form-control" name="password2" placeholder="确认密码" required>
 	</div>
 	<div class="form-group">
+	    <div class="input-group">
+    		<input type="password" class="form-control" name="vcode" placeholder="验证码" required>
+    		<div class="input-group-addon" style="padding: 0 0 0 10px;border: none;background: #fff;cursor:pointer">
+    		    <img id="captcha" src="<?php echo URL::site('captcha')?>" onclick="this.src='<?php echo URL::site('captcha')?>'">
+    		</div>
+		</div>
+	</div>
+	<div class="form-group">
 		<button type="submit" class="btn btn-info btn-block">提交</button>
 	</div>
 	<div class="form-group">

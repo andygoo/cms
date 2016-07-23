@@ -73,6 +73,18 @@ footer a:hover {
 <?= HTML::script('media/js/bootstrap-notify.min.js')?>
 
 
+<div class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body"></div>
+        </div>
+    </div>
+</div>
+
 <script>
 $(function() {
 	$(document).on('click', '.ajax-modal, .ajax-modal-sm, .ajax-modal-lg', function(){
@@ -124,6 +136,7 @@ $(function() {
         				    align: "right"
     					}
     				});
+    				$('#captcha').click();
     			}
             }
 		});

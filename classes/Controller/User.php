@@ -59,8 +59,12 @@ class Controller_User extends Controller_Shop {
             $username = Arr::get($_POST, 'username');
             $password = Arr::get($_POST, 'password');
             $password2 = Arr::get($_POST, 'password2');
+            $vcode = Arr::get($_POST, 'vcode');
             if ($password !== $password2) {
                 exit('两次密码不匹配');
+            }
+            if (!Captcha::valid($vcode)) {
+                exit('验证码错误');
             }
             $auth = Auth::instance('member');
             $password = $auth->hash($password);

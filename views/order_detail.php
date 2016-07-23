@@ -58,7 +58,7 @@ body {background: #f7f7f7;}
         </div>
         <?php else:?>
         <div class="col-md-12">
-            <h3 class="page-header">没有此订单 </h3>
+            <h3 class="page-header">此订单不存在 </h3>
             <div class="center-block" style="width: 200px;padding-top: 30px;padding-bottom: 50px;">
                 <a href="<?= URL::site('product')?>" class="btn btn-info btn-lg btn-block">去选购</a>
             </div>
