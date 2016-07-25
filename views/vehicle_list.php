@@ -61,5 +61,14 @@ $(function(){
             $(this).attr('href', _href);
         }
     });
+    var timer = null;
+    $('#brand_more_btn, #brand_more_block').hover(function(){
+        clearTimeout(timer);
+    	$('#brand_more_block').slideDown('fast');
+	},function(){
+		timer = setTimeout(function() {
+	    	$('#brand_more_block').slideUp('fast');
+		}, 400);
+	});
 });
 </script>

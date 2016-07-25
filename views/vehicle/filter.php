@@ -3,6 +3,7 @@
 dl {margin-bottom: 0px;}
 .dl-horizontal dt {width: auto;line-height: 28px;}
 .dl-horizontal dd {margin-left: 50px;line-height: 28px;}
+.dl-horizontal dd a {font-size: 12px;color: #222;margin-right:15px;}
 .dl-horizontal dd a.active {color: #fff;background-color: #ff2626;border-radius: 2px;padding:3px 6px;}
 
 .list-group-item {
@@ -20,10 +21,24 @@ dl {margin-bottom: 0px;}
     border-bottom-right-radius: 0px;
     border-bottom-left-radius: 0px;
 }
-.list-group-item a {font-size: 12px;color: #222;margin-right:15px;}
+
+#brand_more_block {display: none;position: absolute; top: 49px; background: #fff;z-index: 1;margin: 0 15px; padding: 15px; border: 1px solid #d00}
+#brand_more_block a {font-size: 14px;color: #222;margin-right:15px;line-height: 24px;}
+#brand_more_block a.active {color: #fff;background-color: #ff2626;border-radius: 2px;padding:3px 6px;}
 </style>
 
-<div class="container" style="margin-top: 30px">
+<div class="container" style="margin-top: 30px; position:relative">
+    <div class="row">
+        <div id="brand_more_block">
+        <?php foreach ($brand_list as $k => $v): ?>
+            <span style="color: #d00;font-weight:bold"><?= strtoupper($k);?></span> 
+            <?php foreach ($v as $item): ?>
+                <a class="<?php if($item['selected']):?>active<?php endif;?>" href="<?= $item['url'];?>"><?= $item['desc'];?></a>
+            <?php endforeach; ?>
+        <?php endforeach; ?>
+        </div>
+    </div>
+
     <ul class="list-group">
         <li class="list-group-item">
             <dl class="dl-horizontal">
@@ -32,6 +47,7 @@ dl {margin-bottom: 0px;}
             <?php foreach ($brand_top_list as $item): ?>
                 <a class="<?php if($item['selected']):?>active<?php endif;?>" href="<?php echo $item['url']?>"><?php echo $item['desc'];?></a>
             <?php endforeach; ?>
+            <div id="brand_more_btn" class="pull-right">更多 <span class="caret"></span></div>
             </dd>
             </dl>
         </li>
