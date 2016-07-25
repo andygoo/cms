@@ -1,6 +1,5 @@
 
 <?= HTML::style('media/sweetalert/sweetalert.css')?>
-<?= HTML::style('media/css/article/list.css')?>
 <?= HTML::style('media/css/card.css')?>
 <style>
 .card-title {font-size: 16px;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
@@ -10,6 +9,22 @@
 </style>
 
 <!-- Start Home -->
+<style>
+.pageheader{
+    padding: 70px 0;
+    background-image: url(http://bootsnav.danurstrap.com/images/bg/brick-wall-dark.png);
+    background-color: #f43438;
+}
+.pageheader .title{
+    text-shadow: 6px 6px 0px rgba(0,0,0,0.2);
+    color: #fff !important;
+}
+.pageheader p{
+    margin-bottom: 0;
+    color: #f5f5f5;
+    font-size: 16px;
+}
+</style>
 <div class="pageheader">
     <div class="container">
         <h2 class="title">Navbar Right Menu</h2>
