@@ -12,8 +12,18 @@ a:hover,a:focus {text-decoration: none;}
 #swiper .swiper-pagination-bullet{width:6px;height:6px;background: #fff;opacity: .6}
 #swiper .swiper-pagination-bullet-active{opacity: 1}
 
-#grid1 .weui_grid{padding: 14px;}
-.weui_grid_label{font-size:12px;color:#444}
+#grid1 .weui_grid {padding: 14px;}
+.weui_grid_label {font-size:12px;color:#444}
+.weui_grids:after {border-left:none;}
+</style>
+<style>
+.title {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+	text-overflow: ellipsis;
+    overflow: hidden;
+}
 </style>
 
 <?= HTML::script('media/js/swiper-3.3.1.jquery.min.js');?>
@@ -38,12 +48,14 @@ $list = array(
     <div class="swiper-pagination" style="color:#fff"></div>
 </div>
 
-<div class="row" style="background: #fff; padding: 18px 20px;">
-    <div class="col-xs">
-        <button type="button" class="btn btn-danger btn-block" style="padding: 9px 12px">我要买车</button>
-    </div>
-    <div class="col-xs">
-        <button type="button" class="btn btn-warning btn-block" style="padding: 9px 12px">我要卖车</button>
+<div class="container" style="background: #fff; padding: 18px 20px;">
+    <div class="row">
+        <div class="col-xs">
+            <a class="btn btn-danger btn-block" href="<?php echo URL::site('ershouche')?>" style="padding: 9px 12px">我要买车</a>
+        </div>
+        <div class="col-xs">
+            <a class="btn btn-warning btn-block" style="padding: 9px 12px">我要卖车</a>
+        </div>
     </div>
 </div>
 
@@ -89,29 +101,45 @@ $list = array(
 <div class="panel panel-default" style="background: #fff; margin:10px 0 0; border-radius:0;border:none">
     <div class="panel-heading" style="background: #fff;">超值低价</div>
     <div class="row" style="padding:10px">
-        <a class="col-xs"><img style="width: 100%" src="http://image1.hc51img.com/966dc951cc5-0f3e-4b5f-8fa3-0279f0915284.jpg?imageView2/1/w/280/h/210"></a>
-        <a class="col-xs"><img style="width: 100%" src="http://image1.hc51img.com/966dc951cc5-0f3e-4b5f-8fa3-0279f0915284.jpg?imageView2/1/w/280/h/210"></a>
-        <a class="col-xs"><img style="width: 100%" src="http://image1.hc51img.com/966dc951cc5-0f3e-4b5f-8fa3-0279f0915284.jpg?imageView2/1/w/280/h/210"></a>
+        <?php foreach (range(0, 2) as $item):?>
+        <a class="col-xs">
+            <img style="width: 100%" src="http://image1.hc51img.com/966dc951cc5-0f3e-4b5f-8fa3-0279f0915284.jpg?imageView2/1/w/280/h/210">
+            <div style="padding: 5px; color: #212121;">
+                <div class="title">瑞纳 2014款 1.4L 自动时尚型GS</div>
+                <span style="color: #ff2626">7.00</span> 万
+            </div>
+        </a>
+        <?php endforeach;?>
     </div>
 </div>
 
 <div class="panel panel-default" style="background: #fff; margin:10px 0 0; border-radius:0;border:none">
     <div class="panel-heading" style="background: #fff;">超值低价</div>
     <div class="row" style="padding:10px">
-        <a class="col-xs"><img style="width: 100%" src="http://image1.hc51img.com/966dc951cc5-0f3e-4b5f-8fa3-0279f0915284.jpg?imageView2/1/w/280/h/210"></a>
-        <a class="col-xs"><img style="width: 100%" src="http://image1.hc51img.com/966dc951cc5-0f3e-4b5f-8fa3-0279f0915284.jpg?imageView2/1/w/280/h/210"></a>
+        <?php foreach (range(0, 1) as $item):?>
+        <a class="col-xs">
+            <img style="width: 100%" src="http://image1.hc51img.com/966dc951cc5-0f3e-4b5f-8fa3-0279f0915284.jpg?imageView2/1/w/280/h/210">
+            <div style="padding: 5px; color: #212121;">
+                <div class="title">瑞纳 2014款 1.4L 自动时尚型GS</div>
+                <span style="color: #ff2626">7.00</span> 万
+            </div>
+        </a>
+        <?php endforeach;?>
     </div>
 </div>
 
 <div class="panel panel-default" style="background: #fff; margin:10px 0 0; border-radius:0;border:none">
     <div class="panel-heading" style="background: #fff;">超值低价</div>
     <div class="row" style="padding: 0 10px 10px;">
-        <a class="col-xs-6 col-sm-4" style="margin-top: 10px"><img style="width: 100%" src="http://image1.hc51img.com/966dc951cc5-0f3e-4b5f-8fa3-0279f0915284.jpg?imageView2/1/w/280/h/210"></a>
-        <a class="col-xs-6 col-sm-4" style="margin-top: 10px"><img style="width: 100%" src="http://image1.hc51img.com/966dc951cc5-0f3e-4b5f-8fa3-0279f0915284.jpg?imageView2/1/w/280/h/210"></a>
-        <a class="col-xs-6 col-sm-4" style="margin-top: 10px"><img style="width: 100%" src="http://image1.hc51img.com/966dc951cc5-0f3e-4b5f-8fa3-0279f0915284.jpg?imageView2/1/w/280/h/210"></a>
-        <a class="col-xs-6 col-sm-4" style="margin-top: 10px"><img style="width: 100%" src="http://image1.hc51img.com/966dc951cc5-0f3e-4b5f-8fa3-0279f0915284.jpg?imageView2/1/w/280/h/210"></a>
-        <a class="col-xs-6 col-sm-4" style="margin-top: 10px"><img style="width: 100%" src="http://image1.hc51img.com/966dc951cc5-0f3e-4b5f-8fa3-0279f0915284.jpg?imageView2/1/w/280/h/210"></a>
-        <a class="col-xs-6 col-sm-4" style="margin-top: 10px"><img style="width: 100%" src="http://image1.hc51img.com/966dc951cc5-0f3e-4b5f-8fa3-0279f0915284.jpg?imageView2/1/w/280/h/210"></a>    
+        <?php foreach (range(0, 5) as $item):?>
+        <a class="col-xs-6 col-sm-4" style="margin-top: 10px">
+            <img style="width: 100%" src="http://image1.hc51img.com/966dc951cc5-0f3e-4b5f-8fa3-0279f0915284.jpg?imageView2/1/w/280/h/210">
+            <div style="padding: 5px; color: #212121;">
+                <div class="title">瑞纳 2014款 1.4L 自动时尚型GS</div>
+                <span style="color: #ff2626">7.00</span> 万
+            </div>
+        </a>
+        <?php endforeach;?>
     </div>
 </div>
 

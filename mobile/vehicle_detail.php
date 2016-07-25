@@ -14,7 +14,6 @@
 <style>
 body {font-family:"Comic Sans MS","幼圆","黑体",sans-serif;font-size:12px;background:#f5f2f2;color:#212121;}
 .sweet-alert .sa-error-container .icon {width: 20px; height: 20px;}
-.sweet-alert .sa-error-container.show {padding: 0;}
 .sweet-alert .sa-input-error{top: 23px; right: 13px}
 .sweet-alert .sa-input-error.show {opacity:0}
 
