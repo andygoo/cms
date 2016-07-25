@@ -21,11 +21,15 @@ class Controller_List extends Controller_Website {
         $this->all_series_pinyin = SEO::getSeriesPinyin();
         if (!empty($this->params['brand_pinyin'])) {
             $all_brand_pinyin = array_flip($this->all_brand_pinyin);
-            $this->params['brand_id'] = $all_brand_pinyin[$this->params['brand_pinyin']];
+            if (isset($all_brand_pinyin[$this->params['brand_pinyin']])) {
+                $this->params['brand_id'] = $all_brand_pinyin[$this->params['brand_pinyin']];
+            }
         }
         if (!empty($this->params['series_pinyin'])) {
             $all_series_pinyin = array_flip($this->all_series_pinyin);
-            $this->params['series_id'] = $all_series_pinyin[$this->params['series_pinyin']];
+            if (isset($all_series_pinyin[$this->params['series_pinyin']])) {
+                $this->params['series_id'] = $all_series_pinyin[$this->params['series_pinyin']];
+            }
         }
         
         $allowed = array(
