@@ -13,6 +13,12 @@
 	<div class="form-group">
 		<button type="submit" class="btn btn-info btn-block">登录</button>
 	</div>
+	<?php $ua = strtolower($_SERVER['HTTP_USER_AGENT']); ?>
+	<?php if (strpos($ua, 'micromessenger') !== false):?>
+	<div class="form-group">
+		<a href="<?php echo URL::site('user/wxlogin');?>" class="btn btn-success btn-block">微信登录</a>
+	</div>
+	<?php endif;?>
 	<div class="form-group">
 		<a href="<?php echo URL::site('user/qqlogin');?>" class="btn btn-warning btn-block">QQ 登录</a>
 	</div>

@@ -1,9 +1,6 @@
 
 <?= HTML::script('media/js/bootstrap-notify.min.js')?>
 
-<style>
-.modal.in {top: 80px;}
-</style>
 <div class="modal">
     <div class="modal-dialog">
         <div class="modal-content">

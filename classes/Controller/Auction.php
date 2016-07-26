@@ -25,6 +25,7 @@ class Controller_Auction extends Controller_Website {
         if ($this->auto_render === TRUE) {
             View::bind_global('is_weixin', $is_weixin);
             View::bind_global('siteinfo', $this->siteinfo);
+            View::bind_global('user', $this->user);
             
             if ($is_weixin) {
                 $wx_js_api = new WeixinJSAPI('test');
