@@ -17,9 +17,10 @@ article img {
                     <?= $article['content']?>
                 </section>
             </article>
-            <div class="about-author clearfix">
+            <!-- <div class="about-author clearfix">
                 <div class="ds-thread" data-thread-key="<?= $article['id']?>" data-title="<?= $article['title']?>" data-url="<?= URL::site('article?id='.$article['id'], true)?>"></div>
-            </div>
+            </div> -->
+            <div id="disqus_thread"></div>
         </main>
         <aside class="col-md-3">
             <?php include __DIR__ . '/article/sidebar.php';?>
@@ -38,10 +39,25 @@ $(function () {
 </script>
 
 <script type="text/javascript">
+/*
 var duoshuoQuery = {short_name:"jiesc"};
 (function() {
 	var ds = document.createElement('script'); ds.type = 'text/javascript'; ds.async = true;
 	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js'; ds.charset = 'UTF-8';
 	(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();*/
+</script>
+
+
+<script>
+var disqus_config = function () {
+    this.page.url = location.href;
+    this.page.identifier = '<?= $article['id']?>';
+};
+(function() {
+    var d = document, s = d.createElement('script');
+    s.src = '//ddgooo.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
 })();
 </script>
