@@ -1,3 +1,4 @@
+<?php echo HTML::style('media/css/animate.min.css')?>
 <style>
 body {font-family:"Comic Sans MS","幼圆","黑体",sans-serif;font-size:12px;background:#f5f2f2;color:#212121;}
 a{text-decoration: none;color:#212121;}
@@ -6,13 +7,10 @@ a:hover{text-decoration:none;}
 .logo{width:94px;height:44px;position:absolute;left:50%;margin-left:-47px;}
 
 .sisebox{width:100%;height:100%;position:fixed;left:0;top:0;z-index:99999;background: rgba(0,0,0,.60);}  
-.sisecont{width:100%;background:#fff;z-index:999;position:fixed;left:0;bottom:0;-webkit-animation-duration:0.5s;animation-duration:0.5s;-webkit-animation-name:fadeInUp;animation-name:fadeInUp;}  
-@-webkit-keyframes fadeInUp{0%{opacity:1;-webkit-transform:translate3d(0, 100%, 0);transform:translate3d(0, 100%, 0)}100%{opacity:1;-webkit-transform:none;transform:none}}
-@keyframes fadeInUp{0%{opacity:1;-webkit-transform:translate3d(0, 100%, 0);-ms-transform:translate3d(0, 100%, 0);transform:translate3d(0, 100%, 0)}100%{opacity:1;-webkit-transform:none;-ms-transform:none;transform:none}}
+.sisecont{width:100%;background:#fff;z-index:999;position:fixed;left:0;bottom:0;-webkit-animation-duration:0.5s;animation-duration:0.5s;}  
 
 .searchbox{width:100%;height:100%;position:fixed;left:0;top:0;z-index:99999;background: rgba(0,0,0,.60);}  
-.searchcont{width:100%;background:#fff;z-index:999;position:fixed;left:0;top:0;}  
-
+.searchcont{width:100%;background:#fff;z-index:999;position:fixed;left:0;top:0;}
 </style>
 
 <div class="header">
@@ -28,7 +26,7 @@ a:hover{text-decoration:none;}
 </div>
 
 <div id="city_pannel" class="sisebox" style="display:none;">
-    <div class="sisecont">
+    <div class="sisecont animated slideInUp">
         <ul class="list-group" style="margin-bottom: 0;">
             <?php foreach ($city_list as $item):?>
         	<li class="list-group-item"><a <?php if ($item['selected']):?>class="highlight-nav"<?php endif;?> href="<?php echo $item['url']?>"><?php echo $item['city_name']?></a></li>
@@ -50,25 +48,25 @@ a:hover{text-decoration:none;}
 <script>
 $(function() {
 	$("#list_change_city_btn").click(function(){
-		$('#city_pannel').show();
 		$('body').css({'overflow': 'hidden'});
+		$('#city_pannel').show();
 	});
 	$("#city_pannel").click(function(){
-		$('#city_pannel').hide();
 		$('body').css({'overflow': 'auto'});
+		$('#city_pannel').hide();
 	});
 	$(".sisecont").click(function(e){
 		e.stopPropagation();
 	});
 
 	$("#search_btn").click(function(){
+		$('body').css({'overflow': 'hidden'});
 		$('#search_pannel').show();
 		$('#search-input').focus();
-		$('body').css({'overflow': 'hidden'});
 	});
 	$("#search_pannel, #cancel_search_btn").click(function(){
-		$('#search_pannel').hide();
 		$('body').css({'overflow': 'auto'});
+		$('#search_pannel').hide();
 	});
 	$(".searchcont").click(function(e){
 		e.stopPropagation();
