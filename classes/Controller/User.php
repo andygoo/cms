@@ -59,8 +59,8 @@ class Controller_User extends Controller_Website {
         $wx = new WeixinOauth('test');
         $user_info = $wx->get_user_info();
         if (empty($user_info)) {
-            $callback_url = URL::curr();
-            $this->redirect('weixin/oauth/login?callback_url=' . urlencode($callback_url));
+            $redirect_uri = URL::curr();
+            $this->redirect('weixin/oauth/login?callback_url=' . urlencode($redirect_uri));
         }
     
         $update_user_info = Cookie::get('update_wx_user');
@@ -89,8 +89,6 @@ class Controller_User extends Controller_Website {
         if (empty($user_info)) {
             $this->redirect('oauth/qq/login?redirect_uri=' . urlencode($redirect_uri));
         }
-        var_dump($user_info);
-        exit;
     
         $update_user_info = Cookie::get('update_qq_user');
         if (empty($update_user_info)) {
