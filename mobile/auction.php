@@ -96,7 +96,7 @@ body {background: #f5f2f2;}
                 <?php include __DIR__ . '/auction/bidlog.php';?>
                 
                 <?php if ($total_bidlog > 5):?>
-                <li class="list-group-item" id="nexturl" data-url="<?= URL::site('bidlog/recent?page=2&id=' . $info['id'])?>" style="border: 1px solid #ececec;border-radius:0;background-color: #f5f5f5;padding: 5px 6px;">
+                <li class="list-group-item" id="nexturl" data-url="<?= URL::site('auction/recentbid?page=2&id=' . $info['id'])?>" style="border: 1px solid #ececec;border-radius:0;background-color: #f5f5f5;padding: 5px 6px;">
                     <div class="media-body">
                         <div class="text-muted" style="text-align:center;font-size: 13px;">查看更多</div>
                     </div>
@@ -203,7 +203,7 @@ function get_recent_bidlog() {
 }
 
 function get_latest_bidlog() {
-    var url = '<?= URL::site('bidlog/latest?id=' . $info['id'])?>';
+    var url = '<?= URL::site('auction/latestbid?id=' . $info['id'])?>';
     var params = {};
     params.logid = $('#bidlog li').eq(0).data('logid');
     $.get(url, params, function(res) {
@@ -255,4 +255,7 @@ $(function() {
 
 <?php include __DIR__ . '/common/photoswipe.php';?>
 <?php include __DIR__ . '/auction/keybord.php';?>
+
+<?php if ($is_weixin):?>
 <?php include __DIR__ . '/auction/wxshare.php';?>
+<?php endif;?>

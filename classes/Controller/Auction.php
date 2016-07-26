@@ -8,40 +8,29 @@ class Controller_Auction extends Controller_Website {
         'logo' => 'http://7xkkhh.com1.z0.glb.clouddn.com/2016/06/09/14654379440103.png',
     );
     
-    public $wx_user = array(
-        'openid' => 'openid11111111111',
-        'nickname' => '清明上河图',
-        'headimgurl' => 'http://wx.qlogo.cn/mmopen/CttmTaYSYkS3fyWVgtngxRqQ8VC0XAUvRGQevIYzPS19pcW3D6EyhQx5LCHQj8Wo1vyDBmNaJm89J4ggvRwuOw/0',
-    );
+    protected $user;
     
     public function before() {
         parent::before();
-        /*
-        $wx = new WeixinOauth('test');
-        $user_info = $wx->get_user_info();
-        if (empty($user_info)) {
-            $callback_url = URL::curr();
-            $this->redirect('weixin/oauth/login?callback_url=' . urlencode($callback_url));
+        
+        $is_weixin = false;
+        $ua = strtolower($_SERVER['HTTP_USER_AGENT']);
+        if (strpos($ua, 'micromessenger') !== false) {
+            $is_weixin = true;
         }
 
-        $update_user_info = Cookie::get('update_wx_user');
-        if (empty($update_user_info)) {
-            $m_wx = Model::factory('oauth_wx_user', 'admin');
-            $wx_user_field = array('openid'=>1,'nickname'=>1,'sex'=>1,'city'=>1,'province'=>1,'country'=>1,'headimgurl'=>1);
-            $wx_user_info = array_intersect_key($user_info, $wx_user_field);
-            $m_wx->replace_into($wx_user_info);
-            Cookie::set('update_wx_user', 1, 86400);
-        }
+        $auth = Auth::instance('member');
+        $this->user = $auth->get_user();
         
-        $this->wx_user = $user_info;
-        //*/
         if ($this->auto_render === TRUE) {
+            View::bind_global('is_weixin', $is_weixin);
             View::bind_global('siteinfo', $this->siteinfo);
-            View::bind_global('wx_user', $this->wx_user);
             
-            $wx_js_api = new WeixinJSAPI('test');
-            $wx_jsapi_config = $wx_js_api->get_jsapi_config();
-            View::bind_global('wx_jsapi_config', $wx_jsapi_config);
+            if ($is_weixin) {
+                $wx_js_api = new WeixinJSAPI('test');
+                $wx_jsapi_config = $wx_js_api->get_jsapi_config();
+                View::bind_global('wx_jsapi_config', $wx_jsapi_config);
+            }
         }
     }
     
@@ -54,7 +43,6 @@ class Controller_Auction extends Controller_Website {
         $_pics = json_decode($info['pic'], true);
         foreach ($_pics as $pic) {
             $w = $h = 600;
-            $max = 1200;
             $max = 1200;
             $pic_info = parse_url($pic);
             if (!empty($pic_info['query'])) {
@@ -126,6 +114,12 @@ class Controller_Auction extends Controller_Website {
 
     public function action_bid() {
         header('Content-Type: application/json; charset=utf-8');
+        if (empty($this->user)) {
+            $ret = array('errno'=>100, 'errmsg'=>'请先登录');
+            echo json_encode($ret);
+            exit;
+        }
+        
         $item_id = Arr::get($_GET, 'id');
         $price = Arr::get($_GET, 'price');
     
@@ -155,12 +149,12 @@ class Controller_Auction extends Controller_Website {
     
         $now = strtotime('now');
         $data = array(
-                'item_id' => $item_id,
-                'price' => $price,
-                'bidder_openid' => $this->wx_user['openid'],
-                'bidder_name' => $this->wx_user['nickname'],
-                'bidder_avatar' => $this->wx_user['headimgurl'],
-                'time' => $now,
+            'item_id' => $item_id,
+            'price' => $price,
+            'bidder_openid' => $this->user['id'],
+            'bidder_name' => $this->user['username'],
+            'bidder_avatar' => isset($this->user['avatar']) ? $this->user['avatar'] : '',
+            'time' => $now,
         );
     
         $m_bidlog = Model::factory('bidlog', 'paimai');
@@ -193,6 +187,110 @@ class Controller_Auction extends Controller_Website {
     
         header('Content-Type: application/json; charset=utf-8');
         $ret = array('errno'=>0, 'data'=> $info);
+        echo json_encode($ret);
+        exit;
+    }
+
+    public function action_wxlogin() {
+        $wx = new WeixinOauth('test');
+        $user_info = $wx->get_user_info();
+        if (empty($user_info)) {
+            $callback_url = URL::curr();
+            $this->redirect('weixin/oauth/login?callback_url=' . urlencode($callback_url));
+        }
+        
+        $update_user_info = Cookie::get('update_wx_user');
+        if (empty($update_user_info)) {
+            $m_wx = Model::factory('oauth_wx_user', 'admin');
+            $wx_user_field = array('openid'=>1,'nickname'=>1,'sex'=>1,'city'=>1,'province'=>1,'country'=>1,'headimgurl'=>1);
+            $wx_user_info = array_intersect_key($user_info, $wx_user_field);
+            $m_wx->replace_into($wx_user_info);
+            Cookie::set('update_wx_user', 1, 86400);
+        }
+        $user = array(
+            'id' => 'wx_' . $user_info['openid'],
+            'username' => $user_info['nickname'],
+            'avatar' => $user_info['headimgurl'],
+        );
+        $auth = Auth::instance('member');
+        if ($auth->force_login($user)) {
+            $this->redirect(Request::$referrer);
+        }
+    }
+    
+    public function action_qqlogin() {
+        $redirect_uri = URL::curr();
+        $client = OAuth2_Client::factory('QQ');
+        $user_info = $client->get_user_data($redirect_uri);
+        if (empty($user_info)) {
+            $this->redirect('oauth/qq/login?redirect_uri=' . urlencode($redirect_uri));
+        }
+        var_dump($user_info);
+        exit;
+        
+        $update_user_info = Cookie::get('update_qq_user');
+        if (empty($update_user_info)) {
+            $m_qq = Model::factory('oauth_qq_user', 'admin');
+            $qq_user_field = array('openid'=>1,'nickname'=>1,'gender'=>1,'figureurl'=>1);
+            $qq_user_info = array_intersect_key($user_info, $qq_user_field);
+            $m_qq->replace_into($qq_user_info);
+            Cookie::set('update_qq_user', 1, 86400);
+        }
+        
+        $user = array(
+            'id' => 'qq_' . $user_info['openid'],
+            'username' => $user_info['nickname'],
+            'avatar' => $user_info['figureurl'],
+        );
+        $auth = Auth::instance('member');
+        if ($auth->force_login($user)) {
+            $this->redirect(Request::$referrer);
+        }
+    }
+    
+    public function action_recentbid() {
+        $logid = Arr::get($_GET, 'logid');
+        $item_id = Arr::get($_GET, 'id');
+    
+        $where = array(
+            'id' => array('<'=>$logid),
+            'item_id' => $item_id,
+            'ORDER' => 'id desc',
+        );
+    
+        $size = 5;
+        $m_bidlog = Model::factory('bidlog', 'paimai');
+        $total = $m_bidlog->count($where);
+        $pager = new Pager($total, $size);
+        $list_bidlog = $m_bidlog->select($pager->offset, $pager->size, $where)->as_array();
+        $next_page = $pager->next_page ? $pager->url($pager->next_page) : '';
+    
+        $content = View::factory('auction/bidlog');
+        $content->list_bidlog = $list_bidlog;
+    
+        header('Content-Type: application/json; charset=utf-8');
+        $ret = array('content' => (string)$content, 'next_page' => $next_page);
+        echo json_encode($ret);
+        exit;
+    }
+    
+    public function action_latestbid() {
+        $logid = Arr::get($_GET, 'logid');
+        $item_id = Arr::get($_GET, 'id');
+    
+        $where = array(
+            'id' => array('>'=>$logid),
+            'item_id' => $item_id,
+            'ORDER' => 'id desc',
+        );
+        $m_bidlog = Model::factory('bidlog', 'paimai');
+        $list_bidlog = $m_bidlog->getAll($where)->as_array();
+    
+        $content = View::factory('auction/bidlog');
+        $content->list_bidlog = $list_bidlog;
+    
+        header('Content-Type: application/json; charset=utf-8');
+        $ret = array('content' => (string)$content);
         echo json_encode($ret);
         exit;
     }

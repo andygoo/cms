@@ -10,35 +10,6 @@ class Controller_User extends Controller_Shop {
         }
     }
 
-    public function action_qqlogin() {
-        $redirect_uri = URL::curr();
-        $client = OAuth2_Client::factory('QQ');
-        $user_info = $client->get_user_data($redirect_uri);
-        if (empty($user_info)) {
-            $this->redirect('oauth/qq/login?redirect_uri=' . urlencode($redirect_uri));
-        }
-        var_dump($user_info);
-        exit;
-
-        $update_user_info = Cookie::get('update_qq_user');
-        if (empty($update_user_info)) {
-            $m_wx = Model::factory('oauth_qq_user', 'admin');
-            $qq_user_field = array('openid'=>1,'nickname'=>1,'gender'=>1,'figureurl'=>1);
-            $user_info = array_intersect_key($user_info, $qq_user_field);
-            $m_wx->replace_into($user_info);
-            Cookie::set('update_qq_user', 1, 86400);
-        }
-        
-        $user = array(
-            'id' => 'qq_' . $user_info['openid'],
-            'username' => $user_info['nickname'],
-        );
-        $auth = Auth::instance('member');
-        if ($auth->force_login($user)) {
-            $this->redirect(Request::$referrer);
-        }
-    }
-    
     public function action_login() {
         if (!empty($_POST)) {
             $username = Arr::get($_POST, 'username');
@@ -90,6 +61,35 @@ class Controller_User extends Controller_Shop {
             }
         }
         $this->content = View::factory('user_register');
+    }
+
+    public function action_qqlogin() {
+        $redirect_uri = URL::curr();
+        $client = OAuth2_Client::factory('QQ');
+        $user_info = $client->get_user_data($redirect_uri);
+        if (empty($user_info)) {
+            $this->redirect('oauth/qq/login?redirect_uri=' . urlencode($redirect_uri));
+        }
+        var_dump($user_info);
+        exit;
+    
+        $update_user_info = Cookie::get('update_qq_user');
+        if (empty($update_user_info)) {
+            $m_qq = Model::factory('oauth_qq_user', 'admin');
+            $qq_user_field = array('openid'=>1,'nickname'=>1,'gender'=>1,'figureurl'=>1);
+            $qq_user_info = array_intersect_key($user_info, $qq_user_field);
+            $m_qq->replace_into($qq_user_info);
+            Cookie::set('update_qq_user', 1, 86400);
+        }
+    
+        $user = array(
+                'id' => 'qq_' . $user_info['openid'],
+                'username' => $user_info['nickname'],
+        );
+        $auth = Auth::instance('member');
+        if ($auth->force_login($user)) {
+            $this->redirect(Request::$referrer);
+        }
     }
     
 }
