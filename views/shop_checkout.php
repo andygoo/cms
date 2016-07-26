@@ -34,6 +34,7 @@ body {background: #f7f7f7;}
         <?php if ($cart['items'] > 0):?>
         <div class="col-md-8">
             <h3 class="page-header">商品清单 <small>共有 <?php echo $cart['items']?> 件商品， 需支付总额 <?php echo $cart['total']?></small></h3>
+            <div class="table-responsive">
             <table class="table">
               <thead>
                 <tr>
@@ -48,7 +49,7 @@ body {background: #f7f7f7;}
                 <tr>
                   <td>
                     <div class="media">
-                      <div class="media-left"><a href="<?= $item['options']['url']?>"><img class="media-object" width="80" src="<?= $item['options']['pic']?>"></a></div>
+                      <div class="media-left"><a href="<?= $item['options']['url']?>"><img class="media-object" width="60" src="<?= $item['options']['pic']?>"></a></div>
                       <div class="media-body"><h5 class="media-heading"><?= $item['options']['title']?></h5></div>
                     </div>
                   </td>
@@ -64,6 +65,7 @@ body {background: #f7f7f7;}
                 </tr>
               </tbody>
             </table>
+            </div>
         </div>
         <div class="col-md-4">
             <h3 class="page-header">收货信息</h3>
@@ -107,7 +109,7 @@ $(function() {
 	<?php if (empty($user)):?>
 	$('#delivery_form input, #delivery_form textarea, #delivery_form button').focus(function () {
 		$(this).blur();
-	    $('.ajax-modal-sm').click();
+	    $('#delivery_form .ajax-modal-sm').click();
 	    return false;
 	});
 	<?php endif;?>

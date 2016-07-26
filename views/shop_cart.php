@@ -34,6 +34,7 @@ body {background: #f7f7f7;}
         <div class="col-md-12">
         <h3 class="page-header">我的购物车 <small>共有 <?= $cart['items']?> 件商品</small></h3>
             <?php if ($cart['items'] > 0):?>
+            <div class="table-responsive">
             <table class="table">
               <thead>
                 <tr>
@@ -49,7 +50,7 @@ body {background: #f7f7f7;}
                 <tr data-rowid="<?= $key?>">
                   <td>
                     <div class="media">
-                      <div class="media-left"><a href="<?= $item['options']['url']?>"><img class="media-object" width="80" src="<?= $item['options']['pic']?>"></a></div>
+                      <div class="media-left"><a href="<?= $item['options']['url']?>"><img class="media-object" width="60" src="<?= $item['options']['pic']?>"></a></div>
                       <div class="media-body"><h5 class="media-heading"><?= $item['options']['title']?></h5></div>
                     </div>
                   </td>
@@ -80,6 +81,7 @@ body {background: #f7f7f7;}
                 </tr>
               </tbody>
             </table>
+            </div>
             <?php else:?>
             <div class="center-block" style="width: 200px;padding-top: 30px;padding-bottom: 50px;">
                 <a href="<?= URL::site('product')?>" class="btn btn-info btn-lg btn-block">去选购</a>

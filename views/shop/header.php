@@ -8,7 +8,7 @@
 <?= HTML::style('media/bootsnav/skins/color.css')?>
 
 <!-- Start Navigation -->
-<nav class="navbar navbar-default bootsnav">
+<nav class="navbar navbar-default navbar-mobile bootsnav">
     <div class="container">
         <!-- Start Atribute Navigation -->
         <div class="attr-nav">

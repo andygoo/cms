@@ -43,6 +43,7 @@ body {background: #f7f7f7;}
                 <?php echo '<small>，'.$order_info['deliver_status_str']?></small>
                 <?php endif;?>
             </h3>
+            <div class="table-responsive">
             <table class="table">
               <thead>
                 <tr>
@@ -58,7 +59,7 @@ body {background: #f7f7f7;}
                 <tr>
                   <td>
                     <div class="media">
-                      <div class="media-left"><a href="<?= $opts['url']?>"><img class="media-object" width="80" src="<?= $opts['pic']?>"></a></div>
+                      <div class="media-left"><a href="<?= $opts['url']?>"><img class="media-object" width="60" src="<?= $opts['pic']?>"></a></div>
                       <div class="media-body"><h5 class="media-heading"><?= $opts['title']?></h5></div>
                     </div>
                   </td>
@@ -69,6 +70,7 @@ body {background: #f7f7f7;}
                 <?php endforeach;?>
               </tbody>
             </table>
+            </div>
         </div>
         <?php else:?>
         <div class="col-md-12">
