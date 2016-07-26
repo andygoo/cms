@@ -256,6 +256,9 @@ $(function() {
 <?php include __DIR__ . '/common/photoswipe.php';?>
 <?php include __DIR__ . '/auction/keybord.php';?>
 
+<?= HTML::script('media/bootstrap-3.3.5/js/bootstrap.min.js')?>
+<?php include __DIR__ . '/common/modal.php';?>
+
 <?php if ($is_weixin):?>
 <?php include __DIR__ . '/auction/wxshare.php';?>
 <?php endif;?>

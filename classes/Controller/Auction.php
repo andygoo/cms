@@ -191,63 +191,6 @@ class Controller_Auction extends Controller_Website {
         exit;
     }
 
-    public function action_wxlogin() {
-        $wx = new WeixinOauth('test');
-        $user_info = $wx->get_user_info();
-        if (empty($user_info)) {
-            $callback_url = URL::curr();
-            $this->redirect('weixin/oauth/login?callback_url=' . urlencode($callback_url));
-        }
-        
-        $update_user_info = Cookie::get('update_wx_user');
-        if (empty($update_user_info)) {
-            $m_wx = Model::factory('oauth_wx_user', 'admin');
-            $wx_user_field = array('openid'=>1,'nickname'=>1,'sex'=>1,'city'=>1,'province'=>1,'country'=>1,'headimgurl'=>1);
-            $wx_user_info = array_intersect_key($user_info, $wx_user_field);
-            $m_wx->replace_into($wx_user_info);
-            Cookie::set('update_wx_user', 1, 86400);
-        }
-        $user = array(
-            'id' => 'wx_' . $user_info['openid'],
-            'username' => $user_info['nickname'],
-            'avatar' => $user_info['headimgurl'],
-        );
-        $auth = Auth::instance('member');
-        if ($auth->force_login($user)) {
-            $this->redirect(Request::$referrer);
-        }
-    }
-    
-    public function action_qqlogin() {
-        $redirect_uri = URL::curr();
-        $client = OAuth2_Client::factory('QQ');
-        $user_info = $client->get_user_data($redirect_uri);
-        if (empty($user_info)) {
-            $this->redirect('oauth/qq/login?redirect_uri=' . urlencode($redirect_uri));
-        }
-        var_dump($user_info);
-        exit;
-        
-        $update_user_info = Cookie::get('update_qq_user');
-        if (empty($update_user_info)) {
-            $m_qq = Model::factory('oauth_qq_user', 'admin');
-            $qq_user_field = array('openid'=>1,'nickname'=>1,'gender'=>1,'figureurl'=>1);
-            $qq_user_info = array_intersect_key($user_info, $qq_user_field);
-            $m_qq->replace_into($qq_user_info);
-            Cookie::set('update_qq_user', 1, 86400);
-        }
-        
-        $user = array(
-            'id' => 'qq_' . $user_info['openid'],
-            'username' => $user_info['nickname'],
-            'avatar' => $user_info['figureurl'],
-        );
-        $auth = Auth::instance('member');
-        if ($auth->force_login($user)) {
-            $this->redirect(Request::$referrer);
-        }
-    }
-    
     public function action_recentbid() {
         $logid = Arr::get($_GET, 'logid');
         $item_id = Arr::get($_GET, 'id');

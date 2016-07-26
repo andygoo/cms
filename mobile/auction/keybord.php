@@ -70,6 +70,9 @@ $(function() {
     }
     
     $('#container').on('click', '#showActionSheet', function () {
+    	<?php if(empty($user)):?>
+    	ajax_load_modal('<?php echo URL::site('user/login')?>');
+    	<?php else:?>
         var mask = $('#mask');
         var weuiActionsheet = $('#weui_actionsheet');
         weuiActionsheet.addClass('weui_actionsheet_toggle');
@@ -88,6 +91,7 @@ $(function() {
         $('#curr_price').text(curr_price + '元');
         $('#bid_price').text(~~curr_price+~~step_price);
         $('#clear_bid_price').show();
+        <?php endif;?>
     });
 
     $('#actionSheet_wrap').on('click', '.weui_grid', function () {

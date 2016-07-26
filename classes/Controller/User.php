@@ -1,14 +1,6 @@
 <?php
 
-class Controller_User extends Controller_Shop {
-
-    public function __construct(Request $request) {
-        parent::__construct($request);
-        
-        if (!empty($this->user)) {
-            $this->redirect('product');
-        }
-    }
+class Controller_User extends Controller_Website {
 
     public function action_login() {
         if (!empty($_POST)) {
@@ -22,7 +14,7 @@ class Controller_User extends Controller_Shop {
                 exit('用户名或密码错误');
             }
         }
-        $this->content = View::factory('user_login');
+        $this->content = View::factory('common/user_login');
     }
 
     public function action_register() {
@@ -60,9 +52,36 @@ class Controller_User extends Controller_Shop {
                 exit('用户名已存在');
             }
         }
-        $this->content = View::factory('user_register');
+        $this->content = View::factory('common/user_register');
     }
 
+    public function action_wxlogin() {
+        $wx = new WeixinOauth('test');
+        $user_info = $wx->get_user_info();
+        if (empty($user_info)) {
+            $callback_url = URL::curr();
+            $this->redirect('weixin/oauth/login?callback_url=' . urlencode($callback_url));
+        }
+    
+        $update_user_info = Cookie::get('update_wx_user');
+        if (empty($update_user_info)) {
+            $m_wx = Model::factory('oauth_wx_user', 'admin');
+            $wx_user_field = array('openid'=>1,'nickname'=>1,'sex'=>1,'city'=>1,'province'=>1,'country'=>1,'headimgurl'=>1);
+            $wx_user_info = array_intersect_key($user_info, $wx_user_field);
+            $m_wx->replace_into($wx_user_info);
+            Cookie::set('update_wx_user', 1, 86400);
+        }
+        $user = array(
+            'id' => 'wx_' . $user_info['openid'],
+            'username' => $user_info['nickname'],
+            'avatar' => $user_info['headimgurl'],
+        );
+        $auth = Auth::instance('member');
+        if ($auth->force_login($user)) {
+            $this->redirect(Request::$referrer);
+        }
+    }
+    
     public function action_qqlogin() {
         $redirect_uri = URL::curr();
         $client = OAuth2_Client::factory('QQ');
@@ -83,8 +102,9 @@ class Controller_User extends Controller_Shop {
         }
     
         $user = array(
-                'id' => 'qq_' . $user_info['openid'],
-                'username' => $user_info['nickname'],
+            'id' => 'qq_' . $user_info['openid'],
+            'username' => $user_info['nickname'],
+            'avatar' => $user_info['figureurl'],
         );
         $auth = Auth::instance('member');
         if ($auth->force_login($user)) {
