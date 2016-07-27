@@ -24,7 +24,7 @@
         </div>
         
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu" sidebarjs-toggle>
+            <button type="button" class="navbar-toggle" data-toggle="_collapse" data-target="#navbar-menu" sidebarjs-toggle>
                 <i class="fa fa-bars"></i>
             </button>
             <a class="navbar-brand" href="#brand"><img src="/media/bootsnav/images/brand/logo.jpg" class="logo" alt=""></a>
