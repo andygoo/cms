@@ -33,7 +33,7 @@ body {background: #f7f7f7;}
     <div class="row">
         <?php if ($cart['items'] > 0):?>
         <div class="col-md-8">
-            <h3 class="page-header">商品清单 <small>共有 <?php echo $cart['items']?> 件商品， 需支付总额 <?php echo $cart['total']?></small></h3>
+            <h3 class="page-header">商品清单 <small>共 <?php echo $cart['items']?> 件商品， 需支付总额 <?php echo $cart['total']?></small></h3>
             <div class="table-responsive">
             <table class="table">
               <thead>
@@ -50,7 +50,7 @@ body {background: #f7f7f7;}
                   <td>
                     <div class="media">
                       <div class="media-left"><a href="<?= $item['options']['url']?>"><img class="media-object" width="60" src="<?= $item['options']['pic']?>"></a></div>
-                      <div class="media-body"><h5 class="media-heading"><?= $item['options']['title']?></h5></div>
+                      <div class="media-body hidden-xs"><h5 class="media-heading"><?= $item['options']['title']?></h5></div>
                     </div>
                   </td>
                   <td>￥<?php echo $item['price']?></td>

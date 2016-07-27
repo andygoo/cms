@@ -42,7 +42,7 @@ body {background: #f7f7f7;}
                   <th class="col-xs-2">单价</th>
                   <th class="col-xs-2">数量</th>
                   <th class="col-xs-2">金额小计</th>
-                  <th class="col-xs-2">操作</th>
+                  <th class="col-xs-1">操作</th>
                 </tr>
               </thead>
               <tbody>
@@ -51,7 +51,7 @@ body {background: #f7f7f7;}
                   <td>
                     <div class="media">
                       <div class="media-left"><a href="<?= $item['options']['url']?>"><img class="media-object" width="60" src="<?= $item['options']['pic']?>"></a></div>
-                      <div class="media-body"><h5 class="media-heading"><?= $item['options']['title']?></h5></div>
+                      <div class="media-body hidden-xs"><h5 class="media-heading"><?= $item['options']['title']?></h5></div>
                     </div>
                   </td>
                   <td>￥<?= $item['price']?></td>

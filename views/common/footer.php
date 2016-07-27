@@ -1,5 +1,6 @@
 
-<?php include Kohana::find_file('views', 'profiler/stats');?>
+<?php //include Kohana::find_file('views', 'profiler/stats');
+?>
 
 <script>
 (function() {

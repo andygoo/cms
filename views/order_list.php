@@ -46,7 +46,7 @@ body {background: #f7f7f7;}
                         <?php else:?>
                         <?php echo '，'.$order['deliver_status_str']?>
                         <?php endif;?>
-                        <span class="text-muted pull-right">订单时间：<?php echo date('Y-m-d H:i:s', $order['created_at'])?></span>
+                        <span class="text-muted pull-right hidden-xs">订单时间：<?php echo date('Y-m-d H:i:s', $order['created_at'])?></span>
                     </div>
                     <div class="table-responsive">
                     <table class="table">
@@ -65,7 +65,7 @@ body {background: #f7f7f7;}
                           <td>
                             <div class="media">
                               <div class="media-left"><a href="<?= $opts['url']?>"><img class="media-object" width="60" src="<?= $opts['pic']?>"></a></div>
-                              <div class="media-body"><h5 class="media-heading"><?= $opts['title']?></h5></div>
+                              <div class="media-body hidden-xs"><h5 class="media-heading"><?= $opts['title']?></h5></div>
                             </div>
                           </td>
                           <td>￥<?php echo $item['goods_price']?></td>

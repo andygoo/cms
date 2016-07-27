@@ -60,7 +60,7 @@ body {background: #f7f7f7;}
                   <td>
                     <div class="media">
                       <div class="media-left"><a href="<?= $opts['url']?>"><img class="media-object" width="60" src="<?= $opts['pic']?>"></a></div>
-                      <div class="media-body"><h5 class="media-heading"><?= $opts['title']?></h5></div>
+                      <div class="media-body hidden-xs"><h5 class="media-heading"><?= $opts['title']?></h5></div>
                     </div>
                   </td>
                   <td>￥<?php echo $item['goods_price']?></td>
