@@ -8,6 +8,7 @@ window.SidebarJS = function (window, document) {
   var sidebarjs = 'sidebarjs';
   var isVisible = sidebarjs + '--is-visible';
   var isMoving = sidebarjs + '--is-moving';
+  var status = 'close';
 
   return function () {
     function SidebarJS() {
@@ -45,11 +46,13 @@ window.SidebarJS = function (window, document) {
       key: 'open',
       value: function open() {
         this.component.classList.add(isVisible);
+        status = 'open';
       }
     }, {
       key: 'close',
       value: function close() {
         this.component.classList.remove(isVisible);
+        status = 'close';
         $(".navbar-toggle .fa").removeClass("fa-times").addClass("fa-bars");
       }
     }]);
@@ -59,7 +62,7 @@ window.SidebarJS = function (window, document) {
 
   function _onTouchStart(e) {
     this.container.touchStart = e.touches[0].pageX;
-	if (this.container.touchStart <= 5) {
+	if (this.container.touchStart <= 5 && status == 'close') {
 	  this.component.classList.add(isVisible);
 	  this.component.classList.add(isMoving);
 	  _vendorify(this.container, `transform`, `translate(${-this.container.clientWidth+15}px, 0)`);
@@ -70,7 +73,7 @@ window.SidebarJS = function (window, document) {
 
   function _onTouchMove(e) {
     this.container.touchMove = this.container.touchStart - e.touches[0].pageX;
-	if (this.container.touchStart <= 5) {
+	if (this.container.touchStart <= 5 && status == 'close') {
 		if(this.container.touchMove < 0 && -this.container.touchMove+15 <= this.container.clientWidth) {
 		  this.component.classList.add(isVisible);
 		  this.component.classList.add(isMoving);
@@ -88,9 +91,9 @@ window.SidebarJS = function (window, document) {
 
   function _onTouchEnd() {
     this.component.classList.remove(isMoving);
-	if (this.container.touchStart <= 5) {
+	if (this.container.touchStart <= 5 && status == 'close') {
 		-this.container.touchMove < 18 ? this.close() : this.open();
-	} else {
+	} else if(this.container.touchMove > 0) {
 		this.container.touchMove > this.container.clientWidth / 3.5 ? this.close() : this.open();
 	}
     this.container.touchMove = 0;

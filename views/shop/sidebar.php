@@ -17,7 +17,7 @@
   min-height: 150px;
   padding: 30px 16px 16px;
   color: #FFF;
-  font-size: 40px;
+  font-size: 30px;
   margin: 0;
   background: url(http://7xkkhh.com1.z0.glb.clouddn.com/2016/07/27/14695893438233.jpg) #2196F3;
 }
@@ -35,7 +35,8 @@
   display: flex;
   flex-direction: column;
   border-top: 1px solid rgba(0,0,0, .1);
-	padding: 0; margin: 0;
+	padding: 0;
+	margin: 6px 0;
 }
 [sidebarjs] nav > ul:first-child {
   border-top: none;
@@ -68,14 +69,14 @@
 <div id="sidebarjs" sidebarjs>
     <?php if (empty($user)):?>
     <h3>
-        <div class="img-circle" style="background: #ccc; width: 65px; height: 65px; line-height: 65px;text-align: center">
+        <div class="img-circle" style="background: #ccc; width: 65px; height: 65px; line-height: 65px;padding-top: 2px;text-align: center">
             <i class="glyphicon glyphicon-user"></i>
         </div>
-        <a href="<?php echo URL::site('user/login')?>" class="ajax-modal-sm" style="font-size: 16px;margin-left: 15px;">登录</a>
+        <a href="<?php echo URL::site('user/login')?>" class="ajax-modal-sm" style="font-size: 16px;margin-left: 16px;">登录</a>
     </h3>
     <?php else:?>
     <h3>
-        <div class="img-circle" style="background: #ccc; width: 65px; height: 65px; line-height: 65px;text-align: center">
+        <div class="img-circle" style="background: #fff; color: #ee6e73; width: 65px; height: 65px; line-height: 65px;padding-top: 2px;text-align: center">
             <i class="glyphicon glyphicon-user"></i>
         </div>
         <span style="font-size: 16px;"><?php echo $user['username']?></span>
