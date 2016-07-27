@@ -14,7 +14,9 @@ body {background: #f5f2f2;}
 
 <div class="container">
     <div class="panel" style="margin-bottom: 0px;border:none;border-radius:0">
-        <div class="panel-heading" style="background: #3c8dbc; border:none; border-radius:0; height: 50px">&nbsp;</div>
+        <div class="panel-heading" style="background: #3c8dbc;padding-top:14px;color:#fff;font-size: 16px; border:none; border-radius:0; height: 50px" sidebarjs-toggle>
+            <i class="glyphicon glyphicon-menu-hamburger"></i>
+        </div>
         <div class="panel-body" style="margin-top:-50px;">
             <div class="media">
                 <div class="media-body">
@@ -258,6 +260,7 @@ $(function() {
 
 <?= HTML::script('media/bootstrap-3.3.5/js/bootstrap.min.js')?>
 <?php include __DIR__ . '/common/modal.php';?>
+<?php include __DIR__ . '/auction/sidebar.php';?>
 
 <?php if ($is_weixin):?>
 <?php include __DIR__ . '/auction/wxshare.php';?>

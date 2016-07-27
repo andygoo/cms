@@ -55,6 +55,14 @@ class Controller_User extends Controller_Website {
         $this->content = View::factory('common/user_register');
     }
 
+    public function action_logout() {
+        $auth = Auth::instance();
+        $ret = $auth->logout();
+        if ($ret) {
+            $this->redirect(Request::$referrer);
+        }
+    }
+    
     public function action_wxlogin() {
         $wx = new WeixinOauth('test');
         $user_info = $wx->get_user_info();

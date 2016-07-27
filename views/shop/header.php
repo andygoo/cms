@@ -46,7 +46,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" >欢迎 <?php echo $user['username']?></a>
                     <ul class="dropdown-menu">
                         <li><a href="<?php echo URL::site('order/list')?>">我的订单</a></li>
-                        <li><a href="<?php echo URL::site('member/logout')?>">退出</a></li>
+                        <li><a href="<?php echo URL::site('user/logout')?>">退出</a></li>
                     </ul>
                 </li>
                 <?php endif;?>

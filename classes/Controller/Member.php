@@ -1,6 +1,6 @@
 <?php
 
-class Controller_Member extends Controller_Shop {
+class Controller_Member extends Controller_Website {
 
     public function __construct(Request $request) {
         parent::__construct($request);
@@ -10,12 +10,5 @@ class Controller_Member extends Controller_Shop {
         }
     }
     
-    public function action_logout() {
-        $auth = Auth::instance();
-        $ret = $auth->logout();
-        if ($ret) {
-            $this->redirect('product');
-        }
-    }
 }
 

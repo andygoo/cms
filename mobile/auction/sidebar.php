@@ -84,13 +84,12 @@
     <?php endif;?>
     <nav>
         <ul>
-            <li><a href="<?php echo URL::site('product')?>">首页</a></li>
-            <li><a href="<?php echo URL::site('product')?>">我要买车</a></li>
-            <li><a href="<?php echo URL::site('product')?>">我要卖车</a></li>
+            <li><a href="<?php echo URL::site('/')?>">首页</a></li>
+            <li><a href="<?php echo URL::site('product')?>">拍卖专场</a></li>
         </ul>
         <?php if (!empty($user)):?>
         <ul>
-            <li><a href="<?php echo URL::site('order/list')?>">我的订单</a></li>
+            <li><a href="<?php echo URL::site('member/list')?>">我的拍品</a></li>
             <li><a href="<?php echo URL::site('user/logout')?>">退出</a></li>
         </ul>
         <?php endif;?>
