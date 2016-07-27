@@ -71,7 +71,7 @@ window.SidebarJS = function (window, document) {
   function _onTouchMove(e) {
     this.container.touchMove = this.container.touchStart - e.touches[0].pageX;
 	if (this.container.touchStart <= 5) {
-		if(this.container.touchMove < 0 && -this.container.touchMove <= this.container.clientWidth) {
+		if(this.container.touchMove < 0 && -this.container.touchMove+15 <= this.container.clientWidth) {
 		  this.component.classList.add(isVisible);
 		  this.component.classList.add(isMoving);
 		  _vendorify(this.container, `transform`, `translate(${-this.container.clientWidth+15-this.container.touchMove}px, 0)`);
