@@ -2,10 +2,13 @@
 <?= HTML::style('media/bootstrap-3.3.5/css/bootstrap.min.css')?>
 <?= HTML::style('media/font-awesome-4.3.0/css/font-awesome.min.css')?>
 
-<?= HTML::style('media/bootsnav/css/animate.css')?>
-<?= HTML::style('media/bootsnav/css/bootsnav.css')?>
-<?= HTML::style('media/bootsnav/css/overwrite.css')?>
-<?= HTML::style('media/bootsnav/skins/color.css')?>
+
+<?php //HTML::style('media/bootsnav/css/animate.css')?>
+<?php //HTML::style('media/bootsnav/css/bootsnav.css')?>
+<?php //HTML::style('media/bootsnav/css/overwrite.css')?>
+<?php //HTML::style('media/bootsnav/skins/color.css')?>
+
+<?= HTML::style('media/minicss/bootsnav.css')?>
 
 <!-- Start Navigation -->
 <nav class="navbar navbar-default bootsnav">
