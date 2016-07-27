@@ -71,7 +71,7 @@
         <div class="img-circle" style="background: #ccc; width: 65px; height: 65px; line-height: 65px;text-align: center">
             <i class="glyphicon glyphicon-user"></i>
         </div>
-        <a href="<?php echo URL::site('user/login')?>" class="ajax-modal-sm" style="font-size: 16px;">登录</a>
+        <a href="<?php echo URL::site('user/login')?>" class="ajax-modal-sm" style="font-size: 16px;margin-left: 15px;">登录</a>
     </h3>
     <?php else:?>
     <h3>
