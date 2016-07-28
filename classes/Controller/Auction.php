@@ -151,10 +151,10 @@ class Controller_Auction extends Controller_Website {
         $now = strtotime('now');
         $data = array(
             'item_id' => $item_id,
+            'user_id' => $this->user['id'],
+            'user_name' => $this->user['username'],
+            'user_avatar' => isset($this->user['avatar']) ? $this->user['avatar'] : '',
             'price' => $price,
-            'bidder_openid' => $this->user['id'],
-            'bidder_name' => $this->user['username'],
-            'bidder_avatar' => isset($this->user['avatar']) ? $this->user['avatar'] : '',
             'time' => $now,
         );
     
