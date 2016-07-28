@@ -1,7 +1,13 @@
 
 <?php include __DIR__ . '/vehicle/header.php';?>
 <?= HTML::style('media/css/card.css')?>
+<?= HTML::style('media/sweetalert/sweetalert.css')?>
 <style>
+.sweet-alert {width: 350px;margin-left: -175px;}
+.sweet-alert .sa-error-container .icon {width: 20px; height: 20px;}
+.sweet-alert .sa-input-error{top: 23px; right: 13px}
+.sweet-alert .sa-input-error.show {opacity:0}
+
 .card-title {font-size: 16px;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
 .card-title a{color: #222}
 .card-title a:hover{color: #d00}
@@ -15,7 +21,7 @@
     </div>
     <div class="col-md-6">
         <div class="page-header"><h3><?= $vehicle_info['vehicle_name'];?></h3></div>
-        <div class="panel panel-default">
+        <div class="panel panel-default" style="border: none">
             <div class="panel-body">
                 <h2 style="color: #d00">27.38 <small>万</small></h2>
             </div>
@@ -26,23 +32,12 @@
                 <li class="list-group-item">贷款：首付0.00万，月供5,768元起</li>
                 <li class="list-group-item">购车咨询：400-606-7905</li>
                 <li class="list-group-item">
-                    <a class="btn btn-warning" style="margin-right: 15px;">预约看车</a> 
+                    <a class="btn btn-warning" id="yuyue_kanche_btn" style="margin-right: 15px;">预约看车</a> 
                     <a class="btn btn-danger">我要砍价</a>
                 </li>
             </ul>
         </div>
     </div>
-</div>
-</div>
-
-<div class="container">
-<div class="page-header"><h3>车辆外观</h3></div>
-<div class="row">
-    <?php foreach (range(1, 6) as $item):?>
-    <div class="col-md-4" style="margin-bottom: 20px;">
-        <img src="http://image1.hc51img.com/17855901962e8ba9076942410b41b962c9aba21a.jpg?imageView2/1/w/400/h/300" width="100%" class="swiper-lazy">
-    </div>
-    <?php endforeach;?>
 </div>
 </div>
 
@@ -68,3 +63,43 @@
 <div class="clearfix"></div>
 
 <?php include __DIR__ . '/vehicle/footer.php';?>
+
+<?= HTML::script('media/sweetalert/sweetalert.min.js');?>
+
+<script>
+$(function() {
+	$('#yuyue_kanche_btn').click(function () {
+		swal({
+			type: 'input',
+			inputType: 'tel',
+			title: "预约看车",
+			text: '购车顾问将马上与您联系',
+			inputPlaceholder: "请输入电话号码",
+			confirmButtonText: "提交",
+			allowOutsideClick: true,
+			closeOnConfirm: false,
+			showLoaderOnConfirm: true
+		},
+		function(phone) {
+			if (phone === false) return false;
+			if (phone === "") {
+				swal.showInputError("请输入手机号码");
+				return false;
+			}
+			var phone_ptn = /^1[34578][0-9]{9}$/;
+	        if (!phone_ptn.test(phone)) {
+				swal.showInputError("请输入正确的手机号码");
+				return false;
+			}
+	        setTimeout(function(){
+    			swal({
+    				type: 'success',
+    				title: '',
+    				text: '提交成功，我们会尽快联系您！',
+    				allowOutsideClick: true 
+    			});
+	        }, 1000);
+		});
+	});	
+});
+</script>

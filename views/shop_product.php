@@ -1,5 +1,5 @@
 
-<?= HTML::style('media/sweetalert/sweetalert.css')?>
+<?= HTML::style('media/css/weui.min.css')?>
 <?= HTML::style('media/css/card.css')?>
 <style>
 .card-title {font-size: 16px;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
@@ -54,8 +54,13 @@
     </div>
 </div>
 
-
-<?= HTML::script('media/sweetalert/sweetalert.min.js');?>
+<div id="toast" style="display: none;">
+    <div class="weui_mask_transparent"></div>
+    <div class="weui_toast">
+        <i class="weui_icon_toast"></i>
+        <p class="weui_toast_content">已添加</p>
+    </div>
+</div>
 
 <script>
 $(function () {
@@ -66,12 +71,10 @@ $(function () {
 		$.get(url, parmas, function (res) {
 		    $('#mini-cart').html(res);
 		    $('#cart-items').text($('#mini-cart-items').data('count'));
-			swal({
-				type: 'success',
-				title: '',
-				text: '已添加到购物车！',
-				allowOutsideClick: true 
-			});
+		    $('#toast').show();
+            setTimeout(function () {
+                $('#toast').hide();
+            }, 2000);
 		});
 		return false;
 	});
