@@ -10,5 +10,9 @@ class Controller_Member extends Controller_Website {
         }
     }
     
+    public function mypai() {
+        $m_bidlog = Model::factory('bidlog');
+        $list = $m_bidlog->getAll(array('user_id'=>$this->user['id']));
+    }
 }
 
