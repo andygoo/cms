@@ -11,7 +11,7 @@
 <div class="container">
 <div class="row">
     <div class="col-md-6" style="margin-top: 40px">
-        <img src="http://image1.hc51img.com/17855901962e8ba9076942410b41b962c9aba21a.jpg?imageView2/1/w/400/h/300" width="100%">
+        <img class="card-img-top" src="http://image1.hc51img.com/17855901962e8ba9076942410b41b962c9aba21a.jpg?imageView2/1/w/400/h/300" width="100%">
     </div>
     <div class="col-md-6">
         <div class="page-header"><h3><?= $vehicle_info['vehicle_name'];?></h3></div>
