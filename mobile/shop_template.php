@@ -9,7 +9,7 @@
 </head>
 <body>
 <?php include __DIR__ . '/common/header.php';?>
-<?php include __DIR__ . '/shop/header.php';?>
+<?php include __DIR__ . '/../views/shop/header.php';?>
 
 <?= $content?>
 
