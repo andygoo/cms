@@ -56,11 +56,16 @@ body {background: #f7f7f7;}
                   </td>
                   <td>￥<?= $item['price']?></td>
                   <td>
-                    <div class="btn-group">
+                    <!-- <div class="btn-group">
                       <button class="btn btn-default cart-decr"> - </button>
                       <input class="form-control cart-qty" type="text" maxlength="3" data-qty="<?= $item['qty']?>" style="width:49px; border-radius: 0; border-left: none; border-right: none; float: left" value="<?= $item['qty']?>">
                       <button class="btn btn-default cart-incr"> + </button>
-                    </div>
+                    </div> -->
+                    <select class="form-control cart-qty" style="width: 64px;">
+                      <?php foreach (range(1, 10) as $qty):?>
+                      <option value="<?php echo $qty?>" <?php if($item['qty']==$qty):?>selected<?php endif;?>><?php echo $qty?></option>
+                      <?php endforeach;?>
+                    </select>
                   </td>
                   <td>￥<span class="subtotal" data-price="<?= $item['price']?>"><?= $item['subtotal']?></span></td>
                   <td><button type="button" class="close cart-del" aria-hidden="true" style="float: none">&times;</button></td>
@@ -68,16 +73,15 @@ body {background: #f7f7f7;}
                 <?php endforeach;?>
                 <tr>
                   <td colspan="2"></td>
-                  <td>应付金额（不含运费）</td>
+                  <td>总计金额</td>
                   <td id="cart-total">￥<?= $cart['total']?></td>
                   <td><a href="<?= URL::site('cart/clear')?>" data-toggle="tooltip" data-placement="top" title="清空购物车"><i class="glyphicon glyphicon-trash"></i></a></td>
                 </tr>
                 <tr>
                   <td colspan="3"></td>
-                  <td>
+                  <td colspan="2">
                       <a href="<?= URL::site('cart/checkout')?>" class="btn btn-danger btn-lg">去结算</a>
                   </td>
-                  <td></td>
                 </tr>
               </tbody>
             </table>
@@ -108,16 +112,18 @@ $(function () {
 		    $('#cart-total').text($('#mini-cart-total').text());
 		});
 	}
+	/*
 	$('.cart-decr').click(function () {
 		var t = $(this);
-		var qtyinput = t.parent('.btn-group').find('.cart-qty');
+		var row = t.parents('tr');
+		var rowid = row.data('rowid');
+		var qtyinput = row.find('.cart-qty');
+		
 	    var qty = qtyinput.val();
 	    if (qty <= 1) {
 		    return false;
 	    }
 	    qtyinput.val(--qty);
-		var row = t.parents('tr');
-		var rowid = row.data('rowid');
 		
 		var subtotal = row.find('.subtotal');
 		subtotal.text(parseFloat((subtotal.data('price')*qty).toFixed(2)));
@@ -126,14 +132,15 @@ $(function () {
 	});
 	$('.cart-incr').click(function () {
 		var t = $(this);
-		var qtyinput = t.parent('.btn-group').find('.cart-qty');
+		var row = t.parents('tr');
+		var rowid = row.data('rowid');
+		var qtyinput = row.find('.cart-qty');
+		
 	    var qty = qtyinput.val();
 	    if (qty >= max_cart_qty) {
 		    return false;
 	    }
 	    qtyinput.val(++qty);
-		var row = t.parents('tr');
-		var rowid = row.data('rowid');
 		
 		var subtotal = row.find('.subtotal');
 		subtotal.text(parseFloat((subtotal.data('price')*qty).toFixed(2)));
@@ -147,6 +154,19 @@ $(function () {
 		    return false;
 	    }
 		t.data('qty', qty);
+		var row = t.parents('tr');
+		var rowid = row.data('rowid');
+
+		var subtotal = row.find('.subtotal');
+		subtotal.text(parseFloat((subtotal.data('price')*qty).toFixed(2)));
+		
+		upcart(rowid, qty);
+	});
+    */
+
+	$('.cart-qty').change(function() {
+		var t = $(this);
+		var qty = t.val();
 		var row = t.parents('tr');
 		var rowid = row.data('rowid');
 
