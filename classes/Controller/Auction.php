@@ -2,6 +2,8 @@
 
 class Controller_Auction extends Controller_Website {
 
+    public $template = 'auction_template';
+    
     public $siteinfo = array(
         'name' => '闲竹书画',
         'desc' => '书画爱好者交流',
@@ -34,9 +36,14 @@ class Controller_Auction extends Controller_Website {
             }
         }
     }
-    
+
     public function action_index() {
-        $item_id = Arr::get($_GET, 'id');
+        
+    }
+    
+    public function action_detail() {
+        //$item_id = Arr::get($_GET, 'id');
+        $item_id = $this->request->param('id');
         $m_auction = Model::factory('auction', 'paimai');
         $info = $m_auction->getRowById($item_id);
         $info['pics'] = $this->_format_pics($info);
