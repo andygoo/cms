@@ -39,42 +39,7 @@ class Controller_Auction extends Controller_Website {
         $item_id = Arr::get($_GET, 'id');
         $m_auction = Model::factory('auction', 'paimai');
         $info = $m_auction->getRowById($item_id);
-        
-        $pics = array();
-        $_pics = json_decode($info['pic'], true);
-        foreach ($_pics as $pic) {
-            $w = $h = 600;
-            $max = 1200;
-            $pic_info = parse_url($pic);
-            if (!empty($pic_info['query'])) {
-                list($w, $h) = explode('x', $pic_info['query']);
-                $w = intval($w);
-                $h = intval($h);
-                if ($w > 0 && $h > 0) {
-                    if ($w > $h) {
-                        if ($w > $max || $h > $max) {
-                            $h = round($max*$h/$w);$w = $max; 
-                        }
-                    } else {
-                        if ($w > $max || $h > $max) {
-                            $w = round($max*$w/$h);$h = $max; 
-                        }
-                    }
-                }
-            }
-            if(empty($pic_info['scheme'])) {
-                $item['src'] = URL::site('/imagefly/w'.$w.'-h'.$h.'/' . $pic);
-                $item['src_sml'] = URL::site('/imagefly/w200-h200/' . $pic);
-            } else {
-                $pic = $pic_info['scheme'].'://'.$pic_info['host'].$pic_info['path'];
-                $item['src'] = $pic;
-                $item['src_sml'] = $pic.'?imageView2/2/w/200/h/200';
-            }
-            $item['w'] = $w;
-            $item['h'] = $h;
-            $item['size'] = $w . 'x' . $h;
-            $pics[] = $item;
-        }
+        $info['pics'] = $this->_format_pics($info);
         
         $where = array(
             'item_id' => $item_id,
@@ -104,10 +69,9 @@ class Controller_Auction extends Controller_Website {
             $list_more = $m_auction->select(0, 7, $where)->as_array();
         }
         
-        $this->content = View::factory('auction');
+        $this->content = View::factory('auction_detail');
         $this->content->info = $info;
         $this->content->status = $status;
-        $this->content->pics = $pics;
         $this->content->list_more = $list_more;
         $this->content->list_bidlog = $list_bidlog;
         $this->content->total_bidlog = $total_bidlog;
@@ -238,6 +202,86 @@ class Controller_Auction extends Controller_Website {
         echo json_encode($ret);
         exit;
     }
+
+    public function action_mypai1() {
+        if (empty($this->user)) {
+            exit();
+        }
+        $m_bidlog = Model::factory('bidlog', 'paimai');
+        $item_ids = $m_bidlog->getAll(array('user_id'=>$this->user['id']), 'item_id')->as_array(null, 'item_id');
+        $item_ids = array_unique($item_ids);
     
+        $m_auction = Model::factory('auction', 'paimai');
+        $list = $m_auction->getAll(array('id'=>array('in'=>$item_ids)))->as_array();
+        foreach ($list as &$item) {
+            $item['pics'] = $this->_format_pics($item);
+        }
+        unset($item);
+    
+        $this->content = View::factory('auction_mypai');
+        $this->content->list = $list;
+    }
+    
+    public function action_mypai2() {
+        if (empty($this->user)) {
+            exit();
+        }
+        $m_bidlog = Model::factory('bidlog', 'paimai');
+        $user_ids = $m_bidlog->getAll(array('ORDER'=>'id desc', 'GROUP'=>'item_id'))->as_array('item_id', 'user_id');
+        $item_ids = array_keys(array_filter($user_ids, function($v) {return $v==$this->user['id'];}));
+        //var_dump($user_ids,$item_ids, $this->user);
+        
+        $list = array();
+        if (!empty($item_ids)) {
+            $m_auction = Model::factory('auction', 'paimai');
+            $list = $m_auction->getAll(array('id'=>array('in'=>$item_ids)))->as_array();
+            foreach ($list as &$item) {
+                $item['pics'] = $this->_format_pics($item);
+            }
+            unset($item);
+        }
+    
+        $this->content = View::factory('auction_mypai');
+        $this->content->list = $list;
+    }
+
+    protected function _format_pics($info) {
+        $pics = array();
+        $_pics = json_decode($info['pic'], true);
+        foreach ($_pics as $pic) {
+            $w = $h = 600;
+            $max = 1200;
+            $pic_info = parse_url($pic);
+            if (!empty($pic_info['query'])) {
+                list($w, $h) = explode('x', $pic_info['query']);
+                $w = intval($w);
+                $h = intval($h);
+                if ($w > 0 && $h > 0) {
+                    if ($w > $h) {
+                        if ($w > $max || $h > $max) {
+                            $h = round($max*$h/$w);$w = $max;
+                        }
+                    } else {
+                        if ($w > $max || $h > $max) {
+                            $w = round($max*$w/$h);$h = $max;
+                        }
+                    }
+                }
+            }
+            if(empty($pic_info['scheme'])) {
+                $item['src'] = URL::site('/imagefly/w'.$w.'-h'.$h.'/' . $pic);
+                $item['src_sml'] = URL::site('/imagefly/w200-h200/' . $pic);
+            } else {
+                $pic = $pic_info['scheme'].'://'.$pic_info['host'].$pic_info['path'];
+                $item['src'] = $pic;
+                $item['src_sml'] = $pic.'?imageView2/2/w/200/h/200';
+            }
+            $item['w'] = $w;
+            $item['h'] = $h;
+            $item['size'] = $w . 'x' . $h;
+            $pics[] = $item;
+        }
+        return $pics;
+    }
 }
 

@@ -40,6 +40,7 @@ body {background: #f5f2f2;}
             <h5 class="media-heading" style="color:#ff6000;font-weight:600"><?= $siteinfo['name']?></h5>
             <div class="media-desc" style="font-size:13px"><?= str_replace("\n", '<br>', $info['desc'])?></div>
             <div class="row top-xs swiper-container" style="padding: 12px 0;">
+                <?php $pics = $info['pics']?>
                 <?php $pic_count = count($pics)?>
                 <?php foreach ($pics as $pic):?>
                 <div class="swipe col-xs-4 col-sm-3 col-md-2" style="padding: 3px;">

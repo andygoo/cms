@@ -89,7 +89,8 @@
         </ul>
         <?php if (!empty($user)):?>
         <ul>
-            <li><a href="<?php echo URL::site('member/list')?>">我的拍品</a></li>
+            <li><a href="<?php echo URL::site('auction/mypai1')?>">我参拍的</a></li>
+            <li><a href="<?php echo URL::site('auction/mypai2')?>">我中拍的</a></li>
             <li><a href="<?php echo URL::site('user/logout')?>">退出</a></li>
         </ul>
         <?php endif;?>
