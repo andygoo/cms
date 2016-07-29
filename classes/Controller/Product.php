@@ -11,7 +11,7 @@ class Controller_Product extends Controller_Shop {
     }
 
     public function action_detail() {
-        $id = Arr::get($_GET, 'id', 0);
+        $id = $this->request->param('id');
         $m_vehicle = Model::factory('vehicle_source');
         $vehicle_info = $m_vehicle->getRowById($id);
     

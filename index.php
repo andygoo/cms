@@ -87,28 +87,26 @@ Route::set('list', '(<city_pinyin>/)ershouche(/(b<brand_id>)(c<series_id>)(p<pri
 'controller' => 'list' 
 ));
 
-Route::set('detail', 'detail/<id>', array(
-    'id' => '(\d+)' 
-))->defaults(array(
+Route::set('detail', 'detail/<id>', array('id' => '(\d+)'))
+->defaults(array(
     'controller' => 'vehicle',
     'action' => 'detail'  
 ));
 
-Route::set('custom', 'fruit/<customurl>', array(
-    'customurl' => '[a-z0-9_-]+' 
-))->defaults(array(
+Route::set('custom', 'fruit/<customurl>', array('customurl' => '[a-z0-9_-]+'))
+->defaults(array(
     'controller' => 'article',
     'action' => 'customurl' 
 ));
 
-Route::set('default', '(<controller>(/<action>))')->defaults(array(
+Route::set('default', '(<controller>(/<action>(/<id>)))', array('id' => '(\d+)'))
+->defaults(array(
     'controller' => 'home',
     'action' => 'index' 
 ));
 
-Route::set('catch_all', '<path>', array(
-    'path' => '.*' 
-))->defaults(array(
+Route::set('catch_all', '<path>', array('path' => '.*'))
+->defaults(array(
     'controller' => 'Error',
     'action' => '404' 
 ));

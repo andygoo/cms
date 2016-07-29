@@ -38,11 +38,11 @@
         <?php foreach ($vehicle_list as $item):?>
         <div class="col-md-3 col-sm-4" style="padding: 5px;">
             <div class="card" style="background: #f8f8f8;border:none;">
-                <a href="<?php echo URL::site('product/detail?id='.$item['id'])?>">
+                <a href="<?php echo URL::site('product/detail/'.$item['id'])?>">
                     <img class="card-img-top" width="100%" src="http://image1.hc51img.com/966dc951cc5-0f3e-4b5f-8fa3-0279f0915284.jpg?imageView2/1/w/280/h/210">
                 </a>
                 <div class="card-block">
-                    <h4 class="card-title"><a href="<?php echo URL::site('product/detail?id='.$item['id'])?>"><?= $item['vehicle_name'];?></a></h4>
+                    <h4 class="card-title"><a href="<?php echo URL::site('product/detail/'.$item['id'])?>"><?= $item['vehicle_name'];?></a></h4>
                     <p class="card-text text-muted">2011.06 上牌 · 8.3万公里 · 手动</p>
                     <p class="card-text" style="color: #d00; font-size: 28px;"><?= sprintf("%.2f", $item['seller_price']);?>
                     <span style="color: #d00; font-size: 14px;">万</span></p>
