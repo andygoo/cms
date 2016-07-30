@@ -87,13 +87,13 @@
             <li><a href="<?php echo URL::site('product')?>">拍卖专场</a></li>
         </ul>
         <hr style="margin: 0">
-        <?php if (!empty($user)):?>
         <ul>
-            <li><a href="<?php echo URL::site('auction/mypai1')?>">我参拍的</a></li>
+            <li <?php if ($uri == 'auction/mypai1'):?>class="active"<?php endif;?>><a href="<?php echo URL::site('auction/mypai1')?>">我参拍的</a></li>
             <li><a href="<?php echo URL::site('auction/mypai2')?>">我中拍的</a></li>
+            <?php if (!empty($user)):?>
             <li><a href="<?php echo URL::site('user/logout')?>">退出</a></li>
+            <?php endif;?>
         </ul>
-        <?php endif;?>
     </nav>
 </div>
 
