@@ -6,7 +6,7 @@
 <?= HTML::script('media/js/jquery.countdown.min.js')?>
 
 <style>
-body {background: #f5f2f2;}
+body {background: #f5f2f2;padding-bottom:55px;}
 .container{padding:0;background: #fff}
 .weui_grid {padding: 10px;font-size: 20px;}
 .weui_icon_safe:before {font-size: 10px;color:#fff;margin-top: -2px;}

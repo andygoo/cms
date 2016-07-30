@@ -34,7 +34,6 @@
 [sidebarjs] nav > ul {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid rgba(0,0,0, .1);
 	padding: 0;
 	margin: 6px 0;
 }
@@ -87,6 +86,7 @@
             <li><a href="<?php echo URL::site('/')?>">首页</a></li>
             <li><a href="<?php echo URL::site('product')?>">拍卖专场</a></li>
         </ul>
+        <hr style="margin: 0">
         <?php if (!empty($user)):?>
         <ul>
             <li><a href="<?php echo URL::site('auction/mypai1')?>">我参拍的</a></li>
