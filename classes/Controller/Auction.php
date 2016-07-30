@@ -46,8 +46,11 @@ class Controller_Auction extends Controller_Website {
         $item_id = $this->request->param('id');
         $m_auction = Model::factory('auction', 'paimai');
         $info = $m_auction->getRowById($item_id);
+        if (empty($info)) {
+            Request::factory('error/404')->execute();
+        }
         $info['pics'] = $this->_format_pics($info);
-        
+            
         $where = array(
             'item_id' => $item_id,
             'ORDER' => 'id desc',
@@ -75,7 +78,7 @@ class Controller_Auction extends Controller_Website {
             );
             $list_more = $m_auction->select(0, 7, $where)->as_array();
         }
-        
+
         $this->content = View::factory('auction_detail');
         $this->content->info = $info;
         $this->content->status = $status;
@@ -254,7 +257,10 @@ class Controller_Auction extends Controller_Website {
 
     protected function _format_pics($info) {
         $pics = array();
-        $_pics = json_decode($info['pic'], true);
+        $_pics = array();
+        if (!empty($info['pic'])) {
+            $_pics = json_decode($info['pic'], true);
+        }
         foreach ($_pics as $pic) {
             $w = $h = 600;
             $max = 1200;

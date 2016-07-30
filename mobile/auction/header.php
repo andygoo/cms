@@ -1,7 +1,9 @@
 
 <?= HTML::style('media/bootstrap/css/bootstrap.min.css')?>
-<?= HTML::style('media/css/weui.min.css')?>
 <?= HTML::style('media/css/flexboxgrid.min.css')?>
+<?= HTML::style('media/css/weui.min.css')?>
+<?= HTML::style('media/css/icono.min.css')?>
+
 <?= HTML::script('media/js/readmore.min.js')?>
 <?= HTML::script('media/js/jquery.countdown.min.js')?>
 
@@ -14,8 +16,8 @@ body {background: #f5f2f2;padding-bottom:55px;}
 
 <div class="container" style="padding: 0;">
     <div class="panel" style="margin-bottom: 0px;border:none;border-radius:0">
-        <div class="panel-heading" style="background: #3c8dbc;padding-top:14px;color:#fff;font-size: 16px; border:none; border-radius:0; height: 50px" sidebarjs-toggle>
-            <i class="glyphicon glyphicon-menu-hamburger"></i>
+        <div class="panel-heading" style="background: #3c8dbc;color:#fff;font-size: 16px; border:none; border-radius:0;" sidebarjs-toggle>
+            <i class="icono-hamburger"></i>
         </div>
         <div class="panel-body" style="margin-top:-50px;">
             <div class="media">
