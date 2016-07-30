@@ -8,7 +8,9 @@
 <?php //HTML::style('media/bootsnav/css/overwrite.css')?>
 <?php //HTML::style('media/bootsnav/skins/color.css')?>
 
-<?= HTML::style('media/minicss/bootsnav.css')?>
+<?php //HTML::style('media/minicss/bootsnav.css')?>
+
+<?= HTML::groupstyle('bootsnav')?>
 
 <!-- Start Navigation -->
 <nav class="navbar navbar-default bootsnav">
