@@ -9,7 +9,7 @@ body {background: #f7f7f7;}
 <style>
 .pageheader{
     padding: 70px 0;
-    background-image: url(http://bootsnav.danurstrap.com/images/bg/brick-wall-dark.png);
+    background-image: url(/media/img/brick-wall-dark.png);	
     background-color: #f43438;
 }
 .pageheader .title{
