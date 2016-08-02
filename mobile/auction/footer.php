@@ -20,7 +20,7 @@
 	color: #09bb07;
 }
 </style>
-<div class="container" style="padding: 0;">
+<div class="container" style="padding: 0;z-index:99;">
     <div class="weui_tabbar" style="position: fixed;bottom:0;left:0">
         <div class="weui_tabbar_item weui_bar_item_on">
             <div class="weui_tabbar_icon"><i class="glyphicon glyphicon-home"></i></div>

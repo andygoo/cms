@@ -92,7 +92,7 @@
     <?php endif;?>
     <nav>
         <ul>
-            <li><a href="<?php echo URL::site('/')?>">首页</a></li>
+            <li><a href="<?php echo URL::site('auction')?>">首页</a></li>
             <li><a href="<?php echo URL::site('product')?>">拍卖专场</a></li>
         </ul>
         <hr style="margin: 0">

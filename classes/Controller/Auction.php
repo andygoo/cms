@@ -38,7 +38,7 @@ class Controller_Auction extends Controller_Website {
     }
 
     public function action_index() {
-        
+        $this->template = View::factory('auction_index');
     }
     
     public function action_detail() {
