@@ -14,12 +14,17 @@
   font: 300 16px/100% 'Arial', sans-serif;
 }
 [sidebarjs] h3 {
-  min-height: 150px;
-  padding: 30px 16px 16px;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+  height: 151px;
+  padding: 16px;	
   color: #FFF;
-  font-size: 30px;
+  font-size: 22px;
   margin: 0;
-  background: url(http://7xkkhh.com1.z0.glb.clouddn.com/2016/07/27/14695893438233.jpg) #2196F3;
+  background: url(http://7xkkhh.com1.z0.glb.clouddn.com/2016/08/01/14700177870141.jpg?imageView2/1/w/600/h/302) #2196F3;
+  background-size: cover;
 }
 [sidebarjs] h3 a{
 	color:#fff;
@@ -68,17 +73,21 @@
 <div id="sidebarjs" sidebarjs>
     <?php if (empty($user)):?>
     <h3>
-        <div class="img-circle" style="background: #ccc; width: 65px; height: 65px; line-height: 65px;padding-top: 2px;text-align: center">
+        <div class="img-circle" style="background: #ccc; width: 48px; height: 48px; line-height: 48px;padding-top: 2px;text-align: center">
             <i class="glyphicon glyphicon-user"></i>
         </div>
-        <a href="<?php echo URL::site('user/login')?>" class="ajax-modal-sm" style="font-size: 16px;margin-left: 16px;">登录</a>
+        <div style="height: 32px;display: flex;position: relative;flex-direction: row;align-items: center;width: 100%;">
+            <a href="<?php echo URL::site('user/login')?>" class="ajax-modal-sm" style="font-size: 16px;">登录</a>
+        </div>
     </h3>
     <?php else:?>
     <h3>
-        <div class="img-circle" style="background: #fff; color: #ee6e73; width: 65px; height: 65px; line-height: 65px;padding-top: 2px;text-align: center">
+        <div class="img-circle" style="background: #fff; color: #ee6e73; width: 48px; height: 48px; line-height: 48px;padding-top: 2px;text-align: center">
             <i class="glyphicon glyphicon-user"></i>
         </div>
-        <span style="font-size: 16px;"><?php echo $user['username']?></span>
+        <div style="height: 32px;display: flex;position: relative;flex-direction: row;align-items: center;width: 100%;">
+            <span style="font-size: 16px;"><?php echo $user['username']?></span>
+        </div>
     </h3>
     <?php endif;?>
     <nav>
