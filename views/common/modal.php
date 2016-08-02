@@ -1,22 +1,23 @@
 
 <?= HTML::script('media/js/bootstrap-notify.min.js')?>
-<?= HTML::script('media/js/resizeable.js')?>
-<?= HTML::script('media/js/draggabilly.pkgd.min.js')?>
+<?php HTML::script('media/js/resizeable.js')?>
+<?php HTML::script('media/js/draggabilly.pkgd.min.js')?>
 
 <style>
 .modal.in {top: 70px;}
+/*
 .draggable .handle {cursor: move}
 .resizable-east { width:10px; height:100%; position:absolute; top:0; right:0; cursor:e-resize; }
 .resizable-north { width:100%; height:10px; position:absolute; left:0; bottom:0; cursor:n-resize; }
 .resizable-north-west { width:20px; height:20px; position:absolute; right:0; bottom:0; cursor:nw-resize; }
-.modal-body {overflow: auto}
+.modal-body {overflow: auto}*/
 </style>
 <div class="modal">
     <div class="modal-dialog">
-        <div class="modal-content draggable" id="resizemodal">
+        <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                <h4 class="modal-title handle"></h4>
+                <h4 class="modal-title"></h4>
             </div>
             <div class="modal-body"></div>
         </div>
@@ -80,10 +81,11 @@ $(function() {
 		});
 		return false;
 	});
+	/*
 	$('.draggable').draggabilly({
 		containment: '.modal',
 		handle: '.handle'
 	});
-    Resizeable(document.getElementById("resizemodal"));
+    Resizeable(document.getElementById("resizemodal"));*/
 });
 </script>
