@@ -60,7 +60,7 @@ header .mdicon{font-size: 24px;color: #fff}
 </main>
 </div>
 
-<?php include __DIR__ . '/auction/sidebar2.php';?>
+<?php include __DIR__ . '/auction/sidebar.php';?>
 </body>
 </html>
 

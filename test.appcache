@@ -1,0 +1,22 @@
+﻿CACHE MANIFEST
+
+# VERSION 0.1.3
+
+# 直接缓存的文件
+CACHE:
+/media/MDicons/css/MDicon.min.css
+/media/mdl/material.cyan-red.min.css
+/media/mdl/material.min.js
+/media/js/jquery.min.js
+/media/sidebarjs/sidebarjs.css
+/media/sidebarjs/sidebarjs.js
+/media/MDicons/fonts/mdicon.woff
+http://7xkkhh.com1.z0.glb.clouddn.com/2016/08/01/14700177870141.jpg?imageView2/1/w/600/h/302
+
+# 需要在线访问的文件
+NETWORK:
+*
+
+# 替代方案
+FALLBACK:
+/ /material/index
