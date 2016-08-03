@@ -1,6 +1,6 @@
 ﻿CACHE MANIFEST
 
-# VERSION 0.1.3
+# VERSION 2222222222
 
 # 直接缓存的文件
 CACHE:
@@ -19,4 +19,4 @@ NETWORK:
 
 # 替代方案
 FALLBACK:
-/ /material/index
+#/ offline.html

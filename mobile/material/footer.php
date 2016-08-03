@@ -23,8 +23,8 @@ EventUtil.addHandler(window, "offline", function () {
 	networkStatus = 'offline';
 });
 $(document).on('click', 'a', function() {
-	alert(networkStatus);
 	if (networkStatus == 'offline') {
+	    alert(networkStatus);
 	    return false;
 	}
 });
