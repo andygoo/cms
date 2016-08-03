@@ -33,6 +33,10 @@ class Controller_Material extends Controller_Website {
         $this->content = View::factory('material_home');
     }
 
+    public function action_detail() {
+        $this->content = View::factory('material_detail');
+    }
+    
     public function action_favorite() {
         $this->content = View::factory('material_favorite');
     }

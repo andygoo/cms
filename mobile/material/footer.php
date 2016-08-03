@@ -21,8 +21,8 @@
 	color: #09bb07;
 }
 .weui_tabbar .mdicon {font-size: 24px;}
-.mdl-button {height: initial;line-height:initial}
-.mdl-ripple.is-visible {
+.weui_tabbar .mdl-button {height: initial;line-height:initial}
+.weui_tabbar .mdl-ripple.is-visible {
     opacity: .1
 }
 </style>
@@ -32,7 +32,7 @@
         <div class="weui_tabbar_label">微信</div>
     </div>
     <div class="weui_tabbar_item mdl-button mdl-js-button mdl-js-ripple-effect">
-        <div class="weui_tabbar_icon"><i class="mdicon account-child"></i></div>
+        <div class="weui_tabbar_icon"><i class="mdicon people"></i></div>
         <div class="weui_tabbar_label">通讯录</div>
     </div>
     <div class="weui_tabbar_item mdl-button mdl-js-button mdl-js-ripple-effect">

@@ -31,7 +31,7 @@
     </div> -->
 </header>
 
-<main class="mdl-layout__content">
+<main class="mdl-layout__content" style="background: #f7f7f7">
 
 </main>
 </div>
