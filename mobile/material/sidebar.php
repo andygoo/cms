@@ -105,7 +105,7 @@
             <i class="mdicon user" style="color: #ee6e73; font-size: 40px; line-height: 40px;margin-top:8px;"></i>
         </div>
       <div class="demo-avatar-dropdown">
-        <span style="line-height: 20px">小明<br>hello@example.com</span>
+        <span style="line-height: 20px; font-weight: 400;">小小明<br>hello@example.com</span>
         <div class="mdl-layout-spacer"></div>
         <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
           <i class="mdicon arrow-drop-down"></i>
@@ -117,31 +117,31 @@
     </header>
     <nav>
         <ul>
-            <li>
-                <a href="#<?php echo URL::site('auction')?>">
+            <li <?php if ($uri == 'material/index'):?>class="active"<?php endif;?>>
+                <a href="<?php echo URL::site('material/index')?>">
                     <i class="mdicon home"></i>首页
                 </a>
             </li>
-            <li>
-                <a href="#<?php echo URL::site('product')?>">
+            <li <?php if ($uri == 'material/favorite'):?>class="active"<?php endif;?>>
+                <a href="<?php echo URL::site('material/favorite')?>">
                     <i class="mdicon favorite"></i>我的收藏
                 </a>
             </li>
-            <li>
-                <a href="#<?php echo URL::site('product')?>">
+            <li <?php if ($uri == 'material/history'):?>class="active"<?php endif;?>>
+                <a href="<?php echo URL::site('material/history')?>">
                     <i class="mdicon history"></i>我的浏览
                 </a>
             </li>
         </ul>
         <hr style="margin: 0;border-top: 1px solid #eee;">
         <ul>
-            <li <?php if ($uri == 'auction/mypai1'):?>class="active"<?php endif;?>>
-                <a href="#<?php echo URL::site('auction/mypai1')?>">
+            <li <?php if ($uri == 'material/feedback'):?>class="active"<?php endif;?>>
+                <a href="<?php echo URL::site('material/feedback')?>">
                     <i class="mdicon sms-failed"></i>发送反馈
                 </a>
             </li>
-            <li>
-                <a class="mdl-navigation__link" href="#<?php echo URL::site('auction/mypai2')?>">
+            <li <?php if ($uri == 'material/help'):?>class="active"<?php endif;?>>
+                <a class="mdl-navigation__link" href="<?php echo URL::site('material/help')?>">
                     <i class="mdicon help"></i>帮助
                 </a>
             </li>
