@@ -24,13 +24,6 @@
 	color:#fff;
 	text-decoration: none;
 }
-
-/*
-[sidebarjs] nav {
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-*/
 [sidebarjs-container] {
   overflow-x: hidden;
   overflow-y: auto;	
@@ -44,7 +37,6 @@
 [sidebarjs] nav > ul:first-child {
   border-top: none;
 }
-
 [sidebarjs] nav ul li {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -70,7 +62,7 @@
   color: inherit;
   background: rgba(0,0,0, .1);
 }
-.demo-drawer-header {
+[sidebarjs] .demo-drawer-header {
   box-sizing: border-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -84,7 +76,7 @@
   padding: 16px;
   min-height: 151px;
 }
-.demo-avatar-dropdown {
+[sidebarjs] .demo-avatar-dropdown {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -104,16 +96,16 @@
         <div class="img-circle" style="background: #fff; width: 60px; height: 60px; line-height: 60px; border-radius: 30px;text-align: center">
             <i class="mdicon user" style="color: #ee6e73; font-size: 40px; line-height: 40px;margin-top:8px;"></i>
         </div>
-      <div class="demo-avatar-dropdown">
-        <span style="line-height: 20px; font-weight: 400;">小小明<br>hello@example.com</span>
-        <div class="mdl-layout-spacer"></div>
-        <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-          <i class="mdicon arrow-drop-down"></i>
-        </button>
-        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-          <li class="mdl-menu__item">退出</li>
-        </ul>
-      </div>
+        <div class="demo-avatar-dropdown">
+            <span style="line-height: 20px; font-weight: 400;">小小明<br>hello@example.com</span>
+            <div class="mdl-layout-spacer"></div>
+            <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                <i class="mdicon arrow-drop-down"></i>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+                <li class="mdl-menu__item">退出</li>
+            </ul>
+        </div>
     </header>
     <nav>
         <ul>
