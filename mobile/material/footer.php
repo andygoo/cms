@@ -17,8 +17,9 @@
 .weui_tabbar_item {
 	padding: 7px 0
 }
+.weui_tabbar_item.weui_bar_item_on .weui_tabbar_label,
 .weui_tabbar_item.weui_bar_item_on i {
-	color: #09bb07;
+	color: #00bcd4;
 }
 .weui_tabbar .mdicon {font-size: 24px;}
 .weui_tabbar .mdl-button {height: initial;line-height:initial}
