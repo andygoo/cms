@@ -116,7 +116,7 @@
             </li>
             <li <?php if ($uri == 'material/favorite'):?>class="active"<?php endif;?>>
                 <a href="<?php echo URL::site('material/favorite')?>">
-                    <i class="mdicon favorite-outline"></i>我的收藏
+                    <i class="mdicon favorite"></i>我的收藏
                 </a>
             </li>
             <li <?php if ($uri == 'material/history'):?>class="active"<?php endif;?>>

@@ -31,6 +31,9 @@
         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="<?php echo URL::site('material/detail')?>">
           View Updates
         </a>
+        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <i class="mdicon favorite-outline" style="font-size: 24px;color:#f44336"></i>
+        </button>
       </div>
     </div>
     </div>
