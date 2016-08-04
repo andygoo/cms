@@ -70,11 +70,9 @@ var EventUtil = {
     }
 };
 EventUtil.addHandler(window, "online", function () {
-    alert("Online");
 	networkStatus = 'online';
 });
 EventUtil.addHandler(window, "offline", function () {
-    alert("Offline");
 	networkStatus = 'offline';
 });
 $(document).on('click', 'a', function() {

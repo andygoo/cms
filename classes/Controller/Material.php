@@ -6,6 +6,7 @@ class Controller_Material extends Controller_Website {
     protected $user;
     
     public function before() {
+        Request::$theme = 'mobile';
         parent::before();
         
         $is_weixin = false;

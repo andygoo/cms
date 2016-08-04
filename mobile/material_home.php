@@ -41,17 +41,14 @@
 //Check if a new cache is available on page load.
 window.addEventListener('load', function(e) {
 	var appCache = window.applicationCache;
-	//appCache.update(); // Attempt to update the user's cache.
 	appCache.addEventListener('updateready', function(e) {
     if (appCache.status == appCache.UPDATEREADY) {
       // Browser downloaded a new app cache.
       // Swap it in and reload the page to get the new hotness.
       appCache.swapCache();
       //if (confirm('A new version of this site is available. Load it?')) {
-        window.location.reload();
+        //window.location.reload();
       //}
-    } else {
-      // Manifest didn't changed. Nothing new to server.
     }
   }, false);
 }, false);
