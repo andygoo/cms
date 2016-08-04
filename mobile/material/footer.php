@@ -56,6 +56,10 @@ $(function() {
 
 <?php include __DIR__ . '/sidebar.php';?>
 
+<div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar" style="bottom: 70px">
+  <div class="mdl-snackbar__text"></div>
+  <button class="mdl-snackbar__action" type="button"></button>
+</div>
 <script>
 var networkStatus = (navigator.onLine) ? 'online' : 'offline';
 var EventUtil = {
@@ -77,7 +81,10 @@ EventUtil.addHandler(window, "offline", function () {
 });
 $(document).on('click', 'a', function() {
 	if (networkStatus == 'offline') {
-	    alert(networkStatus);
+
+	    var snackbarContainer = document.querySelector('#demo-toast-example');
+	    snackbarContainer.MaterialSnackbar.showSnackbar({message: '网络连接出错，请稍候重试'});
+	    
 	    return false;
 	}
 });
