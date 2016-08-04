@@ -1,6 +1,5 @@
 
 <style>
-.mdl-layout--fixed-header{background: url(http://image1.hc51img.com/397b9262047-0698-4840-9fad-ea3dfa30d4a3.jpg?imageView2/1/w/480/h/320) center / cover;}
 .mdl-layout-title{width: 90%;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;}
 </style>
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">

@@ -7,7 +7,7 @@
     <div class="mdl-layout__header-row">
         <span class="mdl-layout-title">首页</span>
         <div class="mdl-layout-spacer"></div>
-        <!-- <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
             <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
                 <i class="mdicon search" style="line-height: 36px;"></i>
             </label>
@@ -15,24 +15,35 @@
                 <input class="mdl-textfield__input" type="text" id="search">
             </div>
         </div>
-         -->
+        <!-- 
         <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
             <i class="mdicon more-vert"></i>
         </button>
         <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
             <li class="mdl-menu__item">About</li>
             <li class="mdl-menu__item">Contact</li>
-        </ul>
+        </ul> -->
     </div>
-    <!-- <div class="mdl-layout__tab-bar mdl-js-ripple-effect" style="color: #fff">
+    <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
         <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Tab 1</a>
         <a href="#fixed-tab-2" class="mdl-layout__tab">Tab 2</a>
         <a href="#fixed-tab-3" class="mdl-layout__tab">Tab 3</a>
-    </div> -->
+    </div>
 </header>
 
-<main class="mdl-layout__content" style="background: #f7f7f7">
-
+<main class="mdl-layout__content">
+    <div class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+        <br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1
+        <br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1
+    </div>
+    <div class="mdl-layout__tab-panel" id="fixed-tab-2">
+        <br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2
+        <br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2
+    </div>
+    <div class="mdl-layout__tab-panel" id="fixed-tab-3">
+        <br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3
+        <br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3
+    </div>
 </main>
 </div>
 

@@ -1,5 +1,5 @@
 
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 <header class="mdl-layout__header">
     <div class="mdl-layout__drawer-button" onclick="history.back()">
         <i class="mdicon arrow-back"></i>
