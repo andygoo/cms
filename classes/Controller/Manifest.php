@@ -3,10 +3,6 @@
 class Controller_Manifest extends Controller {
 
     public function action_index() {
-        exit;
-    }
-    
-    public function action_demo2() {
         header("Last-Modified: " . gmdate('D, d M Y H:i:s T'));
         header("Expires: " . gmdate('D, d M Y H:i:s T', time()+315360000));
         header("Cache-Control: max-age=315360000");

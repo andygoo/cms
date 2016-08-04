@@ -47,7 +47,7 @@ window.addEventListener('load', function(e) {
       // Swap it in and reload the page to get the new hotness.
       appCache.swapCache();
       //if (confirm('A new version of this site is available. Load it?')) {
-        //window.location.reload();
+        window.location.reload();
       //}
     }
   }, false);
