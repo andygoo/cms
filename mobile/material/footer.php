@@ -19,7 +19,7 @@
 }
 .weui_tabbar_item.weui_bar_item_on .weui_tabbar_label,
 .weui_tabbar_item.weui_bar_item_on i {
-	color: #00bcd4;
+	color: <?php echo $theme_list[$curr_theme]?>;
 }
 .weui_tabbar .mdicon {font-size: 24px;}
 .weui_tabbar .mdl-button {height: initial;line-height:initial}

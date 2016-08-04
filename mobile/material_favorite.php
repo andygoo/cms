@@ -19,7 +19,7 @@
     </div>
 </header>
 
-<main class="mdl-layout__content" style="padding-bottom: 55px;">
+<main class="mdl-layout__content">
 
 <ul class="demo-list-three mdl-list" style="width: 100%;">
     <?php foreach (range(1, 10) as $key=>$item):?>

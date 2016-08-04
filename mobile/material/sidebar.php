@@ -56,7 +56,7 @@
   padding: 16px;margin-right: 16px;display:block;width:100%;
 }
 [sidebarjs] nav a i {
-	vertical-align: middle;font-size: 22px;color: #78909c;margin-right:32px;
+	vertical-align: middle;font-size: 22px;color:rgba(0,0,0, .55);margin-right:32px;
 }
 [sidebarjs] nav li:active, [sidebarjs] nav li.active {
   color: inherit;
