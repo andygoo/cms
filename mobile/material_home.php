@@ -1,4 +1,22 @@
 
+<?= HTML::style('media/swiper/css/swiper.min.css')?>
+<style>
+.swiper-pagination-bullet {
+    width:initial;
+    height:48px;;
+    display:initial;
+    border-radius:initial;
+    background:initial;
+    opacity:initial;
+}
+.mdl-layout.is-upgraded .mdl-layout__tab.is-active::after {
+    -webkit-animation: none;
+    animation: none;
+    transition: none;
+}
+.mdl-layout.is-upgraded .mdl-layout__tab-panel {display: block}
+</style>
+
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
 <header class="mdl-layout__header">
     <div class="mdl-layout__drawer-button">
@@ -32,18 +50,30 @@
 </header>
 
 <main class="mdl-layout__content">
-    <div class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
-        <br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1
-        <br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1
+    
+    <div id="swiper" class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" data-hash="slide1">
+                <div class="mdl-layout__tab-panel" id="fixed-tab-1">
+                    <br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1
+                    <br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1
+                </div>
+            </div>
+            <div class="swiper-slide" data-hash="slide2">
+                <div class="mdl-layout__tab-panel" id="fixed-tab-2">
+                    <br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2
+                    <br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2
+                </div>
+            </div>
+            <div class="swiper-slide" data-hash="slide3">
+                <div class="mdl-layout__tab-panel" id="fixed-tab-3">
+                    <br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3
+                    <br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="mdl-layout__tab-panel" id="fixed-tab-2">
-        <br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2
-        <br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2
-    </div>
-    <div class="mdl-layout__tab-panel" id="fixed-tab-3">
-        <br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3
-        <br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3<br>3
-    </div>
+    
 </main>
 </div>
 
@@ -65,3 +95,24 @@ window.addEventListener('load', function(e) {
 }, false);
 </script>
 
+<?= HTML::script('media/js/swiper-3.3.1.jquery.min.js');?>
+<script>
+$(function() {
+	var swiper = new Swiper('#swiper', {
+	    pagination: '.mdl-layout__tab-bar',
+	    hashnav:true,
+	    paginationClickable: true,
+	    paginationBulletRender: function (index, className) {
+	        var cat = ['tab1','tab2','tab3'];
+	        if (index==0) {
+		        className = 'is-active ' + className;
+	        }
+	        return '<a href="#fixed-tab-'+(index+1)+'" class="mdl-layout__tab '+className+'">'+cat[index]+'</a>';
+	    },
+	    onSlideChangeEnd: function(swiper){
+            var idx = swiper.activeIndex;
+		    $('.mdl-layout__tab').eq(idx).addClass('is-active').siblings().removeClass('is-active');
+	    }
+	});
+});
+</script>
