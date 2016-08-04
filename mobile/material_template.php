@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cn"<?php if ($uri == 'material/index'):?> manifest="/demo.appcache"<?php endif;?>>
+<html lang="zh-cn"<?php if ($uri == 'material/index'):?> manifest="/demo2.appcache"<?php endif;?>>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">

@@ -3,10 +3,15 @@
 class Controller_Manifest extends Controller {
 
     public function action_index() {
-        //header("Last-Modified: " . gmdate('D, d M Y H:i:s T', time()));
-        //header("Expires: " . gmdate('D, d M Y H:i:s T', time()+315360000));
-        //header("Cache-Control: max-age=315360000");
+        exit;
+    }
+    
+    public function action_demo2() {
+        header("Last-Modified: " . gmdate('D, d M Y H:i:s T'));
+        header("Expires: " . gmdate('D, d M Y H:i:s T', time()+315360000));
+        header("Cache-Control: max-age=315360000");
 		header('Content-Type: text/cache-manifest; charset=utf-8');
+		//header("HTTP/1.1 304 Not Modified");
 		$version = date('Y-m-d H:i:s');
         echo <<<EOF
 ﻿CACHE MANIFEST
