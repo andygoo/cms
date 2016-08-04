@@ -98,12 +98,12 @@ Route::set('custom', 'fruit/<customurl>', array('customurl' => '[a-z0-9_-]+'))
     'controller' => 'article',
     'action' => 'customurl' 
 ));
-
+/*
 Route::set('manifest', '<action>.appcache', array('action' => '[a-z0-9_-]+'))
 ->defaults(array(
 'controller' => 'manifest',
 'action' => 'index'
-));
+));*/
 
 Route::set('default', '(<controller>(/<action>(/<id>)))', array('id' => '(\d+)'))
 ->defaults(array(
