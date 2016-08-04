@@ -4,6 +4,13 @@ class Controller_Material extends Controller_Website {
 
     public $template = 'material_template';
     protected $user;
+    public $theme_list = array(
+            'red-blue' => '#f44336',
+            'blue-red' => '#2196f3',
+            'teal-red' => '#009688',
+            'cyan-red' => '#00bcd4',
+            'deep_orange-blue' => '#ff5722',
+    );
     
     public function before() {
         Request::$theme = 'mobile';
@@ -17,10 +24,17 @@ class Controller_Material extends Controller_Website {
 
         $auth = Auth::instance('member');
         $this->user = $auth->get_user();
+
+        $curr_theme = 'cyan-red';
+        if (isset($_COOKIE['apptheme']) && in_array($_COOKIE['apptheme'], array_keys($this->theme_list))) {
+            $curr_theme = $_COOKIE['apptheme'];
+        }
         
         if ($this->auto_render === TRUE) {
             View::bind_global('is_weixin', $is_weixin);
             View::bind_global('user', $this->user);
+            View::bind_global('theme_list', $this->theme_list);
+            View::bind_global('curr_theme', $curr_theme);
             
             if ($is_weixin) {
                 $wx_js_api = new WeixinJSAPI('test');
@@ -46,6 +60,10 @@ class Controller_Material extends Controller_Website {
         $this->content = View::factory('material_history');
     }
 
+    public function action_setting() {
+        $this->content = View::factory('material_setting');
+    }
+    
     public function action_feedback() {
         $this->content = View::factory('material_feedback');
     }

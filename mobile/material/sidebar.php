@@ -127,9 +127,14 @@
         </ul>
         <hr style="margin: 0;border-top: 1px solid #eee;">
         <ul>
+            <li <?php if ($uri == 'material/setting'):?>class="active"<?php endif;?>>
+                <a href="<?php echo URL::site('material/setting')?>">
+                    <i class="mdicon settings-cogwheel"></i>设置
+                </a>
+            </li>
             <li <?php if ($uri == 'material/feedback'):?>class="active"<?php endif;?>>
                 <a href="<?php echo URL::site('material/feedback')?>">
-                    <i class="mdicon sms-failed"></i>发送反馈
+                    <i class="mdicon message"></i>发送反馈
                 </a>
             </li>
             <li <?php if ($uri == 'material/help'):?>class="active"<?php endif;?>>
