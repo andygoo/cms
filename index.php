@@ -99,7 +99,7 @@ Route::set('custom', 'fruit/<customurl>', array('customurl' => '[a-z0-9_-]+'))
     'action' => 'customurl' 
 ));
 
-Route::set('manifest', 'demo.appcache')
+Route::set('manifest', '<action>.appcache', array('action' => '[a-z0-9_-]+'))
 ->defaults(array(
 'controller' => 'manifest',
 'action' => 'index'
