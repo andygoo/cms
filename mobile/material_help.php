@@ -1,4 +1,7 @@
 
+<style>
+.mdl-layout__tab-bar {height:48px;;}
+</style>
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
 <header class="mdl-layout__header">
     <div class="mdl-layout__drawer-button" onclick="history.back()">
@@ -23,5 +26,31 @@
 </header>
 
 <main class="mdl-layout__content">
+
+      <div class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+        <ul>
+          <li>Eddard</li>
+          <li>Catelyn</li>
+          <li>Robb</li>
+          <li>Sansa</li>
+          <li>Brandon</li>
+          <li>Arya</li>
+          <li>Rickon</li>
+        </ul>
+      </div>
+      <div class="mdl-layout__tab-panel" id="fixed-tab-2">
+        <ul>
+          <li>Tywin</li>
+          <li>Cersei</li>
+          <li>Jamie</li>
+          <li>Tyrion</li>
+        </ul>
+      </div>
+      <div class="mdl-layout__tab-panel" id="fixed-tab-3">
+        <ul>
+          <li>Viserys</li>
+          <li>Daenerys</li>
+        </ul>
+      </div>
 </main>
 </div>
