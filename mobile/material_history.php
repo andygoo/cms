@@ -17,33 +17,29 @@
     </div>
 </header>
 
-<main class="mdl-layout__content" style="padding-bottom: 55px;">
+<style>
+.mdl-list__item {background: #fff;margin-top:1px;padding:10px 10px 10px 15px}
+</style>
+<main class="mdl-layout__content">
 
-    <div class="mdl-grid mdl-grid--no-spacing" style="padding: 5px;">
-        <?php foreach (range(1, 6) as $item):?>
-        <div class="mdl-cell mdl-cell--6-col-tablet mdl-cell--12-col-phone" style="margin: 5px;">
-            <div class="demo-card-square mdl-card mdl-shadow--2dp" style="width: 100%;height: 320px;">
-                <div class="mdl-card__title mdl-card--expand" style="background:url(http://image1.hc51img.com/397b9262047-0698-4840-9fad-ea3dfa30d4a3.jpg?imageView2/1/w/480/h/300) center / cover;">
-                    <h2 class="mdl-card__title-text"></h2>
-                </div>
-                <div class="mdl-card__supporting-text" style="line-height:24px;font-size: 16px;color: rgba(0,0,0,.80);">北京现代ix35 2013款 2.0L 自动两驱智能型GLS 国IV</div>
-                <div class="mdl-card__actions mdl-card--border">
-                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="<?php echo URL::site('material/detail')?>">
-                      Get Started
-                    </a>
-                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                        <i class="mdicon favorite-outline" style="font-size: 24px;color:#f44336"></i>
-                    </button>
-                </div>
-                <div class="mdl-card__menu">
-                    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                      <i class="mdicon share" style="font-size: 24px;color:#fff"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <?php endforeach;?>
-    </div>
+<ul class="mdl-list">
+    <?php foreach (range(1, 10) as $key=>$item):?>
+  <li class="mdl-list__item mdl-list__item--two-line" style="height:auto">
+    <span class="mdl-list__item-primary-content" style="height:auto">
+      <i class="mdl-list__item-avatar" style="width: auto;height:auto">
+          <img width="100" src="http://image1.hc51img.com/397b9262047-0698-4840-9fad-ea3dfa30d4a3.jpg?imageView2/1/w/480/h/360">
+      </i>
+      <span>北京现代2013款智能型</span>
+      <span class="mdl-list__item-sub-title" style="font-size: 12px;">2014.04上牌 · 3.0万公里 · 手动</span>
+    </span>
+    <span class="mdl-list__item-secondary-content">
+        <a class="mdl-list__item-secondary-action mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <i class="mdicon more-vert"></i>
+        </a>
+    </span>
+  </li>
+    <?php endforeach;?>
+</ul>
 
 </main>
 </div>

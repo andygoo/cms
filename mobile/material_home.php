@@ -5,9 +5,10 @@
 .mdl-tabs__tab.is-active .mdicon {color: <?php echo $theme_list[$curr_theme]?>;}
 .mdl-tabs.is-upgraded .mdl-tabs__tab.is-active {color: <?php echo $theme_list[$curr_theme]?>;}
 .mdl-tabs__tab-bar {
-position: fixed;left:0;bottom:0;background:#fff;width:100%;
+position: fixed;left:0;bottom:0;background:#fff;width:100%;z-index:9;
 box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
 }
+.mdl-list__item {background: #fff;margin-top:1px;}
 </style>
 
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -42,7 +43,7 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
     </div>
 </header>
 
-<main class="mdl-layout__content">
+<main class="mdl-layout__content" style=" padding-bottom: 55px;">
     
     <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
       <div class="mdl-tabs__tab-bar">
@@ -52,29 +53,48 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
       </div>
     
       <div class="mdl-tabs__panel is-active" id="fixed-tab-1">
-        <ul>
-          <li>Eddard</li>
-          <li>Catelyn</li>
-          <li>Robb</li>
-          <li>Sansa</li>
-          <li>Brandon</li>
-          <li>Arya</li>
-          <li>Rickon</li>
+        <ul class="mdl-list">
+          <li class="mdl-list__item"><span class="mdl-list__item-primary-content"><i class="mdl-list__item-icon mdicon user"></i> Bryan Cranston</span></li>
+          <li class="mdl-list__item"><span class="mdl-list__item-primary-content"><i class="mdl-list__item-icon mdicon user"></i> Bryan Cranston</span></li>
+          <li class="mdl-list__item"><span class="mdl-list__item-primary-content"><i class="mdl-list__item-icon mdicon user"></i> Aaron Paul</span></li>
+          <li class="mdl-list__item"><span class="mdl-list__item-primary-content"><i class="mdl-list__item-icon mdicon user"></i> Bob Odenkirk</span></li>
         </ul>
       </div>
       <div class="mdl-tabs__panel" id="fixed-tab-2">
-        <ul>
-          <li>Tywin</li>
-          <li>Cersei</li>
-          <li>Jamie</li>
-          <li>Tyrion</li>
+        <ul class="mdl-list">
+          <li class="mdl-list__item"><span class="mdl-list__item-primary-content"><i class="mdl-list__item-icon mdicon user"></i> Bryan Cranston</span></li>
+          <li class="mdl-list__item"><span class="mdl-list__item-primary-content"><i class="mdl-list__item-icon mdicon user"></i> Aaron Paul</span></li>
+          <li class="mdl-list__item"><span class="mdl-list__item-primary-content"><i class="mdl-list__item-icon mdicon user"></i> Bob Odenkirk</span></li>
         </ul>
       </div>
       <div class="mdl-tabs__panel" id="fixed-tab-3">
-        <ul>
-          <li>Viserys</li>
-          <li>Daenerys</li>
-        </ul>
+
+        <div class="mdl-grid mdl-grid--no-spacing" style="padding: 5px;">
+            <?php foreach (range(1, 6) as $item):?>
+            <div class="mdl-cell mdl-cell--6-col-tablet mdl-cell--12-col-phone" style="margin: 5px;">
+                <div class="demo-card-square mdl-card mdl-shadow--2dp" style="width: 100%;height: 320px;">
+                    <div class="mdl-card__title mdl-card--expand" style="background:url(http://image1.hc51img.com/397b9262047-0698-4840-9fad-ea3dfa30d4a3.jpg?imageView2/1/w/480/h/300) center / cover;">
+                        <h2 class="mdl-card__title-text"></h2>
+                    </div>
+                    <div class="mdl-card__supporting-text" style="line-height:24px;font-size: 16px;color: rgba(0,0,0,.80);">北京现代ix35 2013款 2.0L 自动两驱智能型GLS 国IV</div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="<?php echo URL::site('material/detail')?>">
+                          Get Started
+                        </a>
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                            <i class="mdicon favorite-outline"></i>
+                        </button>
+                    </div>
+                    <div class="mdl-card__menu">
+                        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                          <i class="mdicon share" style="color:#fff"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach;?>
+        </div>
+        
       </div>
     </div>
     

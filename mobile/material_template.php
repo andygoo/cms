@@ -19,7 +19,7 @@
 <?= HTML::style('media/mdl/material.'.$curr_theme.'.min.css')?>
 <style>
 .mdl-layout-title {color: #fff}
-.mdl-layout__content{background: #f7f7f7; padding-bottom: 55px;}
+.mdl-layout__content{background: #f7f7f7;}
 .mdl-layout__header .mdicon{font-size: 24px;color: #fff}
 .mdl-layout__content .mdicon{font-size: 24px;color: <?php echo $theme_list[$curr_theme]?>}
 
