@@ -130,7 +130,7 @@ window.addEventListener('load', function(e) {
 }, false);
 </script>
 
-<?= HTML::script('media/js/swiper-3.3.1.jquery.min.js');?>
+<?= HTML::script('media/swiper/js/swiper.jquery.min.js');?>
 <script>
 $(function() {
 	var swiper = new Swiper('#swiper', {

@@ -51,7 +51,7 @@
 
 <?php include __DIR__ . '/common/photoswipe.php';?>
 
-<?= HTML::script('media/js/swiper-3.3.1.jquery.min.js');?>
+<?= HTML::script('media/swiper/js/swiper.jquery.min.js');?>
 <script>
 $(function() {
 	swiper = new Swiper('#swiper', {
