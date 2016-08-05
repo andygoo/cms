@@ -9,6 +9,7 @@ position: fixed;left:0;bottom:0;background:#fff;width:100%;z-index:9;
 box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
 }
 .mdl-list__item {background: #fff;margin-top:1px;}
+.mdl-list__item-avatar {text-align: center;line-height: 40px;background-color:#efefef}
 </style>
 
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -54,17 +55,19 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
     
       <div class="mdl-tabs__panel is-active" id="fixed-tab-1">
         <ul class="mdl-list">
-          <li class="mdl-list__item"><span class="mdl-list__item-primary-content"><i class="mdl-list__item-icon mdicon user"></i> Bryan Cranston</span></li>
-          <li class="mdl-list__item"><span class="mdl-list__item-primary-content"><i class="mdl-list__item-icon mdicon user"></i> Bryan Cranston</span></li>
-          <li class="mdl-list__item"><span class="mdl-list__item-primary-content"><i class="mdl-list__item-icon mdicon user"></i> Aaron Paul</span></li>
-          <li class="mdl-list__item"><span class="mdl-list__item-primary-content"><i class="mdl-list__item-icon mdicon user"></i> Bob Odenkirk</span></li>
+          <?php foreach (range(1, 6) as $item):?>
+          <li class="mdl-list__item">
+              <span class="mdl-list__item-primary-content"><i class="mdl-list__item-avatar mdicon user"></i><span>Bryan Cranston</span></span>
+              <a class="mdl-list__item-secondary-action" href="#"><i class="mdicon notifications-off"></i></a>
+          </li>
+          <?php endforeach;?>
         </ul>
       </div>
       <div class="mdl-tabs__panel" id="fixed-tab-2">
         <ul class="mdl-list">
+          <?php foreach (range(1, 6) as $item):?>
           <li class="mdl-list__item"><span class="mdl-list__item-primary-content"><i class="mdl-list__item-icon mdicon user"></i> Bryan Cranston</span></li>
-          <li class="mdl-list__item"><span class="mdl-list__item-primary-content"><i class="mdl-list__item-icon mdicon user"></i> Aaron Paul</span></li>
-          <li class="mdl-list__item"><span class="mdl-list__item-primary-content"><i class="mdl-list__item-icon mdicon user"></i> Bob Odenkirk</span></li>
+          <?php endforeach;?>
         </ul>
       </div>
       <div class="mdl-tabs__panel" id="fixed-tab-3">
@@ -81,7 +84,7 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
                         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="<?php echo URL::site('material/detail')?>">
                           Get Started
                         </a>
-                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="float: right;">
                             <i class="mdicon favorite-outline"></i>
                         </button>
                     </div>
