@@ -17,7 +17,7 @@
     </div>
 </header>
 
-<?php echo HTML::style('media/css/chat.css')?>
+<?= HTML::style('media/css/chat.css')?>
 <main class="mdl-layout__content" style="background: #f2f7f7;padding-bottom:70px">
 
 <style>

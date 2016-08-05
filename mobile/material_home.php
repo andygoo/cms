@@ -2,8 +2,8 @@
 <style>
 .mdl-tabs__tab {font-size: 12px;color: #888;width: 100%;line-height:15px;padding-top:7px;}
 .mdl-tabs__tab .mdicon {font-size: 24px;color: #888;}
-.mdl-tabs__tab.is-active .mdicon {color: <?php echo $theme_list[$curr_theme]?>;}
-.mdl-tabs.is-upgraded .mdl-tabs__tab.is-active {color: <?php echo $theme_list[$curr_theme]?>;}
+.mdl-tabs__tab.is-active .mdicon {color: <?= $theme_list[$curr_theme]?>;}
+.mdl-tabs.is-upgraded .mdl-tabs__tab.is-active {color: <?= $theme_list[$curr_theme]?>;}
 .mdl-tabs__tab-bar {
 position: fixed;left:0;bottom:0;background:#fff;width:100%;z-index:9;
 box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
@@ -81,7 +81,7 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
                     </div>
                     <div class="mdl-card__supporting-text" style="line-height:24px;font-size: 16px;color: rgba(0,0,0,.80);">北京现代ix35 2013款 2.0L 自动两驱智能型GLS 国IV</div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="<?php echo URL::site('material/detail')?>">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="<?= URL::site('material/detail')?>">
                           Get Started
                         </a>
                         <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="float: right;">

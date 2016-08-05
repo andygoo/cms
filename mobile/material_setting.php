@@ -48,9 +48,9 @@
     <?php foreach ($theme_list as $theme_name => $theme_color):?>
       <li class="mdl-list__item">
         <span class="mdl-list__item-primary-content">
-            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="theme-option-<?php echo $theme_name?>">
-              <input type="radio" id="theme-option-<?php echo $theme_name?>" class="mdl-radio__button" name="theme-options" value="<?php echo $theme_name?>" <?php if($theme_name==$curr_theme):?>checked<?php endif;?>>
-              <span class="mdl-radio__label"><?php echo $theme_name?></span>
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="theme-option-<?= $theme_name?>">
+              <input type="radio" id="theme-option-<?= $theme_name?>" class="mdl-radio__button" name="theme-options" value="<?= $theme_name?>" <?php if($theme_name==$curr_theme):?>checked<?php endif;?>>
+              <span class="mdl-radio__label" style="color: <?= $theme_color?>"><?= $theme_name?></span>
             </label>
         </span>
       </li>
@@ -60,7 +60,7 @@
 </main>
 </div>
 
-<?php echo HTML::script('media/js/jquery.cookie.js')?>
+<?= HTML::script('media/js/jquery.cookie.js')?>
 <script>
 $(function() {
 	$('input[name=theme-options]').change(function() {
