@@ -24,10 +24,6 @@
 
 <style>
 body {font-family:"Comic Sans MS","幼圆","黑体",sans-serif;font-size:12px;color:#212121;}
-.sweet-alert .sa-error-container .icon {width: 20px; height: 20px;}
-.sweet-alert .sa-input-error{top: 23px; right: 13px}
-.sweet-alert .sa-input-error.show {opacity:0}
-
 .auto-tit{background:#fff;padding:13px 10px 13px 10px;position:relative;}
 .auto-tit span:nth-child(1){font-size:18px;display:block;padding:0 0 3px 0;}
 .auto-tit span:nth-child(2){}
@@ -80,12 +76,12 @@ body {font-family:"Comic Sans MS","幼圆","黑体",sans-serif;font-size:12px;co
     </div>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     
-    <div class="row" style="position: fixed; left:0; bottom:0; width: 100%; height: 44px; line-height: 44px; text-align: center; font-size: 16px; margin: 0">
-        <div class="col-xs" id="img_tel" style="background: #fff;color: #dd0000;border-top:1px solid #eee">
-            <div>电话咨询</div>
-        </div>
-        <div class="col-xs" id="yuyue_kanche_btn" style="background: #dd0000;color: #fff">
-            <div>预约看车</div>
+    <div class="row" style="position: fixed; left:0; bottom:0; width: 100%; text-align: center; font-size: 16px; margin: 0">
+        <a class="col-xs mdl-button mdl-js-button mdl-js-ripple-effect" href="tel:18500790001" style="height: 44px; line-height: 44px;background: #fff;color: #dd0000;border-top:1px solid #ededed">
+            <i class="mdicon call" style="color: #dd0000;"></i> 电话咨询
+        </a>
+        <div class="col-xs mdl-button mdl-js-button mdl-js-ripple-effect" id="yuyue_kanche_btn" style="height: 44px; line-height: 44px;background: #dd0000;color: #fff">
+            预约看车
         </div>
     </div>
     

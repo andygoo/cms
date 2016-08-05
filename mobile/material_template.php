@@ -21,7 +21,8 @@
 .mdl-layout-title {color: #fff}
 .mdl-layout__content{background: #f7f7f7;}
 .mdl-layout__header .mdicon{font-size: 24px;color: #fff}
-.mdl-layout__content .mdicon{font-size: 24px;color: <?= $theme_list[$curr_theme]?>}
+.mdl-layout__content .mdicon{font-size: 24px;color: <?= $theme_list[$curr_theme]?>;vertical-align: middle;}
+.mdl-layout__drawer-button {line-height:48px;}
 </style>
 <?= HTML::script('media/mdl/material.min.js')?>
 <?= HTML::script('media/js/jquery.min.js')?>
