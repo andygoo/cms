@@ -5,10 +5,17 @@ class Controller_Material extends Controller_Website {
     public $template = 'material_template';
     protected $user;
     public $theme_list = array(
-            'red-blue' => '#f44336',
             'blue-red' => '#2196f3',
             'teal-red' => '#009688',
             'cyan-red' => '#00bcd4',
+            'green-red' => '#4caf50',
+            
+            'light_green-red' => '#8bc34a',
+            'light_blue-red' => '#03a9f4',
+            
+            'red-blue' => '#f44336',
+            'amber-blue' => '#ff9800',
+            'orange-blue' => '#ffc107',
             'deep_orange-blue' => '#ff5722',
     );
     

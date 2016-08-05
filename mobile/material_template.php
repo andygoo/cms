@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon-precomposed" href="/media/img/apple-touch-icon.png">
 <title>Material</title>
 <?= HTML::style('media/MDicons/css/MDicon.min.css')?>
-<?= HTML::style('media/mdl/material.'.$curr_theme.'.min.css')?>
+<?= HTML::style('media/mdl/theme/material.'.$curr_theme.'.min.css')?>
 <style>
 .mdl-layout-title {color: #fff}
 .mdl-layout__content{background: #f7f7f7;}
