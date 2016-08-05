@@ -85,6 +85,10 @@ body {font-family:"Comic Sans MS","幼圆","黑体",sans-serif;font-size:12px;co
         </div>
     </div>
     
+    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-button--primary" style="position: fixed;right:20px;bottom:60px;">
+      <i class="mdicon call" style="color: #fff;"></i>
+    </button>
+    
 </main>
 </div>
 
