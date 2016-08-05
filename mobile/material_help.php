@@ -1,6 +1,9 @@
 
 <style>
-.mdl-layout__tab-bar {height:48px;;}
+.mdl-layout__tab-bar {height:48px;}
+.mdl-layout__tab {color:rgba(255,255,255,.8);}
+.mdl-layout.is-upgraded .mdl-layout__tab.is-active {color: #fff}
+.mdl-layout.is-upgraded .mdl-layout__tab.is-active::after {background: #fff}
 </style>
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
 <header class="mdl-layout__header">
