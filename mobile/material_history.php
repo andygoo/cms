@@ -24,20 +24,20 @@
 
 <ul class="mdl-list">
     <?php foreach (range(1, 10) as $key=>$item):?>
-  <li class="mdl-list__item mdl-list__item--two-line" style="height:auto">
-    <span class="mdl-list__item-primary-content" style="height:auto">
-      <i class="mdl-list__item-avatar" style="width: auto;height:auto">
-          <img width="100" src="http://image1.hc51img.com/397b9262047-0698-4840-9fad-ea3dfa30d4a3.jpg?imageView2/1/w/480/h/360">
-      </i>
-      <span>北京现代2013款智能型</span>
-      <span class="mdl-list__item-sub-title" style="font-size: 12px;">2014.04上牌 · 3.0万公里 · 手动</span>
-    </span>
-    <span class="mdl-list__item-secondary-content">
-        <a class="mdl-list__item-secondary-action mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-            <i class="mdicon more-vert"></i>
-        </a>
-    </span>
-  </li>
+      <li class="mdl-list__item mdl-list__item--two-line" style="height:auto">
+        <span class="mdl-list__item-primary-content" style="height:auto">
+          <span style="float:left;margin-right: 16px;width: auto;height:auto">
+              <img width="100" src="http://image1.hc51img.com/397b9262047-0698-4840-9fad-ea3dfa30d4a3.jpg?imageView2/1/w/480/h/360">
+          </span>
+          <span>北京现代2013款智能型</span>
+          <span class="mdl-list__item-sub-title" style="font-size: 12px;">2014.04上牌 · 3.0万公里 · 手动</span>
+        </span>
+        <span class="mdl-list__item-secondary-content">
+            <a class="mdl-list__item-secondary-action mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                <i class="mdicon closed"></i>
+            </a>
+        </span>
+      </li>
     <?php endforeach;?>
 </ul>
 
