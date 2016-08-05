@@ -17,8 +17,11 @@
   color: #FFF;
   font-size: 14px;
   margin: 0;
+    /*
   background: url(http://7xkkhh.com1.z0.glb.clouddn.com/2016/08/01/14700177870141.jpg?imageView2/1/w/600/h/302) #2196F3;
   background-size: cover;
+  */
+	background: <?php echo $theme_list[$curr_theme]?>;
 }
 [sidebarjs] header a{
 	color:#fff;
