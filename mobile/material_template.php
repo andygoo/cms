@@ -22,10 +22,6 @@
 .mdl-layout__content{background: #f7f7f7;}
 .mdl-layout__header .mdicon{font-size: 24px;color: #fff}
 .mdl-layout__content .mdicon{font-size: 24px;color: <?php echo $theme_list[$curr_theme]?>}
-
-.mdl-layout__tab {color:rgba(255,255,255,.8);}
-.mdl-layout.is-upgraded .mdl-layout__tab.is-active {color: #fff}
-.mdl-layout.is-upgraded .mdl-layout__tab.is-active::after {background: #fff}
 </style>
 <?= HTML::script('media/mdl/material.min.js')?>
 <?= HTML::script('media/js/jquery.min.js')?>

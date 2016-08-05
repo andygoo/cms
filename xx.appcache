@@ -1,17 +1,18 @@
 ﻿CACHE MANIFEST
 
-# VERSION 2016-08-04 14:38:4ewweweweewdsdssddsd
+# VERSION 2016-08-04 14:38:qqssdds
 
 # 直接缓存的文件
 CACHE:
-/media/MDicons/css/MDicon.min.css
 /media/mdl/material.cyan-red.min.css
 /media/mdl/material.min.js
-/media/sidebarjs/sidebarjs.css
-/media/css/weui.min.css
-/media/js/jquery.min.js
-/media/sidebarjs/sidebarjs.js
+/media/MDicons/css/MDicon.min.css
 /media/MDicons/fonts/mdicon.woff
+/media/js/jquery.min.js
+/media/swiper/css/swiper.min.css
+/media/swiper/js/swiper.jquery.min.js
+/media/sidebarjs/sidebarjs.css
+/media/sidebarjs/sidebarjs.js
 http://7xkkhh.com1.z0.glb.clouddn.com/2016/08/01/14700177870141.jpg?imageView2/1/w/600/h/302
 
 # 需要在线访问的文件
