@@ -21,6 +21,17 @@
 </header>
 
 <main class="mdl-layout__content">
+    <!-- 
+    <div class="mdl-grid mdl-grid--no-spacing" style="padding: 10px;">
+      <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-shadow--2dp">
+        <ul class="mdl-list" style="padding: 0;margin:0;">
+          <?php foreach (range(1, 6) as $item):?>
+          <li class="mdl-list__item"><span class="mdl-list__item-primary-content"><i class="mdl-list__item-icon mdicon user"></i> Bryan Cranston</span></li>
+          <?php endforeach;?>
+        </ul>
+      </div>
+    </div> -->
+    
     <ul class="mdl-list">
       <li class="mdl-list__item">
         <span class="mdl-list__item-primary-content">消息提醒</span>
