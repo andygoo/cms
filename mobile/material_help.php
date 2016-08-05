@@ -17,7 +17,7 @@
             <i class="mdicon more-vert"></i>
         </button>
         <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-            <li class="mdl-menu__item">About</li>
+            <li class="mdl-menu__item about-button">About</li>
             <li class="mdl-menu__item">Contact</li>
         </ul>
     </div>

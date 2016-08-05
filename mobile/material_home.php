@@ -1,11 +1,11 @@
 
 <style>
-.mdl-tabs__tab {font-size: 12px;color: #888;width: 100%;line-height:15px;padding-top:7px;}
+.mdl-tabs__tab {font-size: 12px;color: #888;width: 100%;line-height:20px;padding-top:10px;}
 .mdl-tabs__tab .mdicon {font-size: 24px;color: #888;}
 .mdl-tabs__tab.is-active .mdicon {color: <?= $theme_list[$curr_theme]?>;}
 .mdl-tabs.is-upgraded .mdl-tabs__tab.is-active {color: <?= $theme_list[$curr_theme]?>;}
 .mdl-tabs__tab-bar {
-position: fixed;left:0;bottom:0;background:#fff;width:100%;z-index:9;
+position: fixed;left:0;bottom:0;background:#fff;width:100%;z-index:9;height: 57px;
 box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
 }
 .mdl-list__item {background: #fff;margin-top:1px;}
@@ -37,14 +37,14 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
                 <i class="mdicon more-vert"></i>
             </button>
             <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-                <li class="mdl-menu__item">About</li>
+                <li class="mdl-menu__item about-button">About</li>
                 <li class="mdl-menu__item">Contact</li>
             </ul>
         </nav>
     </div>
 </header>
 
-<main class="mdl-layout__content" style=" padding-bottom: 55px;">
+<main class="mdl-layout__content" style="padding-bottom: 60px;">
     
     <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
       <div class="mdl-tabs__tab-bar">
