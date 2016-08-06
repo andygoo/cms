@@ -14,8 +14,7 @@ class Controller_Material extends Controller_Website {
             'light_blue-red' => '#03a9f4',
             
             'red-blue' => '#f44336',
-            'amber-blue' => '#ff9800',
-            'orange-blue' => '#ffc107',
+            'purple-blue' => '#9c27b0',
             'deep_orange-blue' => '#ff5722',
     );
     
