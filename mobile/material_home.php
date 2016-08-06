@@ -12,6 +12,34 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
 .mdl-list__item-avatar {text-align: center;line-height: 40px;background-color:#efefef}
 </style>
 
+<?= HTML::style('media/swiper/css/swiper.min.css')?>
+<style>
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+.swiper-slide {
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+.swiper .swiper-slide {
+	width: 140px;padding-bottom:10px;padding-left: 8px;
+}
+.swiper .swiper-slide:last-child {
+	padding-right: 8px;
+}
+</style>
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 <header class="mdl-layout__header">
     <div class="mdl-layout__drawer-button">
@@ -54,22 +82,64 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
       </div>
     
       <div class="mdl-tabs__panel is-active" id="fixed-tab-1">
+        <div class="swiper-container" id="swiper">
+            <div class="swiper-wrapper">
+                <?php foreach (range(1, 4) as $item):?>
+                <div class="swiper-slide" style="min-height:160px">
+                    <img data-src="http://image3.haoche51.com/o_1ak31dluk1pbl16m1brts3p1iks7.jpg?imageView2/1/w/600/h/300" width="100%" class="swiper-lazy">
+                    <div class="swiper-lazy-preloader"></div>
+                </div>
+                <?php endforeach;?>
+            </div>
+            <div class="swiper-pagination" style="color:#fff"></div>
+        </div>
+        <h3 style="font-size:20px;margin:15px 15px 5px;color:#444">为您推荐</h3>
+        <div class="swiper-container swiper">
+            <div class="swiper-wrapper">
+                <?php foreach (range(1, 6) as $item):?>
+                <div class="swiper-slide">
+                    <div class="mdl-card mdl-shadow--2dp">
+                      <div class="mdl-card__title mdl-card--expand" style="background:#46B6AC">
+                      </div>
+                      <div class="mdl-card__supporting-text">Lorem ipsum dolor sit amet.</div>
+                    </div>
+                </div>
+                <?php endforeach;?>
+            </div>
+        </div>
+        <h3 style="font-size:20px;margin:5px 15px;color:#444">超值低价</h3>
+        <div class="swiper-container swiper" style="margin-bottom: 15px;">
+            <div class="swiper-wrapper">
+                <?php foreach (range(1, 6) as $item):?>
+                <div class="swiper-slide">
+                    <div class="mdl-card mdl-shadow--2dp">
+                      <div class="mdl-card__title mdl-card--expand" style="background:#46B6AC">
+                      </div>
+                      <div class="mdl-card__supporting-text">Lorem ipsum dolor sit amet.</div>
+                    </div>
+                </div>
+                <?php endforeach;?>
+            </div>
+        </div>
+          
+      </div>
+      
+      <div class="mdl-tabs__panel" id="fixed-tab-2">
         <ul class="mdl-list">
-          <?php foreach (range(1, 6) as $item):?>
+          <?php foreach (range(1, 4) as $item):?>
           <li class="mdl-list__item">
               <span class="mdl-list__item-primary-content"><i class="mdl-list__item-avatar mdicon user"></i><span>Bryan Cranston</span></span>
               <a class="mdl-list__item-secondary-action" href="#"><i class="mdicon notifications-off"></i></a>
           </li>
           <?php endforeach;?>
         </ul>
-      </div>
-      <div class="mdl-tabs__panel" id="fixed-tab-2">
         <ul class="mdl-list">
-          <?php foreach (range(1, 6) as $item):?>
+          <?php foreach (range(1, 4) as $item):?>
           <li class="mdl-list__item"><span class="mdl-list__item-primary-content"><i class="mdl-list__item-icon mdicon user"></i> Bryan Cranston</span></li>
           <?php endforeach;?>
         </ul>
       </div>
+      
       <div class="mdl-tabs__panel" id="fixed-tab-3">
 
         <div class="mdl-grid mdl-grid--no-spacing" style="padding: 5px;">
@@ -119,4 +189,20 @@ window.addEventListener('load', function(e) {
     }
   }, false);
 }, false);
+</script>
+
+<?= HTML::script('media/swiper/js/swiper.jquery.min.js');?>
+<script>
+var swiper = new Swiper('.swiper', {
+    pagination: '.swiper-pagination',
+    slidesPerView: 'auto',
+    paginationClickable: true
+});
+var swiper1 = new Swiper('#swiper', {
+	lazyLoading : true,
+	lazyLoadingInPrevNext : true,
+	pagination: '.swiper-pagination',
+    paginationType: 'fraction',
+	loop: true
+});
 </script>
