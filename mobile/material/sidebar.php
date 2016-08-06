@@ -89,9 +89,9 @@
   -webkit-flex-direction: row;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-align-items: flex-end;
-      -ms-flex-align: flex-end;
-          align-items: flex-end;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 100%;
 }
 </style>
