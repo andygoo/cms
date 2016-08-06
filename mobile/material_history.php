@@ -19,6 +19,7 @@
 
 <style>
 .mdl-list__item {background: #fff;margin-top:1px;padding:10px 10px 10px 15px}
+.mdl-list__item-primary-content .title{display:block;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;}
 </style>
 <main class="mdl-layout__content">
 
@@ -29,7 +30,7 @@
           <span style="float:left;margin-right: 16px;width: auto;height:auto">
               <img width="100" src="http://image1.hc51img.com/397b9262047-0698-4840-9fad-ea3dfa30d4a3.jpg?imageView2/1/w/480/h/360">
           </span>
-          <span>北京现代2013款智能型</span>
+          <span class="title">北京现代 2013款 2.0L 智能型</span>
           <span class="mdl-list__item-sub-title" style="font-size: 12px;">2014.04上牌 · 3.0万公里 · 手动</span>
         </span>
         <span class="mdl-list__item-secondary-content">

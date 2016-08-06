@@ -18,7 +18,7 @@
 </header>
 
 <?= HTML::style('media/css/chat.css')?>
-<main class="mdl-layout__content" style="background: #f2f7f7;padding-bottom:70px">
+<main class="mdl-layout__content" style="padding-bottom:65px">
 
 <style>
 .chat-thread li:nth-child(even) .user {
@@ -59,10 +59,10 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
 <form action="#" class="send-msg-form">
 
     <ul class="mdl-list" style="margin: 0;padding: 0">
-      <li class="mdl-list__item" style="padding: 0 20px 0 0;">
+      <li class="mdl-list__item" style="padding: 0 20px 0 5px;">
           <span class="mdl-list__item-primary-content">
               <div class="mdl-textfield mdl-js-textfield" style="width: 95%;">
-                <textarea class="mdl-textfield__input" rows="1" id="sample5" ></textarea>
+                <textarea class="mdl-textfield__input" rows="1" id="sample5" style="padding: 2px 0;"></textarea>
                 <label class="mdl-textfield__label" for="sample5">请输入...</label>
               </div>
           </span>

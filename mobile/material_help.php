@@ -28,65 +28,17 @@
     </div>
 </header>
 
-<?= HTML::style('media/swiper/css/swiper.min.css')?>
-<style>
-.swiper-container {
-    width: 100%;
-    height: 100%;
-	margin-top: 30px;
-	margin-bottom: 30px;	
-}
-.swiper-slide {
-    /* Center slide text vertically */
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-}
-.swiper-slide {
-	width: 150px;padding-bottom:10px;padding-left: 10px;
-}
-.swiper-slide:last-child {
-	padding-right: 10px;
-}
-</style>
 <main class="mdl-layout__content">
 
       <div class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
-          <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <?php foreach (range(1, 6) as $item):?>
-                <div class="swiper-slide">
-                    <div class="mdl-card mdl-shadow--2dp">
-                      <div class="mdl-card__title mdl-card--expand" style="background:#46B6AC">
-                      </div>
-                      <div class="mdl-card__supporting-text">Lorem ipsum dolor sit amet.</div>
-                    </div>
-                </div>
-                <?php endforeach;?>
-            </div>
-          </div>
-          <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <?php foreach (range(1, 6) as $item):?>
-                <div class="swiper-slide">
-                    <div class="mdl-card mdl-shadow--2dp">
-                      <div class="mdl-card__title mdl-card--expand" style="background:#46B6AC">
-                      </div>
-                      <div class="mdl-card__supporting-text">Lorem ipsum dolor sit amet.</div>
-                    </div>
-                </div>
-                <?php endforeach;?>
-            </div>
-          </div>
+        <ul>
+          <li>Tywin</li>
+          <li>Cersei</li>
+          <li>Jamie</li>
+          <li>Tyrion</li>
+          <li>Jamie</li>
+          <li>Tyrion</li>
+        </ul>
       </div>
       
       <div class="mdl-layout__tab-panel" id="fixed-tab-2">
@@ -105,12 +57,3 @@
       </div>
 </main>
 </div>
-
-<?= HTML::script('media/swiper/js/swiper.jquery.min.js');?>
-<script>
-var swiper = new Swiper('.swiper-container', {
-    pagination: '.swiper-pagination',
-    slidesPerView: 'auto',
-    paginationClickable: true
-});
-</script>
