@@ -176,8 +176,8 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
       
       <div class="mdl-tabs__panel" id="fixed-tab-3">
 
+          <h3 style="font-size:20px;margin:15px 15px 0;color:#444">编辑精选</h3>
           <div class="mdl-grid">
-            <h3 style="font-size:20px;margin:5px 15px;color:#444">编辑精选</h3>
             <?php foreach (range(1, 6) as $item):?>
               <div class="mdl-cell mdl-cell--6-col-phone mdl-cell--4-col">
                 <div class="mdl-card mdl-shadow--2dp" style="width: 100%">
