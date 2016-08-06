@@ -128,7 +128,7 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
                       <div class="mdl-card__media">
                           <img width="140" height="140" src="http://image1.hc51img.com/397b9262047-0698-4840-9fad-ea3dfa30d4a3.jpg?imageView2/1/w/300/h/300">
                       </div>
-                      <div class="mdl-card__supporting-text">北京现代ix35 2013款 2.0L 自动运动型
+                      <div class="mdl-card__supporting-text">北京现代2013款 2.0L运动型
                           <div class="mdl-button--primary">4.68 万</div>
                       </div>
                     </div>
@@ -147,7 +147,7 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
                       <div class="mdl-card__media">
                           <img width="140" height="140" src="http://image1.hc51img.com/397b9262047-0698-4840-9fad-ea3dfa30d4a3.jpg?imageView2/1/w/300/h/300">
                       </div>
-                      <div class="mdl-card__supporting-text">北京现代ix35 2013款 2.0L 自动运动型
+                      <div class="mdl-card__supporting-text">北京现代2013款 2.0L运动型
                           <div class="mdl-button--primary">4.68 万</div>
                       </div>
                     </div>
