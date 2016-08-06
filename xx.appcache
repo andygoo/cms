@@ -1,12 +1,13 @@
 ﻿CACHE MANIFEST
 
-# VERSION 2016-08-04 14:38:sdssrfllsdfsssdsdf的
+# VERSION 2016-08-04 14:38:11133
 
 # 直接缓存的文件
 CACHE:
 /media/js/jquery.min.js
 
-/media/mdl/material.cyan-red.min.css
+/media/mdl/theme/material.deep_orange-blue.min.css
+/media/mdl/theme/material.cyan-red.min.css
 /media/mdl/material.min.js
 
 /media/MDicons/css/MDicon.min.css

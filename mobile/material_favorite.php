@@ -20,29 +20,29 @@
 </header>
 
 <style>
-.mdl-list__item {background: #fff;margin-top:1px;padding:10px 10px 10px 15px}
-.mdl-list__item-primary-content .title{display:block;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;}
+.mdl-icon-toggle.is-checked .mdl-icon-toggle__label {color: <?= $theme_list[$curr_theme]?>}
 </style>
 <main class="mdl-layout__content">
 
-<ul class="mdl-list">
-    <?php foreach (range(1, 10) as $key=>$item):?>
-      <li class="mdl-list__item mdl-list__item--two-line" style="height:auto">
-        <span class="mdl-list__item-primary-content" style="height:auto">
-          <span style="float:left;margin-right: 16px;width: auto;height:auto">
-              <img width="100" src="http://image1.hc51img.com/397b9262047-0698-4840-9fad-ea3dfa30d4a3.jpg?imageView2/1/w/480/h/360">
-          </span>
-          <span class="title">北京现代2013款智能型</span>
-          <span class="mdl-list__item-sub-title" style="font-size: 12px;">2014.04上牌 · 3.0万公里 · 手动</span>
-        </span>
-        <span class="mdl-list__item-secondary-content">
-            <a class="mdl-list__item-secondary-action mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                <i class="mdicon favorite"></i>
-            </a>
-        </span>
-      </li>
-    <?php endforeach;?>
-</ul>
-
+    <div class="mdl-grid">
+        <?php foreach (range(1, 6) as $item):?>
+        <div class="mdl-cell mdl-cell--6-col-phone mdl-cell--4-col">
+            <div class="mdl-card mdl-shadow--2dp" style="width: 100%">
+                <div class="mdl-card__media">
+                    <img width="100%" src="http://image1.hc51img.com/397b9262047-0698-4840-9fad-ea3dfa30d4a3.jpg?imageView2/2/w/500/h/375">
+                </div>
+                <div class="mdl-card__supporting-text" style="line-height:24px;font-size: 16px;color: rgba(0,0,0,.80);">北京现代ix35 2013款 2.0L 自动两驱智能型GLS 国IV</div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="<?= URL::site('material/detail')?>">
+                      <span style="font-size:24px">4.68</span> 万
+                    </a>
+                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="float: right;">
+                        <i class="mdicon favorite-outline"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <?php endforeach;?>
+    </div>
 </main>
 </div>

@@ -72,6 +72,16 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
     </div>
 </header>
 
+<style>
+.mdl-card__supporting-text {
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+	padding: 10px;
+}
+</style>
 <main class="mdl-layout__content" style="padding-bottom: 60px;">
     
     <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
@@ -93,7 +103,21 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
             </div>
             <div class="swiper-pagination" style="color:#fff"></div>
         </div>
-        <h3 style="font-size:20px;margin:15px 15px 5px;color:#444">为您推荐
+        
+        <style>
+        .btns .mdl-button--primary.mdl-button--primary.mdl-button--raised {
+            height:28px;line-height:28px;margin: 0 3px;
+            border-radius: 14px;box-shadow:none;
+        }
+        </style>
+        <div class="btns" style="padding: 25px 0; text-align: center">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary">3万以下</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary">3-5万</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary">5-8万</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary">8-10万</button>
+        </div>
+                
+        <h3 style="font-size:20px;margin:5px 15px 15px;color:#444">为您推荐
             <small style="float: right;line-height: 40px;;color: #000;font-size:14px;font-weight:500">更多</small>
         </h3>
         <div class="swiper-container swiper">
@@ -101,15 +125,18 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
                 <?php foreach (range(1, 6) as $item):?>
                 <div class="swiper-slide">
                     <div class="mdl-card mdl-shadow--2dp">
-                      <div class="mdl-card__title mdl-card--expand" style="background:#46B6AC">
+                      <div class="mdl-card__media">
+                          <img width="140" height="140" src="http://image1.hc51img.com/397b9262047-0698-4840-9fad-ea3dfa30d4a3.jpg?imageView2/1/w/300/h/300">
                       </div>
-                      <div class="mdl-card__supporting-text">北京现代ix35 2013款 2.0L 自动.</div>
+                      <div class="mdl-card__supporting-text">北京现代ix35 2013款 2.0L 自动运动型
+                          <div class="mdl-button--primary">4.68 万</div>
+                      </div>
                     </div>
                 </div>
                 <?php endforeach;?>
             </div>
         </div>
-        <h3 style="font-size:20px;margin:5px 15px;color:#444">超值低价
+        <h3 style="font-size:20px;margin:5px 15px 15px;color:#444">超值低价
             <small style="float: right;line-height: 40px;color: #000;font-size:14px;font-weight:500">更多</small>
         </h3>
         <div class="swiper-container swiper" style="margin-bottom: 15px;">
@@ -117,9 +144,12 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
                 <?php foreach (range(1, 6) as $item):?>
                 <div class="swiper-slide">
                     <div class="mdl-card mdl-shadow--2dp">
-                      <div class="mdl-card__title mdl-card--expand" style="background:#46B6AC">
+                      <div class="mdl-card__media">
+                          <img width="140" height="140" src="http://image1.hc51img.com/397b9262047-0698-4840-9fad-ea3dfa30d4a3.jpg?imageView2/1/w/300/h/300">
                       </div>
-                      <div class="mdl-card__supporting-text">北京现代ix35 2013款 2.0L 自动.</div>
+                      <div class="mdl-card__supporting-text">北京现代ix35 2013款 2.0L 自动运动型
+                          <div class="mdl-button--primary">4.68 万</div>
+                      </div>
                     </div>
                 </div>
                 <?php endforeach;?>
@@ -146,17 +176,18 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
       
       <div class="mdl-tabs__panel" id="fixed-tab-3">
 
-        <div class="mdl-grid mdl-grid--no-spacing" style="padding: 5px;">
+          <div class="mdl-grid">
+            <h3 style="font-size:20px;margin:5px 15px;color:#444">编辑精选</h3>
             <?php foreach (range(1, 6) as $item):?>
-            <div class="mdl-cell mdl-cell--6-col-tablet mdl-cell--12-col-phone" style="margin: 5px;">
-                <div class="demo-card-square mdl-card mdl-shadow--2dp" style="width: 100%;height: 320px;">
-                    <div class="mdl-card__title mdl-card--expand" style="background:url(http://image1.hc51img.com/397b9262047-0698-4840-9fad-ea3dfa30d4a3.jpg?imageView2/1/w/480/h/300) center / cover;">
-                        <h2 class="mdl-card__title-text"></h2>
+              <div class="mdl-cell mdl-cell--6-col-phone mdl-cell--4-col">
+                <div class="mdl-card mdl-shadow--2dp" style="width: 100%">
+                    <div class="mdl-card__media">
+                        <img width="100%" src="http://image1.hc51img.com/397b9262047-0698-4840-9fad-ea3dfa30d4a3.jpg?imageView2/2/w/500/h/375">
                     </div>
                     <div class="mdl-card__supporting-text" style="line-height:24px;font-size: 16px;color: rgba(0,0,0,.80);">北京现代ix35 2013款 2.0L 自动两驱智能型GLS 国IV</div>
                     <div class="mdl-card__actions mdl-card--border">
                         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="<?= URL::site('material/detail')?>">
-                          4.68 万
+                          <span style="font-size:24px">4.68</span> 万
                         </a>
                         <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="float: right;">
                             <i class="mdicon favorite-outline"></i>

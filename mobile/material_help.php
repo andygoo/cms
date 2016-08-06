@@ -30,15 +30,41 @@
 
 <main class="mdl-layout__content">
 
-      <div class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
-        <ul>
-          <li>Tywin</li>
-          <li>Cersei</li>
-          <li>Jamie</li>
-          <li>Tyrion</li>
-          <li>Jamie</li>
-          <li>Tyrion</li>
-        </ul>
+      <div class="mdl-layout__tab-panel is-active mdl-grid" id="fixed-tab-1">
+        <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+          <thead>
+            <tr>
+              <!-- class "mdl-data-table__cell--non-numeric", align values to left -->
+              <th class="mdl-data-table__cell--non-numeric">Country</th>
+              <th class="mdl-data-table__cell--non-numeric">Capital</th>
+              <th class="mdl-data-table__cell--non-numeric">Currency</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="mdl-data-table__cell--non-numeric">USA</td>
+              <td class="mdl-data-table__cell--non-numeric">Washington DC</td>
+              <td class="mdl-data-table__cell--non-numeric">US Dollar</td>
+            </tr>
+            
+            <!-- Row 2 -->
+            <tr>
+              <!-- class "mdl-data-table__cell--non-numeric", align values to left -->
+              <td class="mdl-data-table__cell--non-numeric">CHINA</td>
+              <td class="mdl-data-table__cell--non-numeric">Beijing</td>
+              <td class="mdl-data-table__cell--non-numeric">Yuan</td>
+            </tr>
+            
+            <!-- Row 3 -->
+            <tr>
+              <!-- class "mdl-data-table__cell--non-numeric", align values to left -->
+              <td class="mdl-data-table__cell--non-numeric">INDIA</td>
+              <td class="mdl-data-table__cell--non-numeric">New Delhi</td>
+              <td class="mdl-data-table__cell--non-numeric">Rupees</td>
+            </tr>
+            
+          </tbody>
+        </table>
       </div>
       
       <div class="mdl-layout__tab-panel" id="fixed-tab-2">
