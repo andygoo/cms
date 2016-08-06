@@ -17,7 +17,7 @@
   color: #FFF;
   font-size: 14px;
   margin: 0;
-  background: <?php echo $theme_list[$curr_theme]?>;
+  background: <?= $theme_list[$curr_theme]?>;
   /*
   background: url(http://7xkkhh.com1.z0.glb.clouddn.com/2016/08/01/14700177870141.jpg?imageView2/1/w/600/h/302) #2196F3;
   background-size: cover;
@@ -99,7 +99,7 @@
 <div id="sidebarjs" sidebarjs>
     <header class="demo-drawer-header">
         <div class="img-circle" style="background: #fff; width: 60px; height: 60px; line-height: 60px; border-radius: 30px;text-align: center">
-            <i class="mdicon user" style="color: #ee6e73; font-size: 40px; line-height: 40px;margin-top:8px;"></i>
+            <i class="mdicon user" style="color: <?= $theme_list[$curr_theme]?>; font-size: 40px; line-height: 40px;margin-top:8px;"></i>
         </div>
         <div class="demo-avatar-dropdown">
             <span style="line-height: 20px; font-weight: 400;">小小明<br>hello@example.com</span>
@@ -115,17 +115,17 @@
     <nav>
         <ul>
             <li <?php if ($uri == 'material/index'):?>class="active"<?php endif;?>>
-                <a href="<?php echo URL::site('material/index')?>">
+                <a href="<?= URL::site('material/index')?>">
                     <i class="mdicon home"></i>首页
                 </a>
             </li>
             <li <?php if ($uri == 'material/favorite'):?>class="active"<?php endif;?>>
-                <a href="<?php echo URL::site('material/favorite')?>">
+                <a href="<?= URL::site('material/favorite')?>">
                     <i class="mdicon favorite"></i>我的收藏
                 </a>
             </li>
             <li <?php if ($uri == 'material/history'):?>class="active"<?php endif;?>>
-                <a href="<?php echo URL::site('material/history')?>">
+                <a href="<?= URL::site('material/history')?>">
                     <i class="mdicon history"></i>我的浏览
                 </a>
             </li>
@@ -133,17 +133,17 @@
         <hr style="margin: 0;border-top: 1px solid #eee;">
         <ul>
             <li <?php if ($uri == 'material/setting'):?>class="active"<?php endif;?>>
-                <a href="<?php echo URL::site('material/setting')?>">
+                <a href="<?= URL::site('material/setting')?>">
                     <i class="mdicon settings-cogwheel"></i>设置
                 </a>
             </li>
             <li <?php if ($uri == 'material/feedback'):?>class="active"<?php endif;?>>
-                <a href="<?php echo URL::site('material/feedback')?>">
+                <a href="<?= URL::site('material/feedback')?>">
                     <i class="mdicon message"></i>发送反馈
                 </a>
             </li>
             <li <?php if ($uri == 'material/help'):?>class="active"<?php endif;?>>
-                <a class="mdl-navigation__link" href="<?php echo URL::site('material/help')?>">
+                <a class="mdl-navigation__link" href="<?= URL::site('material/help')?>">
                     <i class="mdicon help"></i>帮助
                 </a>
             </li>

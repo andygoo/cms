@@ -93,7 +93,9 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
             </div>
             <div class="swiper-pagination" style="color:#fff"></div>
         </div>
-        <h3 style="font-size:20px;margin:15px 15px 5px;color:#444">为您推荐</h3>
+        <h3 style="font-size:20px;margin:15px 15px 5px;color:#444">为您推荐
+            <small style="float: right;line-height: 40px;;color: #000;font-size:14px;font-weight:500">更多</small>
+        </h3>
         <div class="swiper-container swiper">
             <div class="swiper-wrapper">
                 <?php foreach (range(1, 6) as $item):?>
@@ -101,13 +103,15 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
                     <div class="mdl-card mdl-shadow--2dp">
                       <div class="mdl-card__title mdl-card--expand" style="background:#46B6AC">
                       </div>
-                      <div class="mdl-card__supporting-text">Lorem ipsum dolor sit amet.</div>
+                      <div class="mdl-card__supporting-text">北京现代ix35 2013款 2.0L 自动.</div>
                     </div>
                 </div>
                 <?php endforeach;?>
             </div>
         </div>
-        <h3 style="font-size:20px;margin:5px 15px;color:#444">超值低价</h3>
+        <h3 style="font-size:20px;margin:5px 15px;color:#444">超值低价
+            <small style="float: right;line-height: 40px;color: #000;font-size:14px;font-weight:500">更多</small>
+        </h3>
         <div class="swiper-container swiper" style="margin-bottom: 15px;">
             <div class="swiper-wrapper">
                 <?php foreach (range(1, 6) as $item):?>
@@ -115,7 +119,7 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
                     <div class="mdl-card mdl-shadow--2dp">
                       <div class="mdl-card__title mdl-card--expand" style="background:#46B6AC">
                       </div>
-                      <div class="mdl-card__supporting-text">Lorem ipsum dolor sit amet.</div>
+                      <div class="mdl-card__supporting-text">北京现代ix35 2013款 2.0L 自动.</div>
                     </div>
                 </div>
                 <?php endforeach;?>
@@ -152,7 +156,7 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
                     <div class="mdl-card__supporting-text" style="line-height:24px;font-size: 16px;color: rgba(0,0,0,.80);">北京现代ix35 2013款 2.0L 自动两驱智能型GLS 国IV</div>
                     <div class="mdl-card__actions mdl-card--border">
                         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="<?= URL::site('material/detail')?>">
-                          Get Started
+                          4.68 万
                         </a>
                         <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="float: right;">
                             <i class="mdicon favorite-outline"></i>
