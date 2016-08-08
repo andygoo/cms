@@ -81,6 +81,10 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
   -webkit-box-orient: vertical;
 	padding: 10px;
 }
+.mdl-layout__content h3 {margin:10px 0;}
+.mdl-layout__content h3 a {display:block; padding: 5px 15px;font-size:20px;color:#444;text-decoration: none;}
+.mdl-layout__content h3 a:active {background: rgba(0,0,0, .1);}
+.mdl-layout__content h3 a small{float: right;line-height: 40px;;font-size:14px;color:<?= $theme_list[$curr_theme]?>;font-weight:500}
 </style>
 <main class="mdl-layout__content" style="padding-bottom: 60px;">
     
@@ -117,9 +121,7 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary">8-10万</button>
         </div>
                 
-        <h3 style="font-size:20px;margin:5px 15px 15px;color:#444">为您推荐
-            <small style="float: right;line-height: 40px;;color: #000;font-size:14px;font-weight:500">更多</small>
-        </h3>
+        <h3><a href="#">为您推荐<small>更多</small></a></h3>
         <div class="swiper-container swiper">
             <div class="swiper-wrapper">
                 <?php foreach (range(1, 6) as $item):?>
@@ -136,9 +138,7 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
                 <?php endforeach;?>
             </div>
         </div>
-        <h3 style="font-size:20px;margin:5px 15px 15px;color:#444">超值低价
-            <small style="float: right;line-height: 40px;color: #000;font-size:14px;font-weight:500">更多</small>
-        </h3>
+        <h3><a href="#">超值低价<small>更多</small></a></h3>
         <div class="swiper-container swiper" style="margin-bottom: 15px;">
             <div class="swiper-wrapper">
                 <?php foreach (range(1, 6) as $item):?>
