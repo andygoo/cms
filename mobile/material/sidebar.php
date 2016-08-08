@@ -64,7 +64,8 @@
 [sidebarjs] nav a .mdicon {
 	vertical-align: middle;font-size: 22px;color:rgba(0,0,0, .55);margin-right:32px;
 }
-[sidebarjs] nav li:active, [sidebarjs] nav li.active {
+[sidebarjs] nav li:active, 
+[sidebarjs] nav li.active {
   background: rgba(0,0,0, .1);
 }
 [sidebarjs] .demo-drawer-header {
