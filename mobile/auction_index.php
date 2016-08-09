@@ -26,14 +26,14 @@ header .mdicon{font-size: 24px;color: #fff}
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
 <header class="mdl-layout__header">
     <div class="mdl-layout__drawer-button">
-        <i class="mdicon menu" sidebarjs-toggle></i>
+        <i class="mdicon menu mdicon-xs" sidebarjs-toggle></i>
     </div>
     <div class="mdl-layout__header-row">
         <span class="mdl-layout-title">Home</span>
         <div class="mdl-layout-spacer"></div>
         <!-- <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
             <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
-                <i class="mdicon search" style="line-height: 36px;"></i>
+                <i class="mdicon search mdicon-xs" style="line-height: 36px;"></i>
             </label>
             <div class="mdl-textfield__expandable-holder">
                 <input class="mdl-textfield__input" type="text" id="search">
@@ -41,7 +41,7 @@ header .mdicon{font-size: 24px;color: #fff}
         </div>
          -->
         <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
-            <i class="mdicon more-vert"></i>
+            <i class="mdicon more-vert mdicon-xs"></i>
         </button>
         <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
             <li class="mdl-menu__item">About</li>

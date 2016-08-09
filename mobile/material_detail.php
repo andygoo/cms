@@ -6,14 +6,14 @@
 <header class="mdl-layout__header mdl-layout__header--transparent">
     <div class="mdl-layout__drawer-button" onclick="history.back()">
         <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-            <i class="mdicon arrow-back"></i>
+            <i class="mdicon arrow-back mdicon-xs"></i>
         </button>
     </div>
     <div class="mdl-layout__header-row">
         <span class="mdl-layout-title" style="display: none">北京现代ix35 2013款 2.0L 自动两驱智能型GLS 国IV</span>
         <div class="mdl-layout-spacer"></div>
         <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
-            <i class="mdicon more-vert"></i>
+            <i class="mdicon more-vert mdicon-xs"></i>
         </button>
         <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
             <li class="mdl-menu__item about-button">About</li>
@@ -78,7 +78,7 @@ body {font-family:"Comic Sans MS","幼圆","黑体",sans-serif;font-size:12px;co
     
     <div class="row" style="position: fixed; left:0; bottom:0; width: 100%; text-align: center; font-size: 16px; margin: 0">
         <a class="col-xs mdl-button mdl-js-button mdl-js-ripple-effect" href="tel:18500790001" style="height: 44px; line-height: 44px;background: #fff;color: #dd0000;border-top:1px solid #ededed">
-            <i class="mdicon call" style="color: #dd0000;"></i> 电话咨询
+            <i class="mdicon call mdicon-xs" style="color: #dd0000;"></i> 电话咨询
         </a>
         <div class="col-xs mdl-button mdl-js-button mdl-js-ripple-effect" id="yuyue_kanche_btn" style="height: 44px; line-height: 44px;background: #dd0000;color: #fff">
             预约看车
@@ -86,7 +86,7 @@ body {font-family:"Comic Sans MS","幼圆","黑体",sans-serif;font-size:12px;co
     </div>
     
     <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-button--primary" style="position: fixed;right:20px;bottom:60px;">
-      <i class="mdicon call" style="color: #fff;"></i>
+      <i class="mdicon call mdicon-xs" style="color: #fff;"></i>
     </button>
     
 </main>

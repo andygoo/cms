@@ -8,13 +8,13 @@
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
 <header class="mdl-layout__header">
     <div class="mdl-layout__drawer-button" onclick="history.back()">
-        <i class="mdicon arrow-back"></i>
+        <i class="mdicon arrow-back mdicon-xs"></i>
     </div>
     <div class="mdl-layout__header-row">
         <span class="mdl-layout-title">帮助</span>
         <div class="mdl-layout-spacer"></div>
         <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
-            <i class="mdicon more-vert"></i>
+            <i class="mdicon more-vert mdicon-xs"></i>
         </button>
         <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
             <li class="mdl-menu__item about-button">About</li>
@@ -31,7 +31,7 @@
 <main class="mdl-layout__content">
 
       <div class="mdl-layout__tab-panel is-active mdl-grid" id="fixed-tab-1">
-        <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+        <table class="mdl-data-table mdl-js-data-table _mdl-data-table--selectable mdl-shadow--2dp" width="100%">
           <thead>
             <tr>
               <!-- class "mdl-data-table__cell--non-numeric", align values to left -->

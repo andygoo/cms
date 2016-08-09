@@ -15,13 +15,13 @@
 <meta name="apple-mobile-web-app-title" content="Material Design Lite">
 <link rel="apple-touch-icon-precomposed" href="/media/img/apple-touch-icon.png">
 <title>Material</title>
-<?= HTML::style('media/MDicons/css/MDicon.min.css')?>
 <?= HTML::style('media/mdl/theme/material.'.$curr_theme.'.min.css')?>
+<?= HTML::style('media/MDicons/css/MDicon.min.css')?>
 <style>
 .mdl-layout-title {color: #fff}
 .mdl-layout__content{background: #f7f7f7;}
-.mdl-layout__header .mdicon{font-size: 24px;color: #fff}
-.mdl-layout__content .mdicon{font-size: 24px;color: <?= $theme_list[$curr_theme]?>;vertical-align: middle;}
+.mdl-layout__header .mdicon{color: #fff}
+.mdl-layout__content .mdicon{color: <?= $theme_list[$curr_theme]?>;vertical-align: middle;}
 .mdl-layout__drawer-button {line-height:48px;}
 </style>
 <?= HTML::script('media/mdl/material.min.js')?>

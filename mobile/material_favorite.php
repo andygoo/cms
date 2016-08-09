@@ -3,14 +3,14 @@
 <header class="mdl-layout__header">
     <div class="mdl-layout__drawer-button" onclick="history.back()">
         <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-            <i class="mdicon arrow-back"></i>
+            <i class="mdicon arrow-back mdicon-xs"></i>
         </button>
     </div>
     <div class="mdl-layout__header-row">
         <span class="mdl-layout-title">我的收藏</span>
         <div class="mdl-layout-spacer"></div>
         <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
-            <i class="mdicon more-vert"></i>
+            <i class="mdicon more-vert mdicon-xs"></i>
         </button>
         <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
             <li class="mdl-menu__item about-button">About</li>
@@ -37,7 +37,7 @@
                       <span style="font-size:24px">4.68</span> 万
                     </a>
                     <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="float: right;">
-                        <i class="mdicon favorite-outline"></i>
+                        <i class="mdicon favorite-outline mdicon-xs"></i>
                     </button>
                 </div>
             </div>

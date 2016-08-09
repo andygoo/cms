@@ -1,7 +1,7 @@
 
 <style>
 .mdl-tabs__tab {font-size: 12px;color: #888;width: 100%;line-height:20px;padding-top:10px;}
-.mdl-tabs__tab .mdicon {font-size: 24px;color: #888;}
+.mdl-tabs__tab .mdicon {color: #888;}
 .mdl-tabs__tab.is-active .mdicon {color: <?= $theme_list[$curr_theme]?>;}
 .mdl-tabs.is-upgraded .mdl-tabs__tab.is-active {color: <?= $theme_list[$curr_theme]?>;}
 .mdl-tabs__tab-bar {
@@ -44,7 +44,7 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
 <header class="mdl-layout__header">
     <div class="mdl-layout__drawer-button">
         <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" sidebarjs-toggle>
-            <i class="mdicon menu"></i>
+            <i class="mdicon menu mdicon-xs"></i>
         </button>
     </div>
     <div class="mdl-layout__header-row">
@@ -53,7 +53,7 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
         <!-- 
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
             <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
-                <i class="mdicon search" style="line-height: 36px;"></i>
+                <i class="mdicon search mdicon-xs" style="line-height: 36px;"></i>
             </label>
             <div class="mdl-textfield__expandable-holder">
                 <input class="mdl-textfield__input" type="text" id="search">
@@ -62,7 +62,7 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
          -->
         <nav class="mdl-navigation">
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
-                <i class="mdicon more-vert"></i>
+                <i class="mdicon more-vert mdicon-xs"></i>
             </button>
             <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
                 <li class="mdl-menu__item about-button">About</li>
@@ -162,14 +162,14 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
         <ul class="mdl-list">
           <?php foreach (range(1, 4) as $item):?>
           <li class="mdl-list__item">
-              <span class="mdl-list__item-primary-content"><i class="mdl-list__item-avatar mdicon user"></i><span>Bryan Cranston</span></span>
-              <a class="mdl-list__item-secondary-action" href="#"><i class="mdicon notifications-off"></i></a>
+              <span class="mdl-list__item-primary-content"><i class="mdl-list__item-avatar mdicon user mdicon-xs"></i><span>Bryan Cranston</span></span>
+              <a class="mdl-list__item-secondary-action" href="#"><i class="mdicon notifications-off mdicon-xs"></i></a>
           </li>
           <?php endforeach;?>
         </ul>
         <ul class="mdl-list">
           <?php foreach (range(1, 4) as $item):?>
-          <li class="mdl-list__item"><span class="mdl-list__item-primary-content"><i class="mdl-list__item-icon mdicon user"></i> Bryan Cranston</span></li>
+          <li class="mdl-list__item"><span class="mdl-list__item-primary-content"><i class="mdl-list__item-icon mdicon user mdicon-xs"></i> Bryan Cranston</span></li>
           <?php endforeach;?>
         </ul>
       </div>
@@ -190,12 +190,12 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
                           <span style="font-size:24px">4.68</span> 万
                         </a>
                         <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="float: right;">
-                            <i class="mdicon favorite-outline"></i>
+                            <i class="mdicon favorite-outline mdicon-xs"></i>
                         </button>
                     </div>
                     <div class="mdl-card__menu">
                         <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                          <i class="mdicon share" style="color:#fff"></i>
+                          <i class="mdicon share mdicon-xs" style="color:#fff"></i>
                         </button>
                     </div>
                 </div>

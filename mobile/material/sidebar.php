@@ -27,9 +27,6 @@
 	color:#fff;
 	text-decoration: none;
 }
-[sidebarjs] header .mdicon {
-	font-size: 24px;
-}	
 [sidebarjs-container] {
   overflow-x: hidden;
   overflow-y: auto;	
@@ -106,7 +103,7 @@
             <span style="line-height: 20px; font-weight: 400;">小小明<br>hello@example.com</span>
             <div class="mdl-layout-spacer"></div>
             <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                <i class="mdicon arrow-drop-down"></i>
+                <i class="mdicon arrow-drop-down mdicon-xs"></i>
             </button>
             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
                 <li class="mdl-menu__item">退出</li>

@@ -2,13 +2,13 @@
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 <header class="mdl-layout__header">
     <div class="mdl-layout__drawer-button" onclick="history.back()">
-        <i class="mdicon arrow-back"></i>
+        <i class="mdicon arrow-back mdicon-xs"></i>
     </div>
     <div class="mdl-layout__header-row">
         <span class="mdl-layout-title">发送反馈</span>
         <div class="mdl-layout-spacer"></div>
         <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
-            <i class="mdicon more-vert"></i>
+            <i class="mdicon more-vert mdicon-xs"></i>
         </button>
         <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
             <li class="mdl-menu__item about-button">About</li>
@@ -71,7 +71,7 @@ box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
           </span>
           <a class="mdl-list__item-secondary-action" href="#">
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
-                <i class="mdicon send"></i>
+                <i class="mdicon send mdicon-xs"></i>
             </button>
           </a>
       </li>
