@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-<meta name="theme-color" content="<?= $theme_list[$curr_theme]?>">
+<meta name="theme-color" content="<?= $theme_color?>">
 <link rel="shortcut icon" href="http://ns13.bdstatic.com/static/news/webapp/webappandroid/img/webapp-news-logo.png">
 <!-- Add to homescreen for Chrome on Android -->
 <meta name="mobile-web-app-capable" content="yes">
@@ -21,7 +21,7 @@
 .mdl-layout-title {color: #fff}
 .mdl-layout__content{background: #f7f7f7;}
 .mdl-layout__header .mdicon{color: #fff}
-.mdl-layout__content .mdicon{color: <?= $theme_list[$curr_theme]?>;vertical-align: middle;}
+.mdl-layout__content .mdicon{color: <?= $theme_color?>;vertical-align: middle;}
 .mdl-layout__drawer-button {line-height:48px;}
 </style>
 <?= HTML::script('media/mdl/material.min.js')?>

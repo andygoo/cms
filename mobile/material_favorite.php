@@ -20,7 +20,7 @@
 </header>
 
 <style>
-.mdl-icon-toggle.is-checked .mdl-icon-toggle__label {color: <?= $theme_list[$curr_theme]?>}
+.mdl-icon-toggle.is-checked .mdl-icon-toggle__label {color: <?= $theme_color?>}
 </style>
 <main class="mdl-layout__content">
 

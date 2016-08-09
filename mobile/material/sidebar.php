@@ -17,7 +17,7 @@
   color: #FFF;
   font-size: 14px;
   margin: 0;
-  background: <?= $theme_list[$curr_theme]?>;
+  background: <?= $theme_color?>;
   /*
   background: url(http://7xkkhh.com1.z0.glb.clouddn.com/2016/08/01/14700177870141.jpg?imageView2/1/w/600/h/302) #2196F3;
   background-size: cover;
@@ -97,7 +97,7 @@
 <div id="sidebarjs" sidebarjs>
     <header class="demo-drawer-header">
         <div class="img-circle" style="background: #fff; width: 60px; height: 60px; line-height: 60px; border-radius: 30px;text-align: center">
-            <i class="mdicon user" style="color: <?= $theme_list[$curr_theme]?>; font-size: 40px; line-height: 40px;margin-top:8px;"></i>
+            <i class="mdicon user" style="color: <?= $theme_color?>; font-size: 40px; line-height: 40px;margin-top:8px;"></i>
         </div>
         <div class="demo-avatar-dropdown">
             <span style="line-height: 20px; font-weight: 400;">小小明<br>hello@example.com</span>

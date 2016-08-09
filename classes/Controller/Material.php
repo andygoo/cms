@@ -35,11 +35,13 @@ class Controller_Material extends Controller_Website {
         if (isset($_COOKIE['apptheme']) && in_array($_COOKIE['apptheme'], array_keys($this->theme_list))) {
             $curr_theme = $_COOKIE['apptheme'];
         }
+        $theme_color = $this->theme_list[$curr_theme];
         
         if ($this->auto_render === TRUE) {
             View::bind_global('is_weixin', $is_weixin);
             View::bind_global('user', $this->user);
             View::bind_global('theme_list', $this->theme_list);
+            View::bind_global('theme_color', $theme_color);
             View::bind_global('curr_theme', $curr_theme);
             
             if ($is_weixin) {
