@@ -39,9 +39,9 @@
 }
 
 .chat-thread li.right {
-  animation: show-chat-odd 0.15s 1 ease-in;
+  /*animation: show-chat-odd 0.15s 1 ease-in;
   -moz-animation: show-chat-odd 0.15s 1 ease-in;
-  -webkit-animation: show-chat-odd 0.15s 1 ease-in;
+  -webkit-animation: show-chat-odd 0.15s 1 ease-in;*/
   float: right;
   margin-right: 80px;
   /*color: #0AD5C1;*/
@@ -58,9 +58,9 @@
 }
 
 .chat-thread li.left {
-  animation: show-chat-even 0.15s 1 ease-in;
+  /*animation: show-chat-even 0.15s 1 ease-in;
   -moz-animation: show-chat-even 0.15s 1 ease-in;
-  -webkit-animation: show-chat-even 0.15s 1 ease-in;
+  -webkit-animation: show-chat-even 0.15s 1 ease-in;*/
   float: left;
   margin-left: 80px;
   /*color: #0EC879;*/
@@ -103,18 +103,7 @@
     width: 90%;
   }
 }
-/* Medium and large screens */
-@media all and (min-width: 768px) {
-  .chat-thread {
-    width: 50%;
-    height: 320px;
-  }
-
-  .chat-window {
-    left: 25%;
-    width: 50%;
-  }
-}
+/*
 @keyframes show-chat-even {
   0% {
     margin-left: -480px;
@@ -169,3 +158,4 @@
     margin-right: 0;
   }
 }
+*/
