@@ -38,7 +38,7 @@
   border-top: 15px solid rgba(25, 147, 147, 0.2);
 }
 
-.chat-thread li:nth-child(odd) {
+.chat-thread li.right {
   animation: show-chat-odd 0.15s 1 ease-in;
   -moz-animation: show-chat-odd 0.15s 1 ease-in;
   -webkit-animation: show-chat-odd 0.15s 1 ease-in;
@@ -47,17 +47,17 @@
   /*color: #0AD5C1;*/
 }
 
-.chat-thread li:nth-child(odd):before {
+.chat-thread li.right:before {
   right: -80px;
   background: rgba(25, 147, 147, 0.2);	
 }
 
-.chat-thread li:nth-child(odd):after {
+.chat-thread li.right:after {
   border-right: 15px solid transparent;
   right: -15px;
 }
 
-.chat-thread li:nth-child(even) {
+.chat-thread li.left {
   animation: show-chat-even 0.15s 1 ease-in;
   -moz-animation: show-chat-even 0.15s 1 ease-in;
   -webkit-animation: show-chat-even 0.15s 1 ease-in;
@@ -66,12 +66,12 @@
   /*color: #0EC879;*/
 }
 
-.chat-thread li:nth-child(even):before {
+.chat-thread li.left:before {
   left: -80px;
   background: rgba(25, 147, 147, 0.2);
 }
 
-.chat-thread li:nth-child(even):after {
+.chat-thread li.left:after {
   border-left: 15px solid transparent;
   left: -15px;
 }
