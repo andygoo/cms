@@ -18,8 +18,6 @@
 </header>
 
 <?= HTML::style('media/css/chat.css')?>
-<main class="mdl-layout__content" id="content" style="padding-bottom:65px">
-
 <style>
 .chat-thread li.left .user {
     position: absolute;left: -74px;top:4px;color:#fff;
@@ -43,6 +41,8 @@
     background:#fff; box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
 }
 </style>
+
+<main class="mdl-layout__content" id="content" style="padding-bottom:65px">
 <ul class="chat-thread" id="chat-thread">
 	<li class="right"><i class="mdicon user mdicon-sm"></i>Are we meeting today?</li>
 	<li class="left"><i class="mdicon user mdicon-sm"></i>yes, what time suits you?</li>
@@ -57,7 +57,6 @@
 	<li class="right"><i class="mdicon user mdicon-sm"></i>yes, what time suits you?</li>
 	<li class="left"><i class="mdicon user mdicon-sm"></i>I was thinking after lunch, I have a meeting in the morning</li>
 </ul>
-
 <ul class="mdl-list send-msg-form">
   <li class="mdl-list__item" style="padding: 0 20px 0 5px;">
       <span class="mdl-list__item-primary-content">
@@ -73,7 +72,6 @@
       </a>
   </li>
 </ul>
-
 </main>
 </div>
 
