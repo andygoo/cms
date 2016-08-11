@@ -37,7 +37,7 @@
 	border-top: 15px solid #fff;
 }*/
 .send-msg-form {
-    position: fixed; left:0; bottom:0; width:100%; padding: 0 6px; margin:0; z-index:9;
+    position: fixed; left:0; bottom:0; width:100%; padding: 0; margin:0; z-index:9;
     background:#fff; box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1), 0 -2px 10px 0 rgba(0, 0, 0, 0.05);
 }
 </style>
@@ -58,17 +58,15 @@
 	<li class="left"><i class="mdicon user mdicon-sm"></i>I was thinking after lunch, I have a meeting in the morning</li>
 </ul>
 <ul class="mdl-list send-msg-form">
-  <li class="mdl-list__item" style="padding: 0 20px 0 5px;">
-      <span class="mdl-list__item-primary-content">
-          <div class="mdl-textfield mdl-js-textfield" style="width: 96%;">
-            <textarea class="mdl-textfield__input" rows="1" id="msg_input" style="padding: 2px 0;"></textarea>
+  <li class="mdl-list__item" style="padding: 0 15px;">
+      <div class="mdl-list__item-primary-content">
+          <div class="mdl-textfield mdl-js-textfield" style="width: 100%;">
+            <textarea class="mdl-textfield__input" rows="1" id="msg_input"></textarea>
             <label class="mdl-textfield__label" for="msg_input">请输入...</label>
           </div>
-      </span>
-      <a class="mdl-list__item-secondary-action" id="send_msg_btn" href="#">
-        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
-            <i class="mdicon send mdicon-xs"></i>
-        </button>
+      </div>
+      <a class="mdl-list__item-secondary-action" id="send_msg_btn" href="#" style="margin-left:15px;">
+          <i class="mdicon send mdicon-xs"></i>
       </a>
   </li>
 </ul>
@@ -85,27 +83,27 @@ ws.onclose = function() {
 ws.onmessage = function(evt) {
 	var data = JSON.parse(event.data);
 	console.log(data);
-	$('#chat-thread').append('<li class="left"><i class="mdicon user mdicon-sm"></i>'+data.msg+'</li>');
-	$('#content')[0].scrollTop = $('#content')[0].scrollHeight;
+	addmsg(data.msg, 'left');
 };
 function sendmsg(msg) {
-	var data = {
-		'type': 'msg',
-		'msg': msg,
-	};
-	ws.send(JSON.stringify(data));
+	var data = {};
+	data.type = 'msg';
+	data.msg = msg;
 	
-	$('#chat-thread').append('<li class="right"><i class="mdicon user mdicon-sm"></i>'+data.msg+'</li>');
+	//ws.send(JSON.stringify(data));
+	addmsg(data.msg, 'right');
+}
+function addmsg(msg, direct) {
+	$('#chat-thread').append('<li class="'+direct+'"><i class="mdicon user mdicon-sm"></i>'+msg+'</li>');
 	$('#content')[0].scrollTop = $('#content')[0].scrollHeight;
-	$('#msg_input').val('').focus();
 }
 $(function() {
 	$('#send_msg_btn').click(function() {
 		var msg = $('#msg_input').val();
-		if ($.trim(msg) == '') {
-			return false;
+		if ($.trim(msg) != '') {
+			sendmsg(msg);
 		}
-		sendmsg(msg);
+		$('#msg_input').val('').focus();
 		return false;
 	});
 });

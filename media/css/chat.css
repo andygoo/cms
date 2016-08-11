@@ -1,8 +1,7 @@
 
 .chat-thread {
-  width: 92%;	
   margin: 24px auto 0 auto;
-  padding: 0;
+  padding: 0 15px;
   list-style: none;
   overflow-y: auto;
   overflow-x: hidden;
