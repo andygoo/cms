@@ -9,6 +9,11 @@
 	text-overflow: ellipsis;
     overflow: hidden;
 }
+.media-list img {width: 200px;}
+@media (max-width: 425px)  {
+    .media-list img {width: 100px;}	
+    .media-body .summary {display: none;}
+}
 </style>
 
 <!-- Start Home -->
@@ -48,9 +53,9 @@
                 <li class="media">
                     <div class="media-left">
                         <?php if (strpos($item['pic'], '://') !== false):?>
-                        <?= HTML::image($item['pic'].'?imageView2/2/w/400/h/300', array('width'=>200)) ?>
+                        <?= HTML::image($item['pic'].'?imageView2/2/w/400/h/300') ?>
                         <?php else:?>
-                        <?= HTML::image('/imagefly/w400-h300-c/' . $item['pic'], array('width'=>200)) ?>
+                        <?= HTML::image('/imagefly/w400-h300-c/' . $item['pic']) ?>
                         <?php endif;?>
                     </div>
                     <div class="media-body">
