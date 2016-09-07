@@ -143,16 +143,13 @@ class Controller_List extends Controller_Website {
     }
 
     protected function _getCityList() {
-        $city_list = array();
-        $all_city = Kohana::config('city');
+        $city_pinyin = isset($this->_filter_array['city_pinyin']) ? $this->_filter_array['city_pinyin'] : '';
         
-        if (empty($this->_filter_array['city_pinyin'])) {
-            $this->_filter_array['city_pinyin'] = 'bj';
-        }
-        
+        $list = array();
+        $all_city = Common::$city_list;
         foreach ($all_city as $item) {
-            $selected = ($this->_filter_array['city_pinyin'] == $item[1]);
-            $city_list[] = array(
+            $selected = ($city_pinyin == $item[1]);
+            $list[] = array(
                  'city_id' => $item[0],
                  'city_pinyin' => $item[1],
                  'city_name' => $item[2],
@@ -169,7 +166,7 @@ class Controller_List extends Controller_Website {
             }
         }
 
-        return $city_list;
+        return $list;
     }
     
     protected function _getBrandList() {
@@ -264,18 +261,8 @@ class Controller_List extends Controller_Website {
     protected function _getPriceList() {
         $price_f = isset($this->_filter_array['price_f']) ? $this->_filter_array['price_f'] : '';
         $price_t = isset($this->_filter_array['price_t']) ? $this->_filter_array['price_t'] : '';
-        $price_list = array(
-            array('price_f'=>'', 'price_t'=>'', 'desc'=>'不限'),
-            array('price_f'=>0, 'price_t'=>2, 'desc'=>'2万以内'),
-            array('price_f'=>2, 'price_t'=>3, 'desc'=>'2-3万'),
-            array('price_f'=>3, 'price_t'=>5, 'desc'=>'3-5万'),
-            array('price_f'=>5, 'price_t'=>8, 'desc'=>'5-8万'),
-            array('price_f'=>8, 'price_t'=>10, 'desc'=>'8-10万'),
-            array('price_f'=>10, 'price_t'=>15, 'desc'=>'10-15万'),
-            array('price_f'=>15, 'price_t'=>20, 'desc'=>'15-20万'),
-            array('price_f'=>20, 'price_t'=>30, 'desc'=>'20-30万'),
-            array('price_f'=>30, 'price_t'=>1000, 'desc'=>'30万以上'),
-        );
+        
+        $price_list = Common::$price_list;
         $selected = 0;
         foreach($price_list as $key => $item) {
             if ($price_f == $item['price_f'] && $price_t == $item['price_t']) {
@@ -311,14 +298,8 @@ class Controller_List extends Controller_Website {
     protected function _getYearList() {
         $year_f = isset($this->_filter_array['year_f']) ? $this->_filter_array['year_f'] : '';
         $year_t = isset($this->_filter_array['year_t']) ? $this->_filter_array['year_t'] : '';
-        $year_list = array(
-            array('year_f'=>'', 'year_t'=>'', 'desc'=>'不限'),
-            array('year_f'=>1, 'year_t'=>0, 'desc'=>'1年内'), 
-            array('year_f'=>3, 'year_t'=>1, 'desc'=>'1-3年'),
-            array('year_f'=>5, 'year_t'=>3, 'desc'=>'3-5年'),
-            array('year_f'=>8, 'year_t'=>5, 'desc'=>'5-8年'),
-            array('year_f'=>100, 'year_t'=>8, 'desc'=>'8年以上'),
-        );
+        
+        $year_list = Common::$year_list;
         foreach($year_list as $item) {
             $selected = ($year_f == $item['year_f'] && $year_t == $item['year_t']);
             if ($selected) {
@@ -403,13 +384,8 @@ class Controller_List extends Controller_Website {
     protected function _getSortList() {
         $sort_f = isset($this->_filter_array['sort_f']) ? $this->_filter_array['sort_f'] : '';
         $sort_d = isset($this->_filter_array['sort_d']) ? $this->_filter_array['sort_d'] : '';
-        $sort_list = array(
-                array('sort_f'=>'', 'sort_d'=>'', 'desc'=>'默认排序'),
-                array('sort_f'=>'p', 'sort_d'=>'a', 'desc'=>'价格低到高'),
-                array('sort_f'=>'p', 'sort_d'=>'d', 'desc'=>'价格高到低'),
-                array('sort_f'=>'y', 'sort_d'=>'d', 'desc'=>'车龄新到旧'),
-                array('sort_f'=>'m', 'sort_d'=>'a', 'desc'=>'里程短到长'),
-        );
+        
+        $sort_list = Common::$sort_list;
         foreach($sort_list as $item) {
             $selected = ($sort_f == $item['sort_f'] && $sort_d == $item['sort_d']);
             $url = $this->_getUrl(array('sort_f' => $item['sort_f'], 'sort_d' => $item['sort_d']));
