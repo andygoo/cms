@@ -174,10 +174,7 @@ class Controller_List extends Controller_Website {
         
         $top_list[] = array(
             'desc' => '不限',
-            'url' => $this->_getUrl(array(
-                'brand_id' => '',
-                'series_id' => '',
-            )),
+            'url' => $this->_getUrl(array('brand_id' => '', 'series_id' => '',)),
             'selected' => !isset($this->_filter_array['brand_id']),
         );
         
@@ -188,10 +185,7 @@ class Controller_List extends Controller_Website {
             $brand_item = array(
                 'id' => $brand_id,
                 'desc' => $item['name'],
-                'url' => $this->_getUrl(array(
-                    'brand_id' => $brand_id,
-                    'series_id' => '',
-                )),
+                'url' => $this->_getUrl(array('brand_id' => $brand_id, 'series_id' => '',)),
                 'selected' => $selected 
             );
             $group_list[$item['first_char']][] = $brand_item;
@@ -199,10 +193,7 @@ class Controller_List extends Controller_Website {
             if ($selected) {
                 $this->filter_list['brand'] = array(
                     'desc' => $item['name'],
-                    'url' => $this->_getUrl(array(
-                        'brand_id' => '',
-                        'series_id' => '',
-                    )),
+                    'url' => $this->_getUrl(array('brand_id' => '', 'series_id' => '',)),
                     'selected' => $selected,
                 );
             }
@@ -228,9 +219,7 @@ class Controller_List extends Controller_Website {
         $list = array();
         $list[] = array(
             'desc' => '不限',
-            'url' => $this->_getUrl(array(
-                'series_id' => '',
-            )),
+            'url' => $this->_getUrl(array('series_id' => '',)),
             'selected' => !isset($this->_filter_array['series_id']),
         );
         foreach($series_list as $item) {
@@ -238,19 +227,13 @@ class Controller_List extends Controller_Website {
             $selected = isset($this->_filter_array['series_id']) && ($series_id == $this->_filter_array['series_id']);
             $list[] = array(
                 'desc' => $item['name'],
-                'url' => $this->_getUrl(array(
-                    'brand_id' => $brand_id,
-                    'series_id' => $series_id 
-                )),
+                'url' => $this->_getUrl(array('brand_id' => $brand_id, 'series_id' => $series_id)),
                 'selected' => $selected 
             );
             if ($selected) {
                 $this->filter_list['series'] = array(
                     'desc' => $item['name'],
-                    'url' => $this->_getUrl(array(
-                        'brand_id' => $brand_id,
-                        'series_id' => '' 
-                    )) 
+                    'url' => $this->_getUrl(array('brand_id' => $brand_id, 'series_id' => '')) 
                 );
             }
         }
@@ -389,9 +372,9 @@ class Controller_List extends Controller_Website {
             $selected = ($sort_f == $item['sort_f'] && $sort_d == $item['sort_d']);
             $url = $this->_getUrl(array('sort_f' => $item['sort_f'], 'sort_d' => $item['sort_d']));
             $list[] = array(
-                    'url' => $url,
-                    'desc' => $item['desc'],
-                    'selected' => $selected,
+                'url' => $url,
+                'desc' => $item['desc'],
+                'selected' => $selected,
             );
         }
         return $list;
