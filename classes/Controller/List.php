@@ -34,8 +34,7 @@ class Controller_List extends Controller_Website {
         
         $allowed = array(
             'city_pinyin', 'brand_id', 'series_id', 'brand_pinyin', 'series_pinyin',
-            'price_f', 'price_t', 'mile_f', 'mile_t',
-            'year_f', 'year_t', 'sort_f', 'sort_d', 'format',
+            'price_f', 'price_t', 'mile_f', 'mile_t', 'year_f', 'year_t', 'sort_f', 'sort_d', 'format',
         );
         
         $this->_filter_array = array_intersect_key($this->params, array_flip($allowed));
@@ -138,8 +137,8 @@ class Controller_List extends Controller_Website {
 
         $this->content->pager = $pager->render('common/pager');
         $this->content->total_items = $pager->total_items;
-        $this->content->curr_page = $pager->current_page;
         $this->content->total_pages = $pager->total_pages;
+        $this->content->curr_page = $pager->current_page;
         $this->content->page_url = $this->_getUrl(array('page'=>''));
     }
 
