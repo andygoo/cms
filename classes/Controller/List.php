@@ -344,7 +344,7 @@ class Controller_List extends Controller_Website {
                 $_key = array_search($key, $_mile_keys);
                 if ($_key !== false) {
                     unset($_mile_keys[$_key]);
-                }
+                } 
             } else {
                 $_mile_keys[] = $key;
             }
