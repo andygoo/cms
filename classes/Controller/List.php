@@ -145,7 +145,6 @@ class Controller_List extends Controller_Website {
     protected function _getCityList() {
         $city_pinyin = isset($this->_filter_array['city_pinyin']) ? $this->_filter_array['city_pinyin'] : '';
         
-        $list = array();
         $all_city = Common::$city_list;
         foreach ($all_city as $item) {
             $selected = ($city_pinyin == $item[1]);
