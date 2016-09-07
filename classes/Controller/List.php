@@ -345,15 +345,8 @@ class Controller_List extends Controller_Website {
     protected function _getMilesList2() {
         $mile_f = isset($this->_filter_array['mile_f']) ? $this->_filter_array['mile_f'] : '';
         $mile_t = isset($this->_filter_array['mile_t']) ? $this->_filter_array['mile_t'] : '';
-        $mile_list = array(
-                array('mile_f'=>'', 'mile_t'=>'', 'desc'=>'不限'),
-                array('mile_f'=>0, 'mile_t'=>2, 'desc'=>'2万公里内'),
-                array('mile_f'=>0, 'mile_t'=>5, 'desc'=>'5万公里内'),
-                array('mile_f'=>1, 'mile_t'=>3, 'desc'=>'1~3万公里'),
-                array('mile_f'=>3, 'mile_t'=>5, 'desc'=>'3~5万公里'),
-                array('mile_f'=>5, 'mile_t'=>8, 'desc'=>'5~8万公里'),
-                array('mile_f'=>8, 'mile_t'=>100, 'desc'=>'8万公里以上'),
-        );
+
+        $mile_list = Common::$mile_list;
         foreach($mile_list as $item) {
             $selected = ($mile_f == $item['mile_f'] && $mile_t == $item['mile_t']);
             if ($selected) {
@@ -377,11 +370,9 @@ class Controller_List extends Controller_Website {
     }
 
     protected function _getMilesList() {
+        $mile_keys = isset($this->_filter_array['mile']) ? explode('-', $this->_filter_array['mile']) : array();
+        
         $mile_list = Common::$mile_list;
-        $mile_keys = array();
-        if (isset($this->_filter_array['mile'])) {
-            $mile_keys = explode('-', $this->_filter_array['mile']);
-        }
         foreach($mile_list as $key => $item) {
             $selected = in_array($key, $mile_keys);
             $_mile_keys = $mile_keys;
