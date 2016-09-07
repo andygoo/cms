@@ -333,7 +333,7 @@ class Controller_List extends Controller_Website {
         return $list;
     }
 
-    protected function _getMilesList() { 
+    protected function _getMilesList() {  
         $mile_keys = isset($this->_filter_array['mile']) ? explode('-', $this->_filter_array['mile']) : array();
         
         $mile_list = Common::$mile_list;
