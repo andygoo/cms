@@ -338,7 +338,7 @@ class Controller_List extends Controller_Website {
         
         $mile_list = Common::$mile_list;
         foreach($mile_list as $key => $item) {
-            $selected = in_array($key, $mile_keys);
+            $selected = ($key==0 && empty($mile_keys)) || in_array($key, $mile_keys);
             $_mile_keys = $mile_keys;
             if ($selected) {
                 $_key = array_search($key, $_mile_keys);
@@ -348,7 +348,12 @@ class Controller_List extends Controller_Website {
             } else {
                 $_mile_keys[] = $key;
             }
-            $url = $this->_getUrl(array('mile' => implode('-', $_mile_keys)));
+            if ($key == 0) {
+                $url = $this->_getUrl(array('mile' => ''));
+            } else {
+                sort($_mile_keys);
+                $url = $this->_getUrl(array('mile' => implode('-', $_mile_keys)));
+            }
             $list[] = array(
                 'url' => $url,
                 'desc' => $item['desc'],
