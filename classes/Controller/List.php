@@ -19,6 +19,7 @@ class Controller_List extends Controller_Website {
         
         $this->all_brand_pinyin = SEO::getBrandPinyin();
         $this->all_series_pinyin = SEO::getSeriesPinyin();
+        
         if (!empty($this->params['brand_pinyin'])) {
             $all_brand_pinyin = array_flip($this->all_brand_pinyin);
             if (isset($all_brand_pinyin[$this->params['brand_pinyin']])) {
@@ -34,7 +35,7 @@ class Controller_List extends Controller_Website {
         
         $allowed = array(
             'city_pinyin', 'brand_id', 'series_id', 'brand_pinyin', 'series_pinyin',
-            'price_f', 'price_t', 'mile_f', 'mile_t', 'year_f', 'year_t', 'sort_f', 'sort_d', 'format',
+            'price_f', 'price_t', 'mile', 'mile_f', 'mile_t', 'year_f', 'year_t', 'sort_f', 'sort_d', 'format',
         );
         
         $this->_filter_array = array_intersect_key($this->params, array_flip($allowed));
@@ -101,22 +102,21 @@ class Controller_List extends Controller_Website {
         }
 
         list($brand_top_list, $brand_list) = $this->_getBrandList();
-        list($price_list, $custom_price) = $this->_getPriceList();
-        $year_list = $this->_getYearList();
-        $miles_list = $this->_getMilesList();
-        $sort_list = $this->_getSortList();
-
         $series_list = array();
         if (isset($this->_filter_array['brand_id'])) {
             $brand_id = $this->_filter_array['brand_id'];
             $series_list = $this->_getSeriesList($brand_id);
         }
-        
+        list($price_list, $custom_price) = $this->_getPriceList();
+        $year_list = $this->_getYearList();
+        $miles_list = $this->_getMilesList();
+        $sort_list = $this->_getSortList();
+
         $filter_list = $this->filter_list;
-        uksort($filter_list, function ($a, $b) {
+        /*uksort($filter_list, function ($a, $b) {
             $sort_filter = array_flip(array('brand', 'series', 'price', 'year', 'mile'));
             return $sort_filter[$a] > $sort_filter[$b];
-        });
+        });*/
         
         $this->content = View::factory('vehicle_list');
         $this->content->city_list = $city_list;
@@ -342,7 +342,7 @@ class Controller_List extends Controller_Website {
         return $list;
     }
 
-    protected function _getMilesList() {
+    protected function _getMilesList2() {
         $mile_f = isset($this->_filter_array['mile_f']) ? $this->_filter_array['mile_f'] : '';
         $mile_t = isset($this->_filter_array['mile_t']) ? $this->_filter_array['mile_t'] : '';
         $mile_list = array(
@@ -376,6 +376,39 @@ class Controller_List extends Controller_Website {
         return $list;
     }
 
+    protected function _getMilesList() {
+        $mile_list = Common::$mile_list;
+        $mile_keys = array();
+        if (isset($this->_filter_array['mile'])) {
+            $mile_keys = explode('-', $this->_filter_array['mile']);
+        }
+        foreach($mile_list as $key => $item) {
+            $selected = in_array($key, $mile_keys);
+            $_mile_keys = $mile_keys;
+            if ($selected) {
+                $_key = array_search($key, $_mile_keys);
+                if ($_key !== false) {
+                    unset($_mile_keys[$_key]);
+                }
+            } else {
+                $_mile_keys[] = $key;
+            }
+            $url = $this->_getUrl(array('mile' => implode('-', $_mile_keys)));
+            $list[] = array(
+                'url' => $url,
+                'desc' => $item['desc'],
+                'selected' => $selected,
+            );
+            if ($selected && !empty($mile_keys)) {
+                $this->filter_list[] = array(
+                    'desc' => $item['desc'],
+                    'url' => $url,
+                );
+            }
+        }
+        return $list;
+    }
+    
     protected function _getSortList() {
         $sort_f = isset($this->_filter_array['sort_f']) ? $this->_filter_array['sort_f'] : '';
         $sort_d = isset($this->_filter_array['sort_d']) ? $this->_filter_array['sort_d'] : '';
@@ -436,6 +469,7 @@ class Controller_List extends Controller_Website {
         } elseif (isset($params['series_id'])) {
             $params['series_pinyin'] = '';
         }
+        return Route::url('list_pinyin_mult', array_filter($params, 'strlen'));
         return Route::url('list_pinyin', array_filter($params, 'strlen'));
         
         //return URL::site('list') . URL::query($params);

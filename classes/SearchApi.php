@@ -73,6 +73,12 @@ class SearchApi {
                     $value = strtotime("-$value year");
                     $where[] = "register_time<={$value}";
                     break;
+                case 'mile':
+                    $value = explode('-', $value);
+                    $value = array_filter($value);
+                    $mile_list = Common::$mile_list;
+                    //$where[] = "miles>={$value}";
+                    break;
                 case 'mile_f':
                     $where[] = "miles>={$value}";
                     break;

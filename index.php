@@ -51,6 +51,23 @@ Kohana::modules(array(
 Kohana::$log->attach(new Log_File(APPPATH . 'logs'));
 
 
+Route::set('list_pinyin_mult', '(<city_pinyin>/)ershouche(/<brand_pinyin>(-<series_pinyin>))(/(p<price_f>-<price_t>)(y<year_f>-<year_t>)(m<mile>)(s<sort_f>-<sort_d>))(/p<page>)(.<format>)', array(
+'city_pinyin' => '[a-z]+',
+'brand_pinyin' => '[a-z]+',
+'series_pinyin' => '([a-z]+([a-z0-9]+)?){2,}',
+'price_f' => '(\d+)',
+'price_t' => '(\d+)',
+'year_f' => '(\d+)',
+'year_t' => '(\d+)',
+'mile' => '(\d+(-\d+)*)',
+'sort_f' => '(p|y|m)',
+'sort_d' => '(a|d)',
+'page' => '(\d+)',
+'format' => '(html|htm)',
+))->defaults(array(
+'controller' => 'list'
+));
+
 Route::set('list_pinyin', '(<city_pinyin>/)ershouche(/<brand_pinyin>(-<series_pinyin>))(/(p<price_f>-<price_t>)(y<year_f>-<year_t>)(m<mile_f>-<mile_t>)(s<sort_f>-<sort_d>))(/p<page>)(.<format>)', array(
 'city_pinyin' => '[a-z]+',
 'brand_pinyin' => '[a-z]+',
