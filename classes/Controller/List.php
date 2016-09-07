@@ -153,7 +153,8 @@ class Controller_List extends Controller_Website {
                  'city_pinyin' => $item[1],
                  'city_name' => $item[2],
                  'selected' => $selected,
-                 'url' => $this->_getUrl(array('city_pinyin' => $item[1])),
+                 //'url' => $this->_getUrl(array('city_pinyin' => $item[1])),
+                 'url' => Route::url('list_pinyin_mult', array('city_pinyin' => $item[1])),
             );
             if ($selected) {
                 $this->_filter_array['city_id'] = $item[0];
@@ -404,10 +405,10 @@ class Controller_List extends Controller_Website {
             unset($item);
         }
     }
-    
+
     protected function _getUrl($params) {
         $params += $this->_filter_array;
-        
+    
         if (!empty($params['brand_id'])) {
             $params['brand_pinyin'] = $this->all_brand_pinyin[$params['brand_id']];
         } elseif (isset($params['brand_id'])) {
@@ -418,13 +419,15 @@ class Controller_List extends Controller_Website {
         } elseif (isset($params['series_id'])) {
             $params['series_pinyin'] = '';
         }
+        //return URL::site($this->request->uri($params));
+    
+        //return URL::site('list') . URL::query($params);
+        
         return Route::url('list_pinyin_mult', array_filter($params, 'strlen'));
         return Route::url('list_pinyin', array_filter($params, 'strlen'));
-        
-        //return URL::site('list') . URL::query($params);
         return Route::url('list', array_filter($params, 'strlen'));
     }
-
+    
     protected function _getColsFromQuery($query) {
         if (isset($query['brand_id'])) {
             $this->_filter_array['brand_id'] = $query['brand_id'];
