@@ -8,7 +8,7 @@ class Controller_Vehicle extends Controller_Website {
         parent::__construct($request);
         $city_pinyin = $this->request->param('city_pinyin', 'bj');
 
-        $all_city = Kohana::config('city');
+        $all_city = Common::$city_list;
         foreach ($all_city as $item) {
             if ($city_pinyin == $item[1]) {
                 $this->city_info = array(

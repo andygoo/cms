@@ -3,6 +3,11 @@
 <?= HTML::style('media/css/flexboxgrid.min.css')?>
 <?= HTML::style('media/bootstrap-3.3.5/css/bootstrap.css')?>
 <?= HTML::style('media/css/vehicle/ershouche.css')?>
+<style>
+#a1_content, #a2_content, #a3_content, #a4_content {z-index: 9999;background: rgba(0,0,0,.60);}
+#wrapper1, #wrapper2, #wrapper3, #wrapper4 {top: 0;bottom:0;right: 0;left: 20%;width: 80%;background: #fff;}
+#wrapper22 {width: 40%;top: 0;bottom:0;right: 0;}
+</style>
 
 <?php include __DIR__ . '/vehicle/list_header.php';?>
 <?php include __DIR__ . '/vehicle/list_filter.php';?>
@@ -30,12 +35,12 @@ $(function() {
 		
 		if ($('#vehicle_filter').find('.dropup').length) {
 			$('body').css({'overflow': 'hidden'});
-			$('#vehicle_filter').addClass('fixed');
+			//$('#vehicle_filter').addClass('fixed');
 		} else {
 			$('body').css({'overflow': 'auto'});
-			if ($(this).scrollTop() <= 44) {
-				$('#vehicle_filter').removeClass('fixed');
-			}
+			//if ($(this).scrollTop() <= 44) {
+				//$('#vehicle_filter').removeClass('fixed');
+			//}
 		}
 		
 		if (id == 2) {
@@ -69,7 +74,7 @@ $(function() {
     	filter_tab_click(t.data("id"));
     });
 	
-	$('#wrapper1, #wrapper3, #a4_content').click(function (event) {
+	$('.close_box').click(function (event) {
 		if (event.target.className.indexOf('close_box') != -1) {
 		    var id = $(this).data("id");
 		    filter_tab_click(id);

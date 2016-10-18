@@ -58,8 +58,8 @@
 #scroller2 .list-group-item.active a:before {content:"";position:absolute;right:50%;top:10px;width:0;height:0;border-top:9px solid transparent;border-bottom:9px solid transparent;border-right:10px solid #f5f5f5; }
 #scroller22 .list-group-item {background: #f5f5f5;border-color:#fafafa}
 </style>
-<div id="a1_content" class="filter_option">
-    <div id="wrapper1" data-id="1" class="close_box">
+<div id="a1_content" class="filter_option close_box" data-id="1">
+    <div id="wrapper1">
     	<div id="scroller1">
     		<ul class="list-group">
                 <?php foreach ($sort_list as $item): ?>
@@ -70,8 +70,8 @@
     </div>
 </div>
 
-<div id="a3_content" class="filter_option">
-    <div id="wrapper3" data-id="3" class="close_box">
+<div id="a3_content" class="filter_option close_box" data-id="3">
+    <div id="wrapper3">
     	<div id="scroller3">
     	    <ul class="list-group">
                 <?php foreach ($price_list as $item): ?>
@@ -82,7 +82,7 @@
     </div>
 </div>
 
-<div id="a2_content" class="filter_option">
+<div id="a2_content" class="filter_option close_box" data-id="2">
     <div id="wrapper2">
     	<div id="scroller2">
     		<ul class="list-group">
@@ -114,7 +114,7 @@
             <?php include __DIR__ . '/list_more.php';?>
         </div>
     </div>
-    <div class="row" style="z-index:9999; position: fixed; bottom: 60px; left: 0; width: 100%; height: 44px; line-height: 44px;font-size:14px; text-align: center; margin: 0;">
+    <div class="row" style="z-index:9999; position: fixed; bottom: 0; right: 0; width: 80%; height: 44px; line-height: 44px;font-size:14px; text-align: center; margin: 0;">
         <div class="col-xs-8" style="background: #fff;color: #222;font-size: 13px;border-top:1px solid #eee">为您找到 <span id="vehicle_count"><?= $total_items?></span> 辆车</div>
         <div class="col-xs-4" style="background: #dd0000;color: #fff"><a id="comform_filter_btn" href="" style="color: #fff">查看</a></div>
     </div>
